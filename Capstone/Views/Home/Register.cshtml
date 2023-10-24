@@ -101,11 +101,10 @@
 
 
 @section scripts{
-    @Scripts.Render("~/bundles/jqueryval")
    
     <script type="text/javascript">
         //All'avvio della view l'input con id IsAzienda sarà Checked
-        $("#IsAzienda").prop( "checked", true );
+        $("#IsAzienda").prop("checked", true);
         //L'input CodiceFiscale sarà nascosto
         $("#CF").hide()
 
@@ -119,7 +118,7 @@
                     $("#PI").show()
                 }
             })
-            //Altrimenti nasconde la PartitaIva e mostra Il CodiceFiscale 
+            //Altrimenti nasconde la PartitaIva e mostra Il CodiceFiscale
             $("#Check").change(function () {
                 if ($("#Check").is(':checked')) {
                     console.log("true");
@@ -128,6 +127,11 @@
                     $("#IsAzienda").prop("checked", false);
                 }
             })
+
+
+            //Validazioni
+
+
 
         })
     </script>

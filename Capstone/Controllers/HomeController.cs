@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "Username, Password,Indirizzo,Email,Telefono,Ruolo,PartitaIva,CodiceFiscale")] Utenti u,bool IsAzienda)
         {
             
@@ -82,18 +82,7 @@ namespace Capstone.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-      //Validazioni email e Username 
-        public ActionResult IsEmailValid(string Email)
-        {
-              bool isValid = db.Utenti.All(x => x.Email != Email); ;
-               return Json(isValid, JsonRequestBehavior.AllowGet);
-        }
-       
-        public ActionResult IsNameValid(string Username)
-        {
-            bool isValid = db.Utenti.All(x => x.Username != Username); ;
-            return Json(isValid, JsonRequestBehavior.AllowGet);
-        }
+     
 
     }
 }
