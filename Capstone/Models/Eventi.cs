@@ -38,25 +38,26 @@ namespace Capstone.Models
         [StringLength(100)]
         public string Indirizzo { get; set; }
 
-        [Required]
-        [StringLength(50)]
+
+        [StringLength(50,MinimumLength =1,ErrorMessage ="Il campo è obbligatorio")]
         [Display(Name = "Foto copertina")]
         public string FotoCopertina { get; set; }
 
+
         [StringLength(50)]
-        [Display(Name = "Immagine aggiuntiva")]
+        [Display(Name = "Immagine aggiuntiva 1")]
         public string Foto1 { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Immagine aggiuntiva")]
+        [Display(Name = "Immagine aggiuntiva 2")]
         public string Foto2 { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Immagine aggiuntiva")]
+        [Display(Name = "Immagine aggiuntiva 3")]
         public string Foto3 { get; set; }
 
         [StringLength(50)]
-        [Display(Name = "Immagine aggiuntiva")]
+        [Display(Name = "Immagine aggiuntiva 4")]
         public string Foto4 { get; set; }
 
         [Column(TypeName = "date")]

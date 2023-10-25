@@ -164,7 +164,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\EventiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecensioniController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +186,10 @@
     <Compile Include="Migrations\202310231424082_TypePartitaIva2.cs" />
     <Compile Include="Migrations\202310231424082_TypePartitaIva2.designer.cs">
       <DependentUpon>202310231424082_TypePartitaIva2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.cs" />
+    <Compile Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.designer.cs">
+      <DependentUpon>202310251000410_DeleteRequiredFotoCopertina.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -268,9 +274,21 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
+    <Content Include="Views\Eventi\Create.cshtml" />
+    <Content Include="Views\Eventi\Delete.cshtml" />
+    <Content Include="Views\Eventi\Details.cshtml" />
+    <Content Include="Views\Eventi\Edit.cshtml" />
+    <Content Include="Views\Eventi\Index.cshtml" />
+    <Content Include="Views\Recensioni\Create.cshtml" />
+    <Content Include="Views\Recensioni\Delete.cshtml" />
+    <Content Include="Views\Recensioni\Details.cshtml" />
+    <Content Include="Views\Recensioni\Edit.cshtml" />
+    <Content Include="Views\Recensioni\Index.cshtml" />
+    <Content Include="Views\Recensioni\CreateRecensioni.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Img\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Validate\" />
   </ItemGroup>
@@ -357,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202310231424082_TypePartitaIva2.resx">
       <DependentUpon>202310231424082_TypePartitaIva2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.resx">
+      <DependentUpon>202310251000410_DeleteRequiredFotoCopertina.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

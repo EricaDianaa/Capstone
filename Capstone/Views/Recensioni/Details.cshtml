@@ -1,0 +1,50 @@
+﻿@model Capstone.Models.Recensioni
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recensioni</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Eventi.NomeEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eventi.NomeEvento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utenti.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utenti.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdRecensione }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

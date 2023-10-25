@@ -35,10 +35,10 @@ namespace Capstone.Models
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string UsernameLogin)
         {
             ModelBContent db = new ModelBContent();
-            Utenti U = db.Utenti.Where(x => x.Username == username).FirstOrDefault();
+            Utenti U = db.Utenti.Where(x => x.Username == UsernameLogin).FirstOrDefault();
 
             List<string> roles = new List<string>();
             string ruolo = U.Ruolo;

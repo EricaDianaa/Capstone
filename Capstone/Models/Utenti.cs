@@ -23,8 +23,11 @@ namespace Capstone.Models
         [Required]
         [StringLength(50)]
         [Remote("IsNameValid", "Validate", ErrorMessage ="Username non disponibile")]
-        
         public string Username { get; set; }
+
+        [NotMapped]
+
+        public string UsernameLogin { get; set; }
 
         [StringLength(50)]
         public string Ruolo { get; set; }

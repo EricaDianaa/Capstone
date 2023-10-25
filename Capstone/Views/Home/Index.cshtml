@@ -1,26 +1,68 @@
-﻿<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="aspnetTitle">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-            a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-            is an ideal platform for building RESTful applications on the .NET Framework.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-        </section>>
+﻿@*@model List<Capstone.Models.Eventi>*@
+@using Capstone.Models
+
+@foreach (Capstone.Models.Eventi e in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <img src="~/Content/Img/@e.FotoCopertina" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">@e.NomeEvento</h5>
+            <p class="card-text">@e.Descrizione</p>
+            <p class="card-text">@e.Prezzo</p>
+            <p class="card-text">@e.Indirizzo</p>
+            <p class="card-text">@e.DataEvento</p>
+            <p>Categoria:@e.Categorie.NomeCategoria</p>
+            <a href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
+
+
+            @*<button id="buttonmostra" class="btn btn-primary">scrivi una recensione</button>
+            <div id="recensioni" style="display:none">
+                @Html.Action("CreateRecensioni", "Recensioni")
+            </div>*@
+            @foreach (Capstone.Models.Recensioni r in e.Recensioni)
+            {
+
+                <div class="bg-secondary p-3 m-2 rounded-3">
+                    <div class="d-flex">
+                        <img style="width: 10%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                        <p>@r.Utenti.Username</p>
+                    </div>
+                    <div class=" bg-white bg-opacity-50 rounded-3">
+                        <p>@r.Descrizione</p>
+                        <p><strong>Voto:</strong>@r.Voto</p>
+                    </div>
+                    @if ( r.IdUtente==(int)Session["Utente"])
+                    {
+                        <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                    }
+
+                </div>
+
+            }
+
+        </div>
+
     </div>
-</main>
+}
+
+
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $("#buttonmostra").click(function () {
+                if ($("#recensioni").css("display") === "none") {
+                    $("#recensioni").css("display","block")
+                }
+                else {
+                    $("#recensioni").css("display", "none")
+                }
+            })
+
+        })
+    </script>
+}
+

@@ -1,0 +1,114 @@
+﻿@model Capstone.Models.Eventi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Eventi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.NomeCategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.NomeCategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeEvento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prezzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Luogo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Luogo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Indirizzo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoCopertina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FotoCopertina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataEvento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -12,10 +12,11 @@ namespace Capstone.Controllers
     {
         ModelBContent db = new ModelBContent();
         public ActionResult Index()
-        {
+        { 
+            List<Eventi> eventi= db.Eventi.Select(m=>m).ToList();
+           
             ViewBag.Title = "Home Page";
-
-            return View();
+            return View(eventi);
         }
 
         //Autentificazione
@@ -28,9 +29,12 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "Username, Password,Indirizzo,Email,Telefono,Ruolo,PartitaIva,CodiceFiscale")] Utenti u,bool IsAzienda)
         {
-            
+          
             if (ModelState.IsValid)
-            {   // Se è un azienda assegna ruolo come Azienda 
+            {   //Se l'utente non è un admin assegno il ruolo User o Azienda
+                if (!User.IsInRole("Admin"))
+                {
+                // Se è un azienda assegna ruolo come Azienda 
                 if (IsAzienda == true)
                 {
                    u.Ruolo = "Azienda";
@@ -42,6 +46,8 @@ namespace Capstone.Controllers
                     u.Ruolo = "User";
                     u.IsAzienda = IsAzienda;
                 }
+                }
+                
             //Creazione dell 'utente nel DB
             Utenti user = db.Utenti.Add(u);
             db.SaveChanges();
@@ -61,14 +67,16 @@ namespace Capstone.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login([Bind(Include = "IdUtente,Username, Password")] Utenti u)
+        public ActionResult Login([Bind(Include = "IdUtente,UsernameLogin, Password")] Utenti u)
         {   
             //Selezione dell'utente ricevuto all'interno del DB per verificare l'autentificazione
-            Utenti users = db.Utenti.FirstOrDefault(m => m.Username == u.Username & m.Password == u.Password);
+            Utenti users = db.Utenti.FirstOrDefault(m => m.Username == u.UsernameLogin & m.Password == u.Password);
             if (users != null)
             {
-                FormsAuthentication.SetAuthCookie(u.Username, false);
+                FormsAuthentication.SetAuthCookie(u.UsernameLogin, false);
+                Session["Utente"] = users.IdUtente;
                 return RedirectToAction("Index");
+                
             }
 
             return View();

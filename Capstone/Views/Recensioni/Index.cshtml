@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Capstone.Models.Recensioni>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Eventi.NomeEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utenti.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Eventi.NomeEvento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utenti.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdRecensione }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdRecensione }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdRecensione })
+        </td>
+    </tr>
+}
+
+</table>

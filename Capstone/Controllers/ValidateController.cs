@@ -20,7 +20,7 @@ namespace Capstone.Controllers
 
         public ActionResult IsNameValid(string Username)
         {
-            bool isValid = db.Utenti.All(x => x.Username != Username); ;
+       bool isValid = db.Utenti.All(x => x.Username != Username); ;
             return Json(isValid, JsonRequestBehavior.AllowGet);
         }
 
