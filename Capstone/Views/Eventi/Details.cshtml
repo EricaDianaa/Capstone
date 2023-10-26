@@ -109,6 +109,36 @@
     </dl>
 </div>
 <p>
-  
+    <strong>Quantità: </strong> <input type="number" name="Quantità" value="" id="quantità" />
+    <br />
+    <button type="submit" class="btn btn-primary mx-auto mt-2" id="Button">Aggiungi all'ordine'</button>
+
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $("#Button").click(function () {
+                console.log("Ordine", $("#quantità").val(),@Html.DisplayFor(model => model.IdEvento))
+                var prodotto = {
+                Quantità: $("#quantità").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "/Ordini/AggiungiOrdine",
+                    data: { Quantità: prodotto.Quantità, IdEvento: prodotto.Prodotto },
+                    success: function (data) {
+                        console.log(data)
+
+                    }
+                });
+
+            })
+        })
+
+    </script>
+}

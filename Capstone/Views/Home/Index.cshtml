@@ -19,6 +19,7 @@
             <div id="recensioni" style="display:none">
                 @Html.Action("CreateRecensioni", "Recensioni")
             </div>*@
+
             @foreach (Capstone.Models.Recensioni r in e.Recensioni)
             {
 
@@ -31,6 +32,7 @@
                         <p>@r.Descrizione</p>
 
                     </div>
+
                     @if (r.Voto == 1)
                     {
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
@@ -249,10 +251,12 @@
                         <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
                     }
 
+                 
+
                 </div>
 
             }
-
+        <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
         </div>
 
     </div>
@@ -274,6 +278,10 @@
                     $("#recensioni").css("display", "none")
                 }
             })
+
+
+
+              
 
         })
     </script>

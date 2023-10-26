@@ -1,0 +1,46 @@
+﻿@using Capstone.Models
+@{
+    ViewBag.Title = "OrdiniEffettuati";
+}
+<link href="~/Content/BigliettiOrdini.css" rel="stylesheet" />
+
+@foreach (Ordini o in Model)
+{
+    foreach (ListaOrdini li in o.ListaOrdini)
+    {
+        
+        <div class="ticket ticket-1" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
+            <div class="date">
+                <span class="day">31</span>
+                <span class="month-and-time">
+                    OCT
+                    <br />
+                    <span class="small">8PM</span>
+                </span>
+            </div>
+            <div class="artist">
+                <span class="name">@li.Eventi.NomeEvento</span>
+                <br />
+                <span class="live small">@ViewBag.NomeUtente</span>
+            </div>
+            <div class="location">
+                <span>@li.Eventi.Luogo</span>
+                <br />
+                <span class="small"><span>@li.Eventi.Indirizzo</span></span>
+            </div>
+
+            <div class="rip">
+            </div>
+
+            <div class="cta">
+                <button class="buy" href="#">@li.IdListaOrdine TICKET</button>
+            </div>
+
+        </div>
+
+    }
+
+
+
+}
+

@@ -1,0 +1,10 @@
+﻿<div class="bg-dark border border-white text-center text-primary">
+    <h2>Sei sicuro di voler eliminare</h2>
+    <div class="d-flex align-items-center justify-content-center text-white ">
+        @using (Html.BeginForm())
+        {
+            <button class="bg-dark border border-dark text-white p-1" type="submit">Si</button>
+        }
+        <a href="/home/cart" class="text-decoration-none   ms-2 p-1 text-white">No</a>
+    </div>
+</div>

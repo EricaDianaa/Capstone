@@ -10,11 +10,11 @@ using System.Web.Mvc;
 using Capstone.Models;
 
 namespace Capstone.Controllers
-{
+{[Authorize(Roles ="Admin , Azienda")]
     public class EventiController : Controller
     {
         private ModelBContent db = new ModelBContent();
-        [Authorize(Roles ="Admin , Azienda")]
+        
        
 
         // GET: Eventi

@@ -1,0 +1,68 @@
+﻿@using Capstone.Models 
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+
+<div class="bg-dark p-3">
+
+
+
+
+    @if (Session["Carello"] != null)
+    {<div class=" text-primary text-center ">
+            <h2>Il tuo carrello</h2>
+        </div>
+        foreach (EventiOrdini p in Model)
+        {
+            <div class="card bg-black text-white mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="~/Content/Img/@p.FotoCopertina" class="img-fluid rounded-start " alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"> @p.NomeEvento</h5>
+                            <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
+                            <p class="card-text"><strong>Data evento: </strong>  @p.DataEvento</p>
+                            <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
+                            <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
+                            <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
+                         
+                            <a href="/Ordini/CartRemove/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">Elimina</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        <div class="bg-black border border-white text-center p-2">
+            <h3 class="text-white ">Totale carrello: @string.Format("{0:C}", @ViewBag.totale) </h3>
+            <a href="/Ordini/Create" class="btn btn-primary">Concludi l'ordine</a>
+            <a href="/Ordini/CartRemoveAll" class="btn btn-primary">Svuota il carello</a>
+        </div>
+    }
+    @if (Session["Carello"] == null)
+    {
+        <div class="bg-dark text-primary text-center border border-white border-2">
+            <h2>Il tuo carrello è vuoto</h2>
+        </div>
+    }
+
+
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Elimina").click(function () {
+                var valore = $(this).data("Id")
+
+        console.log("Val",valore)
+            })
+        })
+
+    </script>
+}

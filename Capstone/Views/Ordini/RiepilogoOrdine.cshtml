@@ -1,0 +1,73 @@
+﻿@using Capstone.Models
+@{
+    ViewBag.Title = "Cart";
+}
+
+
+
+<div class="bg-dark p-3">
+
+    @if (Session["Carello"] != null)
+    {<div class=" text-primary text-center ">
+
+            <h2> Ciao @ViewBag.Nome ecco il tuo Riepilogo ordine</h2>
+        </div>
+        <div class="bg-black text-center text-white mb-2 p-2 border border-white">
+            <strong>Il tuo indirizzo di consegna</strong>
+
+            <p>@ViewBag.Indirizzo</p>
+            <a href="/Utenti/Edit/@ViewBag.IdUtente">Modifica</a>
+        </div>
+        <div class="bg-black text-center text-white mb-2 p-2 border border-white">
+            <strong>Il tuo numero di telefono</strong>
+
+            <p>@ViewBag.Telefono</p>
+            <a href="/Utenti/Edit/@ViewBag.IdUtente">Modifica</a>
+        </div>
+        foreach (EventiOrdini p in Model)
+        {
+
+            <div class="card bg-dark text-white mb-3 text-center ">
+                <div class="row g-0">
+                    <div class="d-flex flex-column  justify-content-center">
+                        <img src="~/Content/Img/@p.FotoCopertina" class="img-fluid rounded-pill mx-auto " style="width:10%; height:20%" alt="...">
+
+
+                        <h5 class="card-title"> @p.NomeEvento</h5>
+                        <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
+                        <p class="card-text"><strong>Data evento: </strong>  @p.DataEvento</p>
+                        <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
+                        <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
+                        <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        }
+        <div class="bg-black border border-white text-center p-2">
+            <h3 class="text-white ">Totale ordine: @string.Format("{0:C}", @ViewBag.totale) </h3>
+
+        </div>
+    }
+
+</div>
+@section scripts{
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#ModificaIndirizzo").click(function () {
+            console.log("ciao")
+            @*$.ajax({
+                method: "POST",
+                url: "EditIndirizzo",
+                data: {Indirizzo:@ViewBag.Indirizzo}
+            })*@
+        })
+    })
+    </script>
+    
+    }

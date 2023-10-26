@@ -164,9 +164,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategorieController.cs" />
     <Compile Include="Controllers\EventiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaOrdiniController.cs" />
+    <Compile Include="Controllers\OrdiniController.cs" />
     <Compile Include="Controllers\RecensioniController.cs" />
+    <Compile Include="Controllers\UtentiController.cs" />
     <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +198,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
+    <Compile Include="Models\EventiOrdini.cs" />
     <Compile Include="Models\ListaOrdini.cs" />
     <Compile Include="Models\ModelBContent.cs" />
     <Compile Include="Models\Ordini.cs" />
@@ -204,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\BigliettiOrdini.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -286,6 +292,31 @@
     <Content Include="Views\Recensioni\Edit.cshtml" />
     <Content Include="Views\Recensioni\Index.cshtml" />
     <Content Include="Views\Recensioni\CreateRecensioni.cshtml" />
+    <Content Include="Views\Ordini\Create.cshtml" />
+    <Content Include="Views\Ordini\Delete.cshtml" />
+    <Content Include="Views\Ordini\Details.cshtml" />
+    <Content Include="Views\Ordini\Edit.cshtml" />
+    <Content Include="Views\Ordini\Index.cshtml" />
+    <Content Include="Views\ListaOrdini\Create.cshtml" />
+    <Content Include="Views\ListaOrdini\Delete.cshtml" />
+    <Content Include="Views\ListaOrdini\Details.cshtml" />
+    <Content Include="Views\ListaOrdini\Edit.cshtml" />
+    <Content Include="Views\ListaOrdini\Index.cshtml" />
+    <Content Include="Views\Categorie\Create.cshtml" />
+    <Content Include="Views\Categorie\Delete.cshtml" />
+    <Content Include="Views\Categorie\Details.cshtml" />
+    <Content Include="Views\Categorie\Edit.cshtml" />
+    <Content Include="Views\Categorie\Index.cshtml" />
+    <Content Include="Views\Ordini\AggiungiOrdine.cshtml" />
+    <Content Include="Views\Ordini\Cart.cshtml" />
+    <Content Include="Views\Ordini\CartRemove.cshtml" />
+    <Content Include="Views\Ordini\CartRemoveAll.cshtml" />
+    <Content Include="Views\Ordini\RiepilogoOrdine.cshtml" />
+    <Content Include="Views\Utenti\Delete.cshtml" />
+    <Content Include="Views\Utenti\Details.cshtml" />
+    <Content Include="Views\Utenti\Edit.cshtml" />
+    <Content Include="Views\Utenti\Index.cshtml" />
+    <Content Include="Views\Ordini\OrdiniEffettuati.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

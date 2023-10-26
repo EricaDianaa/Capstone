@@ -1,0 +1,42 @@
+﻿@model Capstone.Models.ListaOrdini
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ListaOrdini</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Eventi.NomeEvento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Eventi.NomeEvento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ordini.IdOrdini)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ordini.IdOrdini)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantità)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantità)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdListaOrdine }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

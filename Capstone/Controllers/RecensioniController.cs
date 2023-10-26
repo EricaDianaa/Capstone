@@ -97,7 +97,7 @@ namespace Capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdRecensione,IdUtente,Voto,Descrizione,IdEvento")] Recensioni recensioni, int rating)
-        {
+        {  
             if (ModelState.IsValid)
             {
                 if (recensioni.IdUtente == (int)Session["Utente"])

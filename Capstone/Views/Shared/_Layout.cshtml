@@ -25,7 +25,8 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Registra un utente", "register", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Registra un evento", "Create", "Eventi", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Eventi", "index", "Eventi", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Categorie", "index", "Categorie", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </div>
@@ -44,7 +45,8 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Carello", "cart", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("I tuoi Ordini", "OrdiniEffettuati", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Carello", "cart", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
                     </ul>
@@ -64,7 +66,7 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Crea un evento", "Create", "Eventi", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Eventi", "index", "Eventi", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
                     </ul>
