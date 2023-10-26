@@ -293,17 +293,6 @@ namespace Capstone.Controllers
             Utenti u = db.Utenti.FirstOrDefault(m => m.IdUtente == idUtente);
             ViewBag.NomeUtente=u.Username;
             List< Ordini > e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
-            List<Eventi> eventi = new List<Eventi>();
-            foreach (Ordini ordine in e)
-            {
-                foreach (ListaOrdini item in ordine.ListaOrdini)
-                {
-                    Eventi evento = db.Eventi.Where(m => m.IdEvento == item.IdEvento).FirstOrDefault();
-                    eventi.Add(evento);
-                }
-               
-            }
-            ViewBag.ListaEventi=eventi;
             return View(e);
         }
     }
