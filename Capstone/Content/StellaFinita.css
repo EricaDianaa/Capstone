@@ -1,0 +1,42 @@
+﻿body {
+}
+
+body {
+    margin: 40px;
+}
+
+.rating {
+    margin-top: 40px;
+    border: none;
+    float: left;
+}
+
+    .rating > label {
+        color: #90A0A3;
+        float: right;
+    }
+
+        .rating > label:before {
+            margin: 5px;
+            font-size: 2em;
+            font-family: FontAwesome;
+            content: "\f005";
+            display: inline-block;
+        }
+
+    .rating > input {
+        display: none;
+    }
+
+        .rating > input:checked ~ label,
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: #F79426;
+        }
+
+            .rating > input:checked + label:hover,
+            .rating > input:checked ~ label:hover,
+            .rating > label:hover ~ input:checked ~ label,
+            .rating > input:checked ~ label:hover ~ label {
+                color: #FECE31;
+            }

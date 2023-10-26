@@ -13,15 +13,11 @@ namespace Capstone.Controllers
     public class RecensioniController : Controller
     {
         private ModelBContent db = new ModelBContent();
-
-        // GET: Recensioni
         public ActionResult Index()
         {
             var recensioni = db.Recensioni.Include(r => r.Eventi).Include(r => r.Utenti);
             return View(recensioni.ToList());
         }
-
-        // GET: Recensioni/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,8 +31,6 @@ namespace Capstone.Controllers
             }
             return View(recensioni);
         }
-
-        // GET: Recensioni/Create
         public ActionResult Create()
         {
             
@@ -45,12 +39,13 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdRecensione,IdUtente,Voto,Descrizione,IdEvento")] Recensioni recensioni)
+        public ActionResult Create([Bind(Include = "IdRecensione,IdUtente,Voto,Descrizione,IdEvento")] Recensioni recensioni, int rating)
         {
             if (ModelState.IsValid)
             {
                 recensioni.IdEvento =Convert.ToInt32(Request.QueryString["id"]);
                 recensioni.IdUtente = (int)Session["Utente"];
+                recensioni.Voto = rating;
                 db.Recensioni.Add(recensioni);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,12 +96,13 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdRecensione,IdUtente,Voto,Descrizione,IdEvento")] Recensioni recensioni)
+        public ActionResult Edit([Bind(Include = "IdRecensione,IdUtente,Voto,Descrizione,IdEvento")] Recensioni recensioni, int rating)
         {
             if (ModelState.IsValid)
             {
-                if (recensioni.IdEvento == (int)Session["Utente"])
+                if (recensioni.IdUtente == (int)Session["Utente"])
                 {
+                    recensioni.Voto = rating;
                     db.Entry(recensioni).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
