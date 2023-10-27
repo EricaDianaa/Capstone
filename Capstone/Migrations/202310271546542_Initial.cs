@@ -26,7 +26,7 @@
                         Prezzo = c.Decimal(nullable: false, storeType: "money"),
                         Luogo = c.String(nullable: false, maxLength: 100),
                         Indirizzo = c.String(nullable: false, maxLength: 100),
-                        FotoCopertina = c.String(nullable: false, maxLength: 50),
+                        FotoCopertina = c.String(maxLength: 50),
                         Foto1 = c.String(maxLength: 50),
                         Foto2 = c.String(maxLength: 50),
                         Foto3 = c.String(maxLength: 50),
@@ -76,6 +76,9 @@
                         Indirizzo = c.String(nullable: false, maxLength: 100),
                         Email = c.String(nullable: false, maxLength: 50),
                         Telefono = c.String(nullable: false, maxLength: 10),
+                        IsAzienda = c.Boolean(nullable: false),
+                        CodiceFiscale = c.String(maxLength: 16),
+                        PartitaIva = c.String(maxLength: 11),
                     })
                 .PrimaryKey(t => t.IdUtente);
             

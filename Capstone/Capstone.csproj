@@ -175,25 +175,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202310231021327_Initial.cs" />
-    <Compile Include="Migrations\202310231021327_Initial.designer.cs">
-      <DependentUpon>202310231021327_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310231402153_NewColumnUtenti.cs" />
-    <Compile Include="Migrations\202310231402153_NewColumnUtenti.designer.cs">
-      <DependentUpon>202310231402153_NewColumnUtenti.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310231404339_utentiTypePartitaIva.cs" />
-    <Compile Include="Migrations\202310231404339_utentiTypePartitaIva.designer.cs">
-      <DependentUpon>202310231404339_utentiTypePartitaIva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310231424082_TypePartitaIva2.cs" />
-    <Compile Include="Migrations\202310231424082_TypePartitaIva2.designer.cs">
-      <DependentUpon>202310231424082_TypePartitaIva2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.cs" />
-    <Compile Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.designer.cs">
-      <DependentUpon>202310251000410_DeleteRequiredFotoCopertina.cs</DependentUpon>
+    <Compile Include="Migrations\202310271546542_Initial.cs" />
+    <Compile Include="Migrations\202310271546542_Initial.designer.cs">
+      <DependentUpon>202310271546542_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
@@ -396,20 +380,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202310231021327_Initial.resx">
-      <DependentUpon>202310231021327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310231402153_NewColumnUtenti.resx">
-      <DependentUpon>202310231402153_NewColumnUtenti.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310231404339_utentiTypePartitaIva.resx">
-      <DependentUpon>202310231404339_utentiTypePartitaIva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310231424082_TypePartitaIva2.resx">
-      <DependentUpon>202310231424082_TypePartitaIva2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202310251000410_DeleteRequiredFotoCopertina.resx">
-      <DependentUpon>202310251000410_DeleteRequiredFotoCopertina.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202310271546542_Initial.resx">
+      <DependentUpon>202310271546542_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

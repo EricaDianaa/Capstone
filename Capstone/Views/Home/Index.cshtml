@@ -1,9 +1,68 @@
 ﻿@*@model List<Capstone.Models.Eventi>*@
 @using Capstone.Models
 
-@foreach (Capstone.Models.Eventi e in Model)
-{
-    <div class="card" style="width: 18rem;">
+@* Sezione filtri *@
+<button id="ButtonFiltri">Filtri</button>
+<div id="filtri" style="display:none">
+    <div>
+        <h3>Seleziona per categoria</h3>
+        <button id="C" class="btn btn-primary">Concerti</button>
+        <button id="F" class="btn btn-primary">Feste</button>
+        <button id="A" class="btn btn-primary">Avventura</button>
+        <button id="R" class="btn btn-primary">Relax</button>
+        <button id="M" class="btn btn-primary">Musei</button>
+    </div><h3>Seleziona per costo</h3>
+    <div class="d-flex">
+        
+            
+            <button id="G" class="btn btn-primary">Gratis</button>
+            <input type="number" name="Prezzo" id="InputPrezzo" />
+            <button id="P" class="btn btn-primary">Cerca</button>
+        
+                <h3>Da</h3>
+                <input type="number" name="Prezzo" id="InputPrezzo1" />
+                <button id="P1" class="btn btn-primary">Cerca</button>
+            
+        
+       
+    </div>
+    <h3>Seleziona per data </h3>
+    <div class="d-flex ">
+        <div>
+            <h5>Per singola data</h5>
+            <div class="d-flex ms-2">
+                <div>
+                    <h6>Il</h6>
+                    <input type="date" name="DataEvento" id="InputDate" class="btn btn-primary"></>
+                    <button id="Data" class="btn btn-primary">Cerca</button>
+                </div>
+            </div>
+            <div>
+               </div>
+            </div> 
+        <div>
+            
+        <h5>Per un periodo</h5>
+        <div class="d-flex ms-2">
+            <div>
+                <h6>Dal</h6>
+                <input type="date" name="DataEvento" id="InputPeriodo" class="btn btn-primary" />
+                <button id="DataPeriodo" class="btn btn-primary">Cerca</button>
+            </div>
+        </div>
+        </div>
+
+    </div>
+    <a class="text-decoration-line" id="RemoveFiltri">Rimuovi filtri</a>
+</div>
+
+<div class="container">
+    <div class="row" id="Eventi">
+        @* Eventi *@
+        @foreach (Capstone.Models.Eventi e in Model)
+        {     
+         
+    <div  class="card col" style="width: 18rem;">
         <img src="~/Content/Img/@e.FotoCopertina" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">@e.NomeEvento</h5>
@@ -16,9 +75,9 @@
 
 
             @*<button id="buttonmostra" class="btn btn-primary">scrivi una recensione</button>
-            <div id="recensioni" style="display:none">
-                @Html.Action("CreateRecensioni", "Recensioni")
-            </div>*@
+                <div id="recensioni" style="display:none">
+                    @Html.Action("CreateRecensioni", "Recensioni")
+                </div>*@
 
             @foreach (Capstone.Models.Recensioni r in e.Recensioni)
             {
@@ -251,18 +310,19 @@
                         <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
                     }
 
-                 
+
 
                 </div>
 
             }
-        <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
+            <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
         </div>
 
     </div>
-}
 
-
+        }
+    </div>
+</div>
 
 @section scripts{
     <script type="text/javascript">
@@ -270,19 +330,170 @@
 
         $(document).ready(function () {
 
-            $("#buttonmostra").click(function () {
-                if ($("#recensioni").css("display") === "none") {
-                    $("#recensioni").css("display","block")
+            function filtri(data) {
+                $("#List").html("")
+                $("#Eventi").html("");
+             $.each(data,function(i,e){
+                 var licurrent = "<div  class='card col' style='width: 18rem;'>"+
+                     " <img src='/Content/Img/"+e.FotoCopertina+"' class='card-img-top' alt='...'>"+
+                     "<div class='card-body'>" +
+                     " <h5 class='card-title'>"+e.NomeEvento+"</h5>"+
+                     " <p class='card-text'>"+e.Descrizione+"</p>"+
+                     "  <p class='card-text'>"+e.Prezzo+"</p>"+
+         "<p class='card-text'>"+e.Indirizzo+"</p>"+
+         "<p class='card-text'>"+e.DataEvento+"</p>"+
+         "<p>Categoria:"+"</p>"+
+         "<a href='/Recensioni/Create/?id="+e.IdEvento+"'>Scrivi una recensione</a>"+
+                     "<a href='/Eventi/Details/" + e.IdEvento +"'>Dettagli</a></div> </div>"
+     
+
+               $("#Eventi").append(licurrent)
+             })
+            }
+            $("#ButtonFiltri").click(function () {
+                //Mostra/NonMostra i filtri
+                if ($("#filtri").css("display") === "none") {
+                    $("#filtri").css("display", "block")
+
                 }
                 else {
-                    $("#recensioni").css("display", "none")
+                    $("#filtri").css("display", "none")
+
                 }
             })
+            
+            //Sezione Filtri
+            //Al click di un bottone dei filtri genero una chiamata ajax per
+            //per ottenere la categoria e fare una select alò db
+            $("#G").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { Prezzo: 0, NomeCategoria: null,DataEvento:"01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#P").click(function () {
+                var prezzo = $("#InputPrezzo").val();
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { Prezzo: prezzo, NomeCategoria: null, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#P1").click(function () {
+                var prezzo = $("#InputPrezzo1").val();
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { Prezzo: prezzo, NomeCategoria: "Da", DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
 
+            $("#C").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Concerti", Prezzo: 0, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#A").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Avventura", Prezzo: 0, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#F").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Feste", Prezzo: 0, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
 
-
-              
-
+                    }
+                })
+            })
+            $("#R").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Relax", Prezzo: 0, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#M").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Musei", Prezzo: 0, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#Data").click(function () {
+                var date = $("#InputDate").val();
+                console.log(date)
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "", DataEvento:date,Prezzo:0},
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#DataPeriodo").click(function () {
+                var date = $("#InputPeriodo").val();
+                console.log(date)
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: "Dal", DataEvento: date, Prezzo: 0},
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
+            $("#RemoveFiltri").click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { NomeCategoria: null, Prezzo: -1, DataEvento: "01/01/0001" },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
+                })
+            })
         })
     </script>
 }

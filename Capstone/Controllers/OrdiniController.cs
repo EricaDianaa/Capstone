@@ -11,12 +11,13 @@ using Capstone.Models;
 
 namespace Capstone.Controllers
 {
+    [Authorize(Roles ="User")]
     public class OrdiniController : Controller
     {
         private ModelBContent db = new ModelBContent();
 
         public List<EventiOrdini> ListOrdini = new List<EventiOrdini>();
-
+        [Authorize(Roles ="Admin, Azienda")]
         public ActionResult Index()
         {
             var ordini = db.Ordini.Include(o => o.Utenti);
@@ -81,7 +82,7 @@ namespace Capstone.Controllers
                     db.SaveChanges();
                     //Svuoto il carrello alla fine dell'ordine
                     Session["Carello"]=null;
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             }
     

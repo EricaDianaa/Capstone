@@ -15,6 +15,7 @@ namespace Capstone.Models
         {
             Ordini = new HashSet<Ordini>();
             Recensioni = new HashSet<Recensioni>();
+            //Eventi=new HashSet<Eventi>();
         }
 
         [Key]
@@ -69,5 +70,6 @@ namespace Capstone.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recensioni> Recensioni { get; set; }
+
     }
 }

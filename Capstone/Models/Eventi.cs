@@ -65,7 +65,7 @@ namespace Capstone.Models
         public DateTime DataEvento { get; set; }
 
         public int IdCategoria { get; set; }
-
+        
         public virtual Categorie Categorie { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
