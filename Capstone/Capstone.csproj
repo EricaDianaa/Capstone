@@ -287,7 +287,6 @@
     <Content Include="Views\ListaOrdini\Edit.cshtml" />
     <Content Include="Views\ListaOrdini\Index.cshtml" />
     <Content Include="Views\Categorie\Create.cshtml" />
-    <Content Include="Views\Categorie\Delete.cshtml" />
     <Content Include="Views\Categorie\Details.cshtml" />
     <Content Include="Views\Categorie\Edit.cshtml" />
     <Content Include="Views\Categorie\Index.cshtml" />

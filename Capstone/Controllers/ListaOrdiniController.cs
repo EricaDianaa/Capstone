@@ -84,9 +84,17 @@ namespace Capstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                ListaOrdini li = db.ListaOrdini.FirstOrDefault(m => m.IdListaOrdine == listaOrdini.IdListaOrdine);
+                listaOrdini.IdOrdine = li.IdOrdine;
+                listaOrdini.IdEvento = li.IdEvento;
+
+                var local = db.Set<ListaOrdini>().Local.FirstOrDefault(f => f.IdListaOrdine == listaOrdini.IdListaOrdine);
+                if (local != null)
+                {
+                    db.Entry(local).State = EntityState.Detached;
+                }
                 db.Entry(listaOrdini).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                     db.SaveChanges();
             }
             ViewBag.IdEvento = new SelectList(db.Eventi, "IdEvento", "NomeEvento", listaOrdini.IdEvento);
             ViewBag.IdOrdine = new SelectList(db.Ordini, "IdOrdini", "IdOrdini", listaOrdini.IdOrdine);

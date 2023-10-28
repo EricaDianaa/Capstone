@@ -260,10 +260,40 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Eventi eventi = db.Eventi.Find(id);
-            db.Eventi.Remove(eventi);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            //Se listaOrdini ha ordini correlati all'evento che non sono ancora terminati(la data dell'evento non è ancora scaduta)è impossibile eliminare l'elemento
+            List<ListaOrdini> listaOrdini = db.ListaOrdini.Where(m => m.IdEvento == id && m.Eventi.DataEvento >= DateTime.Today).ToList();
+            if (listaOrdini.Count >= 1)
+            {
+                TempData["ErroreElimina"] = "Errore";
+                ViewBag.Errore = "Impossibile eliminare l'elemento perchè ci sono ordini non ancora conclusi";
+                return RedirectToAction("index","Eventi");
+            }//Altrimenti elimina
+            else
+            {//prima elimina tutti la lista degli ordini
+                List<ListaOrdini> l = db.ListaOrdini.Where(m => m.IdEvento == id && m.Eventi.DataEvento <= DateTime.Today).ToList();
+                foreach (ListaOrdini ordine in l)
+                {
+                    db.ListaOrdini.Remove(ordine);
+                    db.SaveChanges();
+                }//poi le recensioni
+                List<Recensioni> r = db.Recensioni.Where(m => m.IdEvento == id).ToList();
+                if (r.Count >= 1)
+                {
+                    foreach (Recensioni recensioni in r)
+                    {
+                        db.Recensioni.Remove(recensioni);
+                        db.SaveChanges();
+                    }
+                }
+                //infine l'evento
+                Eventi eventi = db.Eventi.Find(id);
+                db.Eventi.Remove(eventi);
+                db.SaveChanges();
+                TempData["Elimina"] = "ElimnaSuccesso";
+                return RedirectToAction("Index");
+
+            }
+
         }
 
         protected override void Dispose(bool disposing)

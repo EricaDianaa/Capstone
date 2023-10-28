@@ -82,31 +82,6 @@ namespace Capstone.Controllers
             return View(categorie);
         }
 
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Categorie categorie = db.Categorie.Find(id);
-            if (categorie == null)
-            {
-                return HttpNotFound();
-            }
-            return View(categorie);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Categorie categorie = db.Categorie.Find(id);
-            db.Categorie.Remove(categorie);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

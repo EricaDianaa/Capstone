@@ -9,6 +9,21 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@if (TempData["ErroreElimina"] != null)
+{
+
+
+<div>
+        <h3 class="text-danger">Impossibile eliminare l'elemento perche non è ancora terminato e sono collegati degli ordini</h3>
+    </div>
+}
+else if (TempData["Elimina"]!=null)
+{
+<div>
+    <h3 class="text-danger">Elimina avvenuta con successo</h3>
+</div>
+            }
 <table class="table">
     <tr>
         <th>
@@ -50,50 +65,53 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorie.NomeCategoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeEvento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descrizione)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prezzo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Luogo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Indirizzo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FotoCopertina)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataEvento)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEvento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEvento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEvento })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.NomeCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Luogo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indirizzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FotoCopertina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEvento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdEvento }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdEvento }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdEvento })
+            </td>
+        </tr>
+    }
 
 </table>
+
+

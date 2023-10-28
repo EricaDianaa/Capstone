@@ -17,14 +17,27 @@ namespace Capstone.Controllers
         private ModelBContent db = new ModelBContent();
 
         public List<EventiOrdini> ListOrdini = new List<EventiOrdini>();
-        [Authorize(Roles ="Admin, Azienda")]
+        [AllowAnonymous]
+        [Authorize(Roles = "Admin , Azienda")]
         public ActionResult Index()
         {
-            var ordini = db.Ordini.Include(o => o.Utenti);
-            return View(ordini.ToList());
+            if (User.IsInRole("User"))
+            {
+              return  RedirectToAction("Index", "Home");
+            }
+            else if (User.IsInRole("Admin")||User.IsInRole("Azienda"))
+            {
+              var ordini = db.Ordini.Include(o => o.Utenti);
+              return View(ordini.ToList());
+            }
+            else
+            {
+              return  RedirectToAction("Index", "Home");
+            }
+            
         }
 
-
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -90,7 +103,7 @@ namespace Capstone.Controllers
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Username", ordini.IdUtente);
             return View(ordini);
         }
-
+        [AllowAnonymous]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,6 +121,7 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Edit([Bind(Include = "IdOrdini,Data,IdUtente")] Ordini ordini)
         {
             if (ModelState.IsValid)
@@ -119,7 +133,7 @@ namespace Capstone.Controllers
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Username", ordini.IdUtente);
             return View(ordini);
         }
-
+        [AllowAnonymous]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,16 +148,37 @@ namespace Capstone.Controllers
             return View(ordini);
         }
 
+     
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] 
+        [AllowAnonymous]
         public ActionResult DeleteConfirmed(int id)
         {
-            Ordini ordini = db.Ordini.Find(id);
-            db.Ordini.Remove(ordini);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
+            List<ListaOrdini> listaOrdini = db.ListaOrdini.Where(m => m.IdOrdine == id).ToList();
+            if (listaOrdini.Count >= 1)
+            {
+                //Prima di elimina l'ordine prima elimino gli elementi legati all'ordine
+                foreach (ListaOrdini ordine in listaOrdini)
+                {
+                    db.ListaOrdini.Remove(ordine);
+                    db.SaveChanges();
+                   
+                }
+                //Poi elimino l'ordine
+                Ordini ordini = db.Ordini.Find(id);
+                db.Ordini.Remove(ordini);
+                db.SaveChanges();
+                TempData["Elimina"] = "True";
+                return RedirectToAction("Index","Ordini");
+            
+            }
+            else
+            {
+                TempData["Elimina"] = "False";
+                return RedirectToAction("Index", "Ordini");
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

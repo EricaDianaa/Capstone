@@ -7,41 +7,48 @@
 @foreach (Ordini o in Model)
 {
     <div class="bg-dark m-5">
-<h3 class="text-center text-white">Ordine n° @o.IdOrdini</h3>
+        <h3 class="text-center text-white">Ordine n° @o.IdOrdini</h3>
 
         @foreach (ListaOrdini li in o.ListaOrdini)
         {
 
-        <div class="ticket ticket-1 text-white" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
-            <div class="date">
-                <span class="day">@li.Eventi.DataEvento.Day</span>
-                <span class="month-and-time">
-                    @li.Eventi.DataEvento.Month
+            <div class="ticket ticket-1 text-white" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
+                <div class="date">
+                    <span class="day">@li.Eventi.DataEvento.Day</span>
+                    <span class="month-and-time">
+                        @li.Eventi.DataEvento.Month
+                        <br />
+                        <span class="small">  @li.Eventi.DataEvento.Year</span>
+                    </span>
+                </div>
+                <div class="artist">
+                    <span class="name">@li.Eventi.NomeEvento</span>
                     <br />
-                    <span class="small">  @li.Eventi.DataEvento.Year</span>
-                </span>
-            </div>
-            <div class="artist">
-                <span class="name">@li.Eventi.NomeEvento</span>
-                <br />
-                <span class="live small">@ViewBag.NomeUtente</span>
-            </div>
-            <div class="location d-flex align-items-center justify-content-start">
-                <span>@li.Eventi.Luogo</span>
-                <br />
-                <span class="small"><span>@li.Eventi.Indirizzo</span></span>
-            </div>
+                    <span class="live small">@ViewBag.NomeUtente</span>
+                </div><h3>X @li.Quantità</h3>
+                <div class="location d-flex align-items-center justify-content-start">
 
-            <div class="rip">
+                    <span>@li.Eventi.Luogo</span>
+                    <br />
+                    <span class="small"><span>@li.Eventi.Indirizzo</span></span>
+                </div>
+
+                <div class="rip">
+
+                </div>
+
+                <div class="cta">
+                    <button class="buy" href="#">@li.IdListaOrdine TICKET</button>
+                </div>
+
             </div>
-
-            <div class="cta">
-                <button class="buy" href="#">@li.IdListaOrdine TICKET</button>
-            </div>
-
-        </div>
-
+            if (o.Data <= DateTime.Today)
+            {
+                <a href="/ListaOrdini/Edit/@li.IdListaOrdine" class="btn btn-primary">Modifica</a>
+                <a href="/ListaOrdini/Delete/@li.IdListaOrdine" class="btn btn-primary">Elimina</a>
+            }
         }
+
 
     </div>
 

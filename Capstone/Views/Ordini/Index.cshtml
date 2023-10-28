@@ -5,7 +5,18 @@
 }
 
 <h2>Index</h2>
-
+@if ((string)TempData["Elimina"] == "False")
+{
+    <div>
+        <h3 class="text-danger">Impossibile eliminare l'elemento </h3>
+    </div>
+}
+else if ((string)TempData["Elimina"] == "True")
+{
+    <div>
+        <h3 class="text-danger">Elimina avvenuta con successo</h3>
+    </div>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -20,20 +31,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Utenti.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdOrdini }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdOrdini }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdOrdini })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utenti.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdOrdini }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdOrdini }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdOrdini })
+            </td>
+        </tr>
+    }
 
 </table>

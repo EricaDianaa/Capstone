@@ -18,6 +18,7 @@ namespace Capstone.Models
         public virtual DbSet<Ordini> Ordini { get; set; }
         public virtual DbSet<Recensioni> Recensioni { get; set; }
         public virtual DbSet<Utenti> Utenti { get; set; }
+        public object As { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
