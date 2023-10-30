@@ -1,11 +1,11 @@
 ﻿@model Capstone.Models.Utenti
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Account";
+
+
 }
-
-<h2>Details</h2>
-
+;
+<h2>Account</h2>
 <div>
     <h4>Utenti</h4>
     <hr />
@@ -66,29 +66,30 @@
             @Html.DisplayFor(model => model.IsAzienda)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CodiceFiscale)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CodiceFiscale)
-        </dd>
+        @if (Model.PartitaIva != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.PartitaIva)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PartitaIva)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PartitaIva)
+            </dd>
+        }
+        @if (Model.CodiceFiscale != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PartitaIva)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.CodiceFiscale)
+            </dd>
+        }
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.IdUtente })
-    }
-     
-    @Html.ActionLink("Back to List", "Index")
+    <a href="/Utenti/Edit/ @Html.DisplayFor(model => model.IdUtente)">Modifica</a>
+
 </p>

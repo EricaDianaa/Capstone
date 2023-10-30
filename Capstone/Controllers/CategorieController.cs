@@ -49,7 +49,7 @@ namespace Capstone.Controllers
             {
                 db.Categorie.Add(categorie);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Categorie");
             }
 
             return View(categorie);
@@ -77,7 +77,7 @@ namespace Capstone.Controllers
             {
                 db.Entry(categorie).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Categorie");
             }
             return View(categorie);
         }

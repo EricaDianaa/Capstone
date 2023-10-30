@@ -14,14 +14,29 @@ namespace Capstone.Controllers
     public class EventiController : Controller
     {
         private ModelBContent db = new ModelBContent();
-        
-       
-
         // GET: Eventi
         public ActionResult Index()
         {
-            var eventi = db.Eventi.Include(e => e.Categorie).Include(e=>e.Recensioni);
-            return View(eventi.ToList());
+            if (User.IsInRole("Azienda"))
+            {
+                if (Session["Utente"] != null)
+                {
+                    int idUtente = (int)Session["Utente"];
+                    var eventi = db.Eventi.Include(e => e.Categorie).Include(e => e.Recensioni).Where(m => m.IdUtente == idUtente);
+                    return View(eventi.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
+
+            }
+            else
+            {
+              var eventi = db.Eventi.Include(e => e.Categorie).Include(e=>e.Recensioni);
+              return View(eventi.ToList());
+            }
+            
         }
         [AllowAnonymous]
         public ActionResult Details(int? id)
@@ -49,6 +64,9 @@ namespace Capstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Session["Utente"] != null)
+                {
+eventi.IdUtente = (int)Session["Utente"];
                 if (FotoCopertina != null)
                 {
 
@@ -97,13 +115,18 @@ namespace Capstone.Controllers
                 }
                 db.Eventi.Add(eventi);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Eventi");
                 }
                 else
                 {
                     ViewBag.Errore = "Il campo Foto copertina è obbligatorio";
                     ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
                     return View();
+                }
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
                 }
             }
 
@@ -171,6 +194,9 @@ namespace Capstone.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Session["Utente"] != null)
+                {
+                    eventi.IdUtente = (int)Session["Utente"];
                 if (FotoCopertina != null && FotoCopertina.ContentLength > 0)
                 {
                     string FotoCopertinaFile = FotoCopertina.FileName;
@@ -207,8 +233,6 @@ namespace Capstone.Controllers
                     eventi.Foto2 = TempData["Foto2"].ToString();
                 }
 
-
-
                 if (Foto3 != null && Foto3.ContentLength > 0)
                 {
                     string Foto3File = Foto3.FileName;
@@ -235,7 +259,12 @@ namespace Capstone.Controllers
 
                 db.Entry(eventi).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Eventi");
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
             }
             ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
             return View(eventi);
@@ -290,7 +319,7 @@ namespace Capstone.Controllers
                 db.Eventi.Remove(eventi);
                 db.SaveChanges();
                 TempData["Elimina"] = "ElimnaSuccesso";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Eventi");
 
             }
 

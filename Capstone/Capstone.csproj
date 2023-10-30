@@ -303,7 +303,6 @@
     <Content Include="Views\Recensioni\Details.cshtml" />
     <Content Include="Views\Recensioni\Edit.cshtml" />
     <Content Include="Views\Recensioni\Index.cshtml" />
-    <Content Include="Views\Recensioni\CreateRecensioni.cshtml" />
     <Content Include="Views\Ordini\Create.cshtml" />
     <Content Include="Views\Ordini\Delete.cshtml" />
     <Content Include="Views\Ordini\Details.cshtml" />
@@ -327,6 +326,7 @@
     <Content Include="Views\Utenti\Edit.cshtml" />
     <Content Include="Views\Utenti\Index.cshtml" />
     <Content Include="Views\Ordini\OrdiniEffettuati.cshtml" />
+    <Content Include="Views\Home\Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,11 +10,12 @@ using Capstone.Models;
 
 namespace Capstone.Controllers
 {
+  
     public class ListaOrdiniController : Controller
     {
         private ModelBContent db = new ModelBContent();
 
-
+  [Authorize(Roles ="Admin, Azienda")]
         public ActionResult Index()
         {
             var listaOrdini = db.ListaOrdini.Include(l => l.Eventi).Include(l => l.Ordini);
@@ -35,6 +36,7 @@ namespace Capstone.Controllers
             return View(listaOrdini);
         }
 
+        [Authorize(Roles = "User")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -53,6 +55,7 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public ActionResult Edit([Bind(Include = "IdListaOrdine,Quantità,IdEvento,IdOrdine")] ListaOrdini listaOrdini)
         {
             if (ModelState.IsValid)
@@ -74,6 +77,7 @@ namespace Capstone.Controllers
             return View(listaOrdini);
         }
 
+        [Authorize(Roles = "User")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -96,7 +100,7 @@ namespace Capstone.Controllers
             ListaOrdini listaOrdini = db.ListaOrdini.Find(id);
             db.ListaOrdini.Remove(listaOrdini);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "ListaOrdini");
         }
 
         protected override void Dispose(bool disposing)

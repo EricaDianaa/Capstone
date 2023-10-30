@@ -63,6 +63,7 @@ namespace Capstone.Models
 
         [Column(TypeName = "date")]
         [Display(Name = "Data evento")]
+        [DisplayFormat(DataFormatString ="{0:d}")]
         public DateTime DataEvento { get; set; }
 
         public int IdCategoria { get; set; }

@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Register","Home")
 </p>
 <table class="table">
     <tr>
@@ -71,9 +71,12 @@
             @Html.DisplayFor(modelItem => item.PartitaIva)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdUtente }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdUtente }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdUtente })
+            @if(User.IsInRole("Admin")){
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdUtente }) 
+            }
+
+            @Html.ActionLink("Details", "Details", new { id = item.IdUtente }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdUtente })
         </td>
     </tr>
 }

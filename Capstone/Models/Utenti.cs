@@ -24,7 +24,7 @@ namespace Capstone.Models
 
         [Required]
         [StringLength(50)]
-        [Remote("IsNameValid", "Validate", ErrorMessage ="Username non disponibile")]
+        //[Remote("IsNameValid", "Validate", ErrorMessage ="Username non disponibile")]
         public string Username { get; set; }
 
         [NotMapped]
@@ -45,7 +45,7 @@ namespace Capstone.Models
 
         [Required]
         [StringLength(50)]
-        [Remote("IsEmailValid","Validate", ErrorMessage = "Email non disponibile")]
+        //[Remote("IsEmailValid","Validate", ErrorMessage = "Email non disponibile")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Email non valida")]
         public string Email { get; set; }
 

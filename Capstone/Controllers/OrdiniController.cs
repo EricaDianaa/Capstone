@@ -25,10 +25,41 @@ namespace Capstone.Controllers
             {
               return  RedirectToAction("Index", "Home");
             }
-            else if (User.IsInRole("Admin")||User.IsInRole("Azienda"))
+            else if (User.IsInRole("Admin"))
             {
+              //Se l'utente è un admin potra vedere tutti gli eventi
               var ordini = db.Ordini.Include(o => o.Utenti);
               return View(ordini.ToList());
+            }
+            else if (User.IsInRole("Azienda"))
+            {
+                if (Session["Utente"] != null)
+                {
+                    //se l'utente è un azienda deve vedere solo gli ordini correlati agli eventi da lui creati
+                    int id = (int)Session["Utente"];
+                    //selezione gli eventi
+                    List<Eventi> eventi = db.Eventi.Where(m => m.IdUtente == id).ToList();
+                    List<ListaOrdini> li = new List<ListaOrdini>();
+                    //seleziono la lista collegata agli ordini
+                    foreach (Eventi e in eventi)
+                    {
+                        List<ListaOrdini> lista = db.ListaOrdini.Where(m => m.IdEvento == e.IdEvento).ToList();
+                        li.AddRange(lista);
+                    }
+                    List<Ordini> ordini = new List<Ordini>();
+                    //Infine seleziono gli ordini
+                    foreach (ListaOrdini list in li)
+                    {
+                        List<Ordini> ordini1 = db.Ordini.Include(o => o.Utenti).Where(m => m.IdOrdini == list.IdOrdine).ToList();
+                        ordini.AddRange(ordini1);
+                    }
+
+                    return View(ordini.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("Login", "Home");
+                }
             }
             else
             {
@@ -95,7 +126,7 @@ namespace Capstone.Controllers
                     db.SaveChanges();
                     //Svuoto il carrello alla fine dell'ordine
                     Session["Carello"]=null;
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("OrdiniEffettuati", "Ordini");
             }
             }
     
@@ -128,7 +159,14 @@ namespace Capstone.Controllers
             {
                 db.Entry(ordini).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if(User.IsInRole("Admin")|| User.IsInRole("Azienda")){
+                  return RedirectToAction("Index","Ordini");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
             }
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Username", ordini.IdUtente);
             return View(ordini);
@@ -170,13 +208,27 @@ namespace Capstone.Controllers
                 db.Ordini.Remove(ordini);
                 db.SaveChanges();
                 TempData["Elimina"] = "True";
-                return RedirectToAction("Index","Ordini");
-            
+                if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
+                {
+                    return RedirectToAction("Index", "Ordini");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
             }
             else
             {
                 TempData["Elimina"] = "False";
-                return RedirectToAction("Index", "Ordini");
+                if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
+                {
+                    return RedirectToAction("Index", "Ordini");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
         }
         protected override void Dispose(bool disposing)
@@ -191,53 +243,57 @@ namespace Capstone.Controllers
         //Aggiungi al carrello
         public ActionResult AggiungiOrdine(int quantità, int IdEvento)
         {
+            //se la quantità è maggiore di uno
+            if (quantità >= 1)
+            {
+                Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
+                //Selezione del prodotto a un nuovo modello contenente Evento e Ordini
+                EventiOrdini prod = new EventiOrdini();
+                prod.IdEvento = IdEvento;
+                prod.Quantità = quantità;
+                prod.NomeEvento = e.NomeEvento;
+                prod.FotoCopertina = e.FotoCopertina;
+                prod.Foto1 = e.Foto1;
+                prod.Foto2 = e.Foto2;
+                prod.Foto3 = e.Foto3;
+                prod.Foto4 = e.Foto4;
+                prod.Prezzo = e.Prezzo;
+                prod.DataEvento = e.DataEvento;
+                prod.Luogo = e.Luogo;
+                prod.Indirizzo = e.Indirizzo;
+                ListOrdini.Add(prod);
 
-            Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
-            //Selezione del prodotto a un nuovo modello contenente Evento e Ordini
-            EventiOrdini prod = new EventiOrdini();
-            prod.IdEvento = IdEvento;
-            prod.Quantità = quantità;
-            prod.NomeEvento = e.NomeEvento;
-            prod.FotoCopertina = e.FotoCopertina;
-            prod.Foto1 = e.Foto1;
-            prod.Foto2 = e.Foto2;
-            prod.Foto3 = e.Foto3; 
-            prod.Foto4= e.Foto4;
-            prod.Prezzo = e.Prezzo;
-            prod.DataEvento = e.DataEvento;
-            prod.Luogo = e.Luogo;
-            prod.Indirizzo = e.Indirizzo;
-            ListOrdini.Add(prod);
-          
-           Eventi evento = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
-             //se la session è vuota(non esiste)creo la session e aggiungo il prodotto 
-            if (Session["Carello"] == null)
-            {
-                Session["Carello"] = ListOrdini;
-            }//altrimenti la session esiste già e aggiungo il nuovo evento
-            else
-            {
-               
-                List<EventiOrdini> prodott = new List<EventiOrdini>();
-                prodott = (List<EventiOrdini>)Session["Carello"];
-               
-               EventiOrdini prodotto = prodott.Where(m => m.IdEvento == prod.IdEvento).FirstOrDefault();
-                //se l'evento è gia presente nel carello somma solo la quantità
-                if (prodotto != null && prod.IdEvento == prodotto.IdEvento)
+                Eventi evento = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
+                //se la session è vuota(non esiste)creo la session e aggiungo il prodotto 
+                if (Session["Carello"] == null)
                 {
-                    prod.Quantità = prodotto.Quantità + quantità;
-                    prodott.Add(prod);
-                    prodott.Remove(prodott.FirstOrDefault(m => m.IdEvento == IdEvento));
-
-                }//Altrimenti aggiungi l'evento
+                    Session["Carello"] = ListOrdini;
+                }//altrimenti la session esiste già e aggiungo il nuovo evento
                 else
                 {
-                    prodott.Add(prod);
 
-                }
-                Session["Carello"] = prodott;
-            };
+                    List<EventiOrdini> prodott = new List<EventiOrdini>();
+                    prodott = (List<EventiOrdini>)Session["Carello"];
 
+                    EventiOrdini prodotto = prodott.Where(m => m.IdEvento == prod.IdEvento).FirstOrDefault();
+                    //se l'evento è gia presente nel carello somma solo la quantità
+                    if (prodotto != null && prod.IdEvento == prodotto.IdEvento)
+                    {
+                        prod.Quantità = prodotto.Quantità + quantità;
+                        prodott.Add(prod);
+                        prodott.Remove(prodott.FirstOrDefault(m => m.IdEvento == IdEvento));
+
+                    }//Altrimenti aggiungi l'evento
+                    else
+                    {
+                        prodott.Add(prod);
+
+                    }
+                    Session["Carello"] = prodott;
+                };
+
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -309,27 +365,40 @@ namespace Capstone.Controllers
 
         public ActionResult RiepilogoOrdine()
         {
-            int idUtente = (int)Session["Utente"];
-            Utenti u = db.Utenti.Where(m => m.IdUtente==idUtente).FirstOrDefault();
-            List<Ordini> e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
-            List<EventiOrdini> prodotto = new List<EventiOrdini>();
-            prodotto = (List<EventiOrdini>)Session["Carello"];
-            ViewBag.totale = Session["TotOrdine"];
-            ViewBag.IdUtente = idUtente;
-            ViewBag.Nome = u.Username;
-            ViewBag.Indirizzo = u.Indirizzo;
-            ViewBag.Telefono = u.Telefono;
-            return PartialView(prodotto);
-            
+            if (Session["Utente"] != null)
+            {
+                int idUtente = (int)Session["Utente"];
+                Utenti u = db.Utenti.Where(m => m.IdUtente == idUtente).FirstOrDefault();
+                List<Ordini> e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
+                List<EventiOrdini> prodotto = new List<EventiOrdini>();
+                prodotto = (List<EventiOrdini>)Session["Carello"];
+                ViewBag.totale = Session["TotOrdine"];
+                ViewBag.IdUtente = idUtente;
+                ViewBag.Nome = u.Username;
+                ViewBag.Indirizzo = u.Indirizzo;
+                ViewBag.Telefono = u.Telefono;
+                return PartialView(prodotto);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         public ActionResult OrdiniEffettuati()
         {
-            int idUtente =(int) Session["Utente"];
-            Utenti u = db.Utenti.FirstOrDefault(m => m.IdUtente == idUtente);
-            ViewBag.NomeUtente=u.Username;
-            List< Ordini > e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
-            return View(e);
+            if (Session["Utente"] != null)
+            {
+                int idUtente = (int)Session["Utente"];
+                Utenti u = db.Utenti.FirstOrDefault(m => m.IdUtente == idUtente);
+                ViewBag.NomeUtente = u.Username;
+                List<Ordini> e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
+                return View(e);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Home");
+            }
         }
     }
 }

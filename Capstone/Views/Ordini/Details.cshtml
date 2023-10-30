@@ -27,7 +27,23 @@
         </dd>
 
     </dl>
-</div>
+</div> 
+<h2>Articoli correlati</h2>
+  @foreach (var item1 in Model.ListaOrdini)
+  {
+      <div class="border border-dark mt-3 w-25 text-center">
+          <p>
+            <strong>Nome evento: </strong>    @Html.DisplayFor(modelItem => item1.Eventi.NomeEvento)
+          </p>
+          <p>
+              <strong>Quantità: </strong>     @Html.DisplayFor(modelItem => item1.Quantità)
+
+          </p>
+          <p>
+              <strong>Prezzo:</strong>    @Html.DisplayFor(modelItem => item1.Eventi.Prezzo)
+          </p>
+      </div>
+                    }
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.IdOrdini }) |
     @Html.ActionLink("Back to List", "Index")
