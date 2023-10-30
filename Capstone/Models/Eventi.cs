@@ -14,6 +14,7 @@ namespace Capstone.Models
         {
             ListaOrdini = new HashSet<ListaOrdini>();
             Recensioni = new HashSet<Recensioni>();
+
         }
 
         [Key]
@@ -65,8 +66,11 @@ namespace Capstone.Models
         public DateTime DataEvento { get; set; }
 
         public int IdCategoria { get; set; }
-        
+        [Required]
+        public int IdUtente { get; set; }
+
         public virtual Categorie Categorie { get; set; }
+        public virtual Utenti Utenti { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ListaOrdini> ListaOrdini { get; set; }

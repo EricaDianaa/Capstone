@@ -179,6 +179,34 @@
     <Compile Include="Migrations\202310271546542_Initial.designer.cs">
       <DependentUpon>202310271546542_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310300904417_relazioneelimina.cs" />
+    <Compile Include="Migrations\202310300904417_relazioneelimina.designer.cs">
+      <DependentUpon>202310300904417_relazioneelimina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300913007_AddColumnIdUtente.cs" />
+    <Compile Include="Migrations\202310300913007_AddColumnIdUtente.designer.cs">
+      <DependentUpon>202310300913007_AddColumnIdUtente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300916595_RelazioneEventiUtenti.cs" />
+    <Compile Include="Migrations\202310300916595_RelazioneEventiUtenti.designer.cs">
+      <DependentUpon>202310300916595_RelazioneEventiUtenti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300920063_deleteColumn.cs" />
+    <Compile Include="Migrations\202310300920063_deleteColumn.designer.cs">
+      <DependentUpon>202310300920063_deleteColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300922049_requiredColumn.cs" />
+    <Compile Include="Migrations\202310300922049_requiredColumn.designer.cs">
+      <DependentUpon>202310300922049_requiredColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300933576_prova.cs" />
+    <Compile Include="Migrations\202310300933576_prova.designer.cs">
+      <DependentUpon>202310300933576_prova.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202310300937159_sistema.cs" />
+    <Compile Include="Migrations\202310300937159_sistema.designer.cs">
+      <DependentUpon>202310300937159_sistema.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
@@ -281,7 +309,6 @@
     <Content Include="Views\Ordini\Details.cshtml" />
     <Content Include="Views\Ordini\Edit.cshtml" />
     <Content Include="Views\Ordini\Index.cshtml" />
-    <Content Include="Views\ListaOrdini\Create.cshtml" />
     <Content Include="Views\ListaOrdini\Delete.cshtml" />
     <Content Include="Views\ListaOrdini\Details.cshtml" />
     <Content Include="Views\ListaOrdini\Edit.cshtml" />
@@ -381,6 +408,27 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202310271546542_Initial.resx">
       <DependentUpon>202310271546542_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300904417_relazioneelimina.resx">
+      <DependentUpon>202310300904417_relazioneelimina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300913007_AddColumnIdUtente.resx">
+      <DependentUpon>202310300913007_AddColumnIdUtente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300916595_RelazioneEventiUtenti.resx">
+      <DependentUpon>202310300916595_RelazioneEventiUtenti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300920063_deleteColumn.resx">
+      <DependentUpon>202310300920063_deleteColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300922049_requiredColumn.resx">
+      <DependentUpon>202310300922049_requiredColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300933576_prova.resx">
+      <DependentUpon>202310300933576_prova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310300937159_sistema.resx">
+      <DependentUpon>202310300937159_sistema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

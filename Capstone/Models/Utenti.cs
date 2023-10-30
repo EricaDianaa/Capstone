@@ -6,6 +6,7 @@ namespace Capstone.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using System.Web.Mvc;
+    using System.Web.UI.WebControls;
 
     [Table("Utenti")]
     public partial class Utenti
@@ -15,7 +16,7 @@ namespace Capstone.Models
         {
             Ordini = new HashSet<Ordini>();
             Recensioni = new HashSet<Recensioni>();
-            //Eventi=new HashSet<Eventi>();
+            Eventi=new HashSet<Eventi>();
         }
 
         [Key]
@@ -49,7 +50,7 @@ namespace Capstone.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(10)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Il campo deve contenere 10 caratteri")]
         public string Telefono { get; set; }
         [Display(Name ="Sei un Azienda?")]
         public bool IsAzienda { get; set; }
@@ -70,6 +71,8 @@ namespace Capstone.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recensioni> Recensioni { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Eventi> Eventi { get; set; }
 
     }
 }

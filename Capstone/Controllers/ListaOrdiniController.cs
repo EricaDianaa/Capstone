@@ -21,7 +21,6 @@ namespace Capstone.Controllers
             return View(listaOrdini.ToList());
         }
 
-
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,32 +34,6 @@ namespace Capstone.Controllers
             }
             return View(listaOrdini);
         }
-
- 
-        public ActionResult Create()
-        {
-            ViewBag.IdEvento = new SelectList(db.Eventi, "IdEvento", "NomeEvento");
-            ViewBag.IdOrdine = new SelectList(db.Ordini, "IdOrdini", "IdOrdini");
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdListaOrdine,Quantità,IdEvento,IdOrdine")] ListaOrdini listaOrdini)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ListaOrdini.Add(listaOrdini);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.IdEvento = new SelectList(db.Eventi, "IdEvento", "NomeEvento", listaOrdini.IdEvento);
-            ViewBag.IdOrdine = new SelectList(db.Ordini, "IdOrdini", "IdOrdini", listaOrdini.IdOrdine);
-            return View(listaOrdini);
-        }
-
 
         public ActionResult Edit(int? id)
         {
