@@ -71,9 +71,9 @@
                 <div class="card-body">
                     <h5 class="card-title">@e.NomeEvento</h5>
                     <p class="card-text">@e.Descrizione</p>
-                    <p class="card-text">@e.Prezzo</p>
+                    <p class="card-text">@string.Format("{0:C}",@e.Prezzo)</p>
                     <p class="card-text">@e.Indirizzo</p>
-                    <p class="card-text">@e.DataEvento</p>
+                    <p class="card-text">@string.Format("{0:d}", @e.DataEvento)</p>
                     <p>Categoria:@e.Categorie.NomeCategoria</p>
                     @if (User.IsInRole("user"))
                     {
@@ -106,20 +106,32 @@
                 $("#List").html("")
                 $("#Eventi").html("");
                 $.each(data, function (i, e) {
-                    var licurrent = "<div  class='card col' style='width: 18rem;'>" +
+                   
+                    var licurrent = "<div  class='card col-6 col-md-4 col-lg-3' style='width: 18rem;'>" +
                         " <img src='/Content/Img/" + e.FotoCopertina + "' class='card-img-top' alt='...'>" +
                         "<div class='card-body'>" +
                         " <h5 class='card-title'>" + e.NomeEvento + "</h5>" +
                         " <p class='card-text'>" + e.Descrizione + "</p>" +
-                        "  <p class='card-text'>" + e.Prezzo + "</p>" +
+                        " <p class='card-text'>" + e.Prezzo + "</p>" +
                         "<p class='card-text'>" + e.Indirizzo + "</p>" +
-                        "<p class='card-text'>" + e.DataEvento + "</p>" +
+                        "<p class='card-text'>" + e.DataE + "</p>" +
                         "<p>Categoria:" + "</p>" +
                         "<a href='/Recensioni/Create/?id=" + e.IdEvento + "'>Scrivi una recensione</a>" +
                         "<a href='/Eventi/Details/" + e.IdEvento + "'>Dettagli</a></div> </div>"
 
 
                     $("#Eventi").append(licurrent)
+                })
+            }
+            function ChiamataAjax(prezzo,nomeCategoria,DataEvento) {
+                $.ajax({
+                    method: "POST",
+                    url: "/Home/Filtri",
+                    data: { Prezzo: prezzo, NomeCategoria: nomeCategoria, DataEvento: DataEvento },
+                    success: function (data) {
+                        console.log(data)
+                        filtri(data);
+                    }
                 })
             }
             $("#ButtonFiltri").click(function () {
@@ -136,135 +148,58 @@
 
             //Sezione Filtri
             //Al click di un bottone dei filtri genero una chiamata ajax per
-            //per ottenere la categoria e fare una select alò db
+            // ottenere la categoria e fare una select al db
+           
             $("#G").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { Prezzo: 0, NomeCategoria: null, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, null, "01/01/0001")
+
             })
             $("#P").click(function () {
                 var prezzo = $("#InputPrezzo").val();
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { Prezzo: prezzo, NomeCategoria: null, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+
+                ChiamataAjax(prezzo, null, "01/01/0001")
+
             })
             $("#P1").click(function () {
                 var prezzo = $("#InputPrezzo1").val();
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { Prezzo: prezzo, NomeCategoria: "Da", DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(prezzo, "Da", "01/01/0001")
+
             })
 
             $("#C").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Concerti", Prezzo: 0, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "Concerti", "01/01/0001")
+
             })
             $("#A").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Avventura", Prezzo: 0, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "Avventura", "01/01/0001")
+
             })
             $("#F").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Feste", Prezzo: 0, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
+                ChiamataAjax(0, "Feste", "01/01/0001")
 
-                    }
-                })
             })
             $("#R").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Relax", Prezzo: 0, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "Relax", "01/01/0001")
+
             })
             $("#M").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Musei", Prezzo: 0, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "Musei", "01/01/0001")
+
             })
             $("#Data").click(function () {
                 var date = $("#InputDate").val();
                 console.log(date)
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "", DataEvento: date, Prezzo: 0 },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "", date)
+
             })
             $("#DataPeriodo").click(function () {
                 var date = $("#InputPeriodo").val();
                 console.log(date)
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: "Dal", DataEvento: date, Prezzo: 0 },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(0, "Dal", date)
+
             })
             $("#RemoveFiltri").click(function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Home/Filtri",
-                    data: { NomeCategoria: null, Prezzo: -1, DataEvento: "01/01/0001" },
-                    success: function (data) {
-                        console.log(data)
-                        filtri(data);
-                    }
-                })
+                ChiamataAjax(-1, null, "01/01/0001")
             })
         })
     </script>

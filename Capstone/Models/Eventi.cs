@@ -29,6 +29,7 @@ namespace Capstone.Models
         public string Descrizione { get; set; }
 
         [Column(TypeName = "money")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Prezzo { get; set; }
 
         [Required]
@@ -66,6 +67,8 @@ namespace Capstone.Models
         [DisplayFormat(DataFormatString ="{0:d}")]
         public DateTime DataEvento { get; set; }
 
+        [NotMapped]
+        public string DataE { get; set; }
         public int IdCategoria { get; set; }
         [Required]
         public int IdUtente { get; set; }

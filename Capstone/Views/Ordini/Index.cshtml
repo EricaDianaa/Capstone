@@ -41,7 +41,7 @@ else if ((string)TempData["Elimina"] == "True")
                     @Html.DisplayFor(modelItem => item.Utenti.Username)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Data)
+                    @string.Format("{0:d}", @item.Data)  
                 </td>
 
                 <td>

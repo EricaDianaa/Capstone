@@ -1,0 +1,70 @@
+﻿@model Capstone.Models.Eventi
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="Totale"></div>
+<h2>Index</h2>
+<input type="date" name="DataEvento" value="" id="InputData" />
+<button id="DataButton">Cerca</button>
+
+<div id="Data"></div>
+<div class="mt-3">
+    <input type="date" name="DataEvento" value="" id="InputDataCategoria" />
+    <div class="form-group">
+       
+        <div class="col-md-10">
+            @Html.DropDownList("IdCategoria", null, htmlAttributes: new { @class = "form-control",id="NomeCategoria" })
+            @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <button id="DataCategoriaButton">Cerca</button>
+</div>
+<div id="DataCategoria"></div>
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            /* $("#RemoveFiltri").click(function () {*/
+            $.ajax({
+                method: "GET",
+                url: "/Admin/TotaleGuadagni",
+                success: function (data) {
+                    console.log(data)
+                    var licurrent = "<p><strong>Totale guadagnato: </strong>" + data + "</p>";
+                    $("#Totale").html(licurrent);
+                }
+            })
+            /* })*/
+            $("#DataCategoriaButton").click(function () {
+                var data1 = $("#InputDataCategoria").val();
+                var Categoria = $("#NomeCategoria").val();
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/TotaleGuadagniDataCategoria",
+                    data: { DataEvento: data1,IdCategoria:Categoria},
+                    success: function (data) {
+                        console.log(data)
+                        var licurrent = "<p><strong>Totale guadagnato il " + data1 + " :</strong>" + data + "<strong>Categoria:</strong>  " + Categoria + "</p>";
+                        $("#DataCategoria").html(licurrent);
+                    }
+                })
+            })
+
+            $("#DataButton").click(function () {
+                var data1 = $("#InputData").val();
+                $.ajax({
+                    method: "POST",
+                    url: "/Admin/TotaleGuadagniData",
+                    data: { DataEvento: data1 },
+                    success: function (data) {
+                        console.log(data)
+                        var licurrent = "<p><strong>Totale guadagnato il " + data1 + " </strong>: " + data + "</p>";
+                        $("#Data").html(licurrent);
+                    }
+                })
+            })
+        })
+    </script>
+}

@@ -35,7 +35,7 @@
 
                         <h5 class="card-title"> @p.NomeEvento</h5>
                         <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
-                        <p class="card-text"><strong>Data evento: </strong>  @p.DataEvento</p>
+                        <p class="card-text"><strong>Data evento: </strong>  @string.Format("{0:d}", @p.DataEvento) </p>
                         <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
                         <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
                         <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>

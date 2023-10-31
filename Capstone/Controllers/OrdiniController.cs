@@ -322,7 +322,7 @@ namespace Capstone.Controllers
                 return View();
             }
         }
-        //Elimina dal carrello
+        //Elimina dal carrello 1 prodotto
         public ActionResult CartRemove()
         {
             return View();
@@ -351,6 +351,24 @@ namespace Capstone.Controllers
             {
                 prodotto.Remove(prodotto.FirstOrDefault(m => m.IdEvento == p.IdEvento));
             }
+            Session["Carello"] = prodotto;
+
+            return RedirectToAction("Cart", "Ordini");
+        }
+
+        public ActionResult CartRemoveAllProdotto()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CartRemoveAllProdotto(EventiOrdini p)
+        {
+            List<EventiOrdini> prodotto = new List<EventiOrdini>();
+            prodotto = (List<EventiOrdini>)Session["Carello"];
+            string id = Request.QueryString["Id"];
+            p.IdEvento = Convert.ToInt16(id);
+            var prod = prodotto.Where(m => m.IdEvento == p.IdEvento).FirstOrDefault();
+            prodotto.Remove(prodotto.FirstOrDefault(m => m.IdEvento == p.IdEvento));
             Session["Carello"] = prodotto;
 
             return RedirectToAction("Cart", "Ordini");
@@ -393,6 +411,7 @@ namespace Capstone.Controllers
                 Utenti u = db.Utenti.FirstOrDefault(m => m.IdUtente == idUtente);
                 ViewBag.NomeUtente = u.Username;
                 List<Ordini> e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
+                e.Reverse();
                 return View(e);
             }
             else

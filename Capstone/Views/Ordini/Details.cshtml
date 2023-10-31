@@ -23,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Data)
+            @string.Format("{0:d}", Model.Data) 
         </dd>
 
     </dl>
@@ -40,7 +40,7 @@
 
           </p>
           <p>
-              <strong>Prezzo:</strong>    @Html.DisplayFor(modelItem => item1.Eventi.Prezzo)
+              <strong>Prezzo:</strong>  @string.Format("{0:C}", item1.Eventi.Prezzo) 
           </p>
       </div>
                     }

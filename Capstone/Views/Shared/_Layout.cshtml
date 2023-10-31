@@ -9,7 +9,8 @@
     @Scripts.Render("~/bundles/modernizr")
     @*<script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>*@
-<script src="https://use.fontawesome.com/7ad89d9866.js"></script>
+    <script src="https://use.fontawesome.com/7ad89d9866.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     @if (User.IsInRole("Admin"))
@@ -29,6 +30,7 @@
                         <li>@Html.ActionLink("Ordini", "index", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Categorie", "index", "Categorie", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Recensioni", "index", "Recensioni", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Resoconto", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </div>
@@ -68,10 +70,10 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Utenti", "index", "utenti", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Eventi", "index", "Eventi", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Ordini", "index", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Recensioni", "index", "Recensioni", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Resoconto", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
                 </div>

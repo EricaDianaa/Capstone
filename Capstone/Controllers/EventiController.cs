@@ -46,6 +46,13 @@ namespace Capstone.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Eventi eventi = db.Eventi.Find(id);
+            if (Session["Utente"] != null)
+            {
+                int IdUtente = (int)Session["Utente"];
+                ViewBag.Recensioni = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente);
+                ViewBag.RecensioniUtente = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente);
+            }
+
             if (eventi == null)
             {
                 return HttpNotFound();
@@ -184,6 +191,7 @@ eventi.IdUtente = (int)Session["Utente"];
             {
                 return HttpNotFound();
             }
+           
             ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
             return View(eventi);
         }
