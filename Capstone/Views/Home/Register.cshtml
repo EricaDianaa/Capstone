@@ -30,6 +30,11 @@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div>
+        <h6 class="text-danger">@ViewBag.ErroreNumerico</h6>
+        <h6 class="text-danger">@ViewBag.ErroreCarattereSpeciale</h6>
+        <h6 class="text-danger">@ViewBag.ErroreletteraMaiuscola</h6>
+    </div>
     @if (User.IsInRole("Admin")|| User.IsInRole("Azienda"))
     {
         <div class="form-group">

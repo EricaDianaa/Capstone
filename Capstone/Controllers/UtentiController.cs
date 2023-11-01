@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -104,6 +105,76 @@ namespace Capstone.Controllers
                 return RedirectToAction("Account", "Home");
             }
         }
+
+        [AllowAnonymous]
+        public ActionResult EditPassword()
+        {
+          
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPassword([Bind(Include = "IdUtente,Username,Ruolo,Password,Indirizzo,Email,Telefono,IsAzienda,CodiceFiscale,PartitaIva")] string NewPassword,string OldPassword)
+        {
+           
+            int id = (int)Session["Utente"];
+            try
+            {
+                using (var context = new ModelBContent())
+                {
+                    Utenti u = db.Utenti.Where(m => m.IdUtente == id).FirstOrDefault();
+                    var hashCode = u.VCode;
+                    var encodingPasswordString = Hash.EncodePassword(OldPassword, hashCode);
+                    var query = (from s in context.Utenti where (s.Username == u.Username || s.Email == u.Username) && s.Password.Equals(encodingPasswordString) select s).FirstOrDefault();
+                    if (query != null)
+                    {
+                    var keyNew = Hash.GeneratePassword(10);
+                    
+
+                        if (!Regex.IsMatch(NewPassword, @"\d"))
+                        {
+                            ViewBag.ErroreNumerico = "la password deve contenere un carattere numerico";
+
+                        }
+
+                        if (!Regex.IsMatch(NewPassword, @"[@#$%^&+=]"))
+                        {
+                            ViewBag.ErroreCarattereSpeciale = "la password deve contenere un carattere speciale";
+
+                        }
+                        if (!Regex.IsMatch(NewPassword, @"[A-Z]"))
+                        {
+                            ViewBag.ErroreletteraMaiuscola = "la password deve contenere una lettera maiuscola";
+
+                        }
+                        if (Regex.IsMatch(NewPassword, @"\d") && Regex.IsMatch(NewPassword, @"[@#$%^&+=]") && Regex.IsMatch(NewPassword, @"[A-Z]"))
+                        {
+                            var password = Hash.EncodePassword(NewPassword, keyNew);
+                            u.Password = password;
+                            u.VCode = keyNew;
+                            db.Entry(u).State = EntityState.Modified;
+                            db.SaveChanges();
+                            ModelState.Clear();
+                            return RedirectToAction("Home", "Home");
+
+
+                        }
+                    }
+
+
+                    ViewBag.ErrorMessage = "Username o password non validi";
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
+                return View();
+            }
+
+        }
+
         [Authorize(Roles ="Admin")]
         
         protected override void Dispose(bool disposing)

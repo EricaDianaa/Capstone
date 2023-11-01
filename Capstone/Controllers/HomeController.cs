@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -83,8 +84,7 @@ namespace Capstone.Controllers
                         {
                             var keyNew = Hash.GeneratePassword(10);
                             var password = Hash.EncodePassword(u.Password, keyNew);
-                            u.Password = password;
-                            u.VCode = keyNew;
+                           
                             //Se l'utente non è un admin assegno il ruolo User o Azienda
                             if (!User.IsInRole("Admin") || !User.IsInRole("Azienda"))
                             {
@@ -101,15 +101,41 @@ namespace Capstone.Controllers
                                     u.IsAzienda = IsAzienda;
                                 }
                             }
-                            //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
-                            if (utente == null && utente1 == null && utente2 == null)
+                            //Sicurezza password
+                            if (!Regex.IsMatch(u.Password, @"\d"))
                             {
-                                db.Utenti.Add(u);
-                                db.SaveChanges();
-                                ModelState.Clear();
-                                return RedirectToAction("Login", "Home");
+                                ViewBag.ErroreNumerico = "la password deve contenere un carattere numerico";
 
                             }
+                            
+                            if (!Regex.IsMatch(u.Password, @"[@#$%^&+=]"))
+                            {
+                                ViewBag.ErroreCarattereSpeciale = "la password deve contenere un carattere speciale";
+
+                            }
+                            if (!Regex.IsMatch(u.Password, @"[A-Z]"))
+                            {
+                                ViewBag.ErroreletteraMaiuscola = "la password deve contenere una lettera maiuscola";
+
+                            }
+                            if (Regex.IsMatch(u.Password, @"\d") && Regex.IsMatch(u.Password, @"[@#$%^&+=]") && Regex.IsMatch(u.Password, @"[A-Z]"))
+                            {
+
+                                if (utente == null && utente1 == null && utente2 == null)
+                                {
+                                    u.Password = password;
+                                    u.VCode = keyNew;
+                                    db.Utenti.Add(u);
+                                    db.SaveChanges();
+                                    ModelState.Clear();
+                                    return RedirectToAction("Login", "Home");
+
+                                }
+                            }
+                            
+
+                            //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
+
                             //Altrimenti rimando la pagin messaggi errore
                             else
                             {
@@ -179,7 +205,6 @@ namespace Capstone.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        
         //filtri
         [HttpPost]
         public JsonResult Filtri(string NomeCategoria,decimal Prezzo,DateTime DataEvento)
@@ -293,6 +318,7 @@ namespace Capstone.Controllers
             }
                
         }
+
 
     }
 }
