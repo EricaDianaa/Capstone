@@ -48,26 +48,9 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "Username, Password,Indirizzo,Email,Telefono,Ruolo,PartitaIva,CodiceFiscale")] Utenti u,bool IsAzienda,string Username,string CodiceFiscale,string Email)
+        public ActionResult Register([Bind(Include = "Username, Password,Indirizzo,Email,Telefono,Ruolo,PartitaIva,CodiceFiscale")] Utenti u, bool IsAzienda, string Username, string CodiceFiscale, string Email)
         {
-          
-            if (ModelState.IsValid)
-            {   //Se l'utente non è un admin assegno il ruolo User o Azienda
-                if (!User.IsInRole("Admin")|| !User.IsInRole("Azienda"))
-                {
-                // Se è un azienda assegna ruolo come Azienda 
-                if (IsAzienda == true)
-                {
-                   u.Ruolo = "Azienda";
-                    u.IsAzienda = IsAzienda;
-                }
-                //Altrimenti come User
-                else
-                {
-                    u.Ruolo = "User";
-                    u.IsAzienda = IsAzienda;
-                }
-                }
+            if (ModelState.IsValid) {
                 //Validazione Username/CodiceFiscale/Email 
                 Utenti utente = db.Utenti.FirstOrDefault(m => m.Username == Username);
                 Utenti utente1 = db.Utenti.FirstOrDefault(m => m.CodiceFiscale == CodiceFiscale);
@@ -76,13 +59,13 @@ namespace Capstone.Controllers
                 if (utente1 != null)
                 {
                     ViewBag.Username = "Username non disponibile";
-                    
+
                 }
                 //Messaggio di errore in caso Email sia già presenete nel database
                 if (utente2 != null)
                 {
                     ViewBag.Email = "Email non disponibile";
-                   
+
                 }
                 //Messaggio di errore in caso CodiceFiscale sia già presenete nel database
                 if (utente1 != null)
@@ -90,16 +73,57 @@ namespace Capstone.Controllers
                     ViewBag.CodiceFiscale = "Codice fiscale non disponibile";
 
                 }
-                //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
-                if (utente == null && utente1 == null && utente2 == null)
+                try
                 {
-                    Utenti user = db.Utenti.Add(u);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Home");
+                    //Cripto la password 
+                    using (var context = new ModelBContent())
+                    {
+                        var chkUser = (from s in context.Utenti where s.Username == u.Username || s.Email == u.Email select s).FirstOrDefault();
+                        if (chkUser == null)
+                        {
+                            var keyNew = Hash.GeneratePassword(10);
+                            var password = Hash.EncodePassword(u.Password, keyNew);
+                            u.Password = password;
+                            u.VCode = keyNew;
+                            //Se l'utente non è un admin assegno il ruolo User o Azienda
+                            if (!User.IsInRole("Admin") || !User.IsInRole("Azienda"))
+                            {
+                                // Se è un azienda assegna ruolo come Azienda 
+                                if (IsAzienda == true)
+                                {
+                                    u.Ruolo = "Azienda";
+                                    u.IsAzienda = IsAzienda;
+                                }
+                                //Altrimenti come User
+                                else
+                                {
+                                    u.Ruolo = "User";
+                                    u.IsAzienda = IsAzienda;
+                                }
+                            }
+                            //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
+                            if (utente == null && utente1 == null && utente2 == null)
+                            {
+                                db.Utenti.Add(u);
+                                db.SaveChanges();
+                                ModelState.Clear();
+                                return RedirectToAction("Login", "Home");
+
+                            }
+                            //Altrimenti rimando la pagin messaggi errore
+                            else
+                            {
+                                return View();
+                            }
+                           
+                        }
+                        ViewBag.ErrorMessage = "Username gia esistente";
+                        return View();
+                    }
                 }
-                //Altrimenti rimando la pagin messaggi errore
-                else 
+                catch (Exception e)
                 {
+                    ViewBag.ErrorMessage = "Some exception occured" + e;
                     return View();
                 }
             }
@@ -107,7 +131,6 @@ namespace Capstone.Controllers
             {
                 return View();
             }
-           ;
         }
         public ActionResult Login()
         {
@@ -118,19 +141,35 @@ namespace Capstone.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login([Bind(Include = "IdUtente,UsernameLogin, Password")] Utenti u)
-        {   
-            //Selezione dell'utente ricevuto all'interno del DB per verificare l'autentificazione
-            Utenti users = db.Utenti.FirstOrDefault(m => m.Username == u.UsernameLogin & m.Password == u.Password);
-            if (users != null)
+        {
+            try
             {
-                FormsAuthentication.SetAuthCookie(u.UsernameLogin, false);
-                Session["Utente"] = users.IdUtente;
-                return RedirectToAction("Index", "Home");
-
+                using (var context = new ModelBContent())
+                {
+                    var getUser = (from s in context.Utenti where s.Username == u.UsernameLogin || s.Email == u.UsernameLogin select s).FirstOrDefault();
+                    if (getUser != null)
+                    {
+                        var hashCode = getUser.VCode; 
+                        var encodingPasswordString = Hash.EncodePassword(u.Password, hashCode);   
+                        var query = (from s in context.Utenti where (s.Username == u.UsernameLogin || s.Email == u.UsernameLogin) && s.Password.Equals(encodingPasswordString) select s).FirstOrDefault();
+                        if (query != null)
+                        {
+                            FormsAuthentication.SetAuthCookie(u.UsernameLogin, false);
+                            Session["Utente"] = query.IdUtente;
+                            return RedirectToAction("Index", "Home");
+                        }
+                        ViewBag.ErrorMessage = "Username o password non validi";
+                        return View();
+                    }
+                    ViewBag.ErrorMessage = "Username o password non validi";
+                    return View();
+                }
             }
-
-            return View();
-
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
+                return View();
+            }
         }
         public ActionResult Logout()
         {

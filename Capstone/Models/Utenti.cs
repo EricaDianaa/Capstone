@@ -64,7 +64,8 @@ namespace Capstone.Models
         [Display(Name = "Partita iva")]
         public string PartitaIva { get; set; }
 
-
+        public string VCode {get; set;}
+      
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ordini> Ordini { get; set; }

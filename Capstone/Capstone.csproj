@@ -46,11 +46,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.20.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.20.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.4\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -124,6 +130,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -207,10 +214,15 @@
     <Compile Include="Migrations\202310300937159_sistema.designer.cs">
       <DependentUpon>202310300937159_sistema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311010851286_AddColumnUtenti.cs" />
+    <Compile Include="Migrations\202311010851286_AddColumnUtenti.designer.cs">
+      <DependentUpon>202311010851286_AddColumnUtenti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
     <Compile Include="Models\EventiOrdini.cs" />
+    <Compile Include="Models\Hash.cs" />
     <Compile Include="Models\ListaOrdini.cs" />
     <Compile Include="Models\ModelBContent.cs" />
     <Compile Include="Models\Ordini.cs" />
@@ -431,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202310300937159_sistema.resx">
       <DependentUpon>202310300937159_sistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311010851286_AddColumnUtenti.resx">
+      <DependentUpon>202311010851286_AddColumnUtenti.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
