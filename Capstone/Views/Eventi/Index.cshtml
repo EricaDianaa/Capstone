@@ -54,6 +54,9 @@ else if (TempData["Elimina"]!=null)
             @Html.DisplayNameFor(model => model.FotoCopertina)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.DataDa)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DataEvento)
         </th>
 
@@ -90,7 +93,9 @@ else if (TempData["Elimina"]!=null)
             <td>
                 @Html.DisplayFor(modelItem => item.FotoCopertina)
             </td>
-       
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDa)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DataEvento)
             </td>

@@ -207,7 +207,7 @@ namespace Capstone.Controllers
 
         //filtri
         [HttpPost]
-        public JsonResult Filtri(string NomeCategoria,decimal Prezzo,DateTime DataEvento)
+        public JsonResult Filtri(string NomeCategoria,decimal Prezzo,DateTime DataEvento, string Luogo)
         {
             //data
             string data = Convert.ToString(DataEvento);
@@ -219,7 +219,7 @@ namespace Capstone.Controllers
                     List<Eventi> eventi = db.Eventi.Where(m => m.DataEvento >= DataEvento&&m.DataEvento >= DateTime.Today).ToList();
                     foreach (Eventi e in eventi)
                     {
-                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString= e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                     }
                     return Json(ListEventi);
                 }
@@ -229,7 +229,7 @@ namespace Capstone.Controllers
                     List<Eventi> eventi = db.Eventi.Where(m => m.DataEvento == DataEvento && m.DataEvento >= DateTime.Today).ToList();
                     foreach (Eventi e in eventi)
                     {
-                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                     }
                     return Json(ListEventi);
                 }
@@ -243,22 +243,35 @@ namespace Capstone.Controllers
                 List<Eventi> eventi = db.Eventi.Where(m => m.DataEvento >= date && m.DataEvento >= DateTime.Today).ToList();
                 foreach (Eventi e in eventi)
                 {
-                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                 }
                 return Json(ListEventi);
 
             }
             //Per categoria
-            else if (NomeCategoria != ""&&NomeCategoria!="Da" && NomeCategoria != "Dal")
+            else if (NomeCategoria != ""&&NomeCategoria!="Da" && NomeCategoria != "Dal")            
             {
                 Categorie c = db.Categorie.FirstOrDefault(m => m.NomeCategoria == NomeCategoria);
                 List<Eventi> eventi = db.Eventi.Where(m => m.IdCategoria == c.IdCategoria&&m.DataEvento>= DateTime.Today).ToList();
                 List<Eventi> ListEventi = new List<Eventi>();
                 foreach (Eventi e in eventi)
                 {
-                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                 }
                 return Json(ListEventi);
+            }
+            else if (Luogo != "")
+            {
+
+                List<Eventi> ListEventi = new List<Eventi>();
+                List<Eventi> eventi = db.Eventi.Where(m => m.Luogo == Luogo && m.DataEvento >= DateTime.Today).ToList();
+                foreach (Eventi e in eventi)
+                {
+                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                }
+                return Json(ListEventi);
+
+
             }
             //Per prezzo(gratis)
             else if(Prezzo<=0)
@@ -267,7 +280,7 @@ namespace Capstone.Controllers
                 List<Eventi> eventi = db.Eventi.Where(m => m.Prezzo <= Prezzo && m.DataEvento >= DateTime.Today).ToList();
                 foreach (Eventi e in eventi)
                 {
-                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo,Indirizzo=e.Indirizzo,Luogo=e.Luogo });
+                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo,Indirizzo=e.Indirizzo,Luogo=e.Luogo });
                 }
                 return Json(ListEventi);
             }
@@ -280,7 +293,7 @@ namespace Capstone.Controllers
                     List<Eventi> eventi = db.Eventi.Where(m => m.Prezzo >= Prezzo && m.DataEvento >= DateTime.Today).ToList();
                     foreach (Eventi e in eventi)
                     {
-                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                        ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                     }
                     return Json(ListEventi);
                 }
@@ -290,12 +303,14 @@ namespace Capstone.Controllers
                 List<Eventi> eventi = db.Eventi.Where(m => m.Prezzo == Prezzo && m.DataEvento >= DateTime.Today).ToList();
                 foreach (Eventi e in eventi)
                 {
-                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
+                    ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
                 }
                 return Json(ListEventi);
                 }
                 
             }
+           
+
             else
             {
                 return Json(null);
@@ -303,7 +318,7 @@ namespace Capstone.Controllers
        
             
         }
-
+        //Account personale
         public ActionResult Account()
         {
             if (Session["Utente"] != null)
@@ -318,42 +333,59 @@ namespace Capstone.Controllers
             }
                
         }
-
+        //Preferiti
         public ActionResult AddPreferiti(int IdEvento)
         {
             Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
-            //Selezione del prodotto a un nuovo modello contenente Evento e Ordini
             List<Eventi> list = new List<Eventi>();
-  
-            if (Session["Preferiti"] == null)
-            {
-                Session["Preferiti"] = list;
-            }//altrimenti la session esiste già e aggiungo il nuovo evento
-            else
-            {
+
                 List<Eventi> prodott = new List<Eventi>();
-                prodott = (List<Eventi>)Session["Preferiti"];
-
-                Eventi prodotto = prodott.Where(m => m.IdEvento == IdEvento).FirstOrDefault();
-                //se l'evento è gia presente nel carello
-                if (prodotto != null && IdEvento == prodotto.IdEvento)
+            if (Session["Utente"] != null)
+            {
+                int id = (int)Session["Utente"];
+                Preferiti preferiti = db.Preferiti.Where(m => m.IdEvento == IdEvento && m.IdUtente == id).FirstOrDefault();
+                //se l'evento non è gia presente nei preferiti lo aggiungo
+                if (preferiti == null)
                 {
-                   
-                }//Altrimenti aggiungi l'evento
-                else
-                {
+                    Preferiti p = new Preferiti();
+                    p.IdUtente = id;
+                    p.IdEvento = e.IdEvento;
                     prodott.Add(e);
-
+                    db.Preferiti.Add(p);
+                    db.SaveChanges();
                 }
-                Session["Carello"] = prodott;
-            };
+
+            }
 
             return RedirectToAction("Preferiti", "Home");
         }
-   
+        public ActionResult RemovePreferiti(int IdEvento)
+        {
+            Preferiti preferiti = db.Preferiti.Where(m => m.IdEvento == IdEvento).FirstOrDefault();
+        
+            if (preferiti != null)
+            {
+                db.Preferiti.Remove(preferiti);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Preferiti", "Home");
+        }
+        [Authorize(Roles="User")]
         public ActionResult Preferiti()
         {
-
+            if (Session["Utente"] != null)
+            {
+                int id = (int)Session["Utente"];
+                List<Preferiti> p = db.Preferiti.Where(m => m.IdUtente == id).ToList();
+                List<Eventi> e = new List<Eventi>();
+                foreach (Preferiti preferiti in p)
+                {
+                    List<Eventi>  evento = db.Eventi.Where(m => m.IdEvento == preferiti.IdEvento).ToList();
+                    e.AddRange(evento);
+                }
+              return View(e);
+            }
             return View();
         }
 

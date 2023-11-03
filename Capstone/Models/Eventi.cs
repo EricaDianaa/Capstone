@@ -65,10 +65,14 @@ namespace Capstone.Models
         [Column(TypeName = "date")]
         [Display(Name = "Data evento")]
         [DisplayFormat(DataFormatString ="{0:d}")]
-        public DateTime DataEvento { get; set; }
-
+         
+        public DateTime? DataEvento { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        public DateTime? DataDa { get; set; }
         [NotMapped]
         public string DataE { get; set; }
+        [NotMapped]
+        public string DataDaString { get; set; }
         public int IdCategoria { get; set; }
         [Required]
         public int IdUtente { get; set; }
@@ -81,5 +85,6 @@ namespace Capstone.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Recensioni> Recensioni { get; set; }
+
     }
 }

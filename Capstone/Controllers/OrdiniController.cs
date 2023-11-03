@@ -258,7 +258,7 @@ namespace Capstone.Controllers
                 prod.Foto3 = e.Foto3;
                 prod.Foto4 = e.Foto4;
                 prod.Prezzo = e.Prezzo;
-                prod.DataEvento = e.DataEvento;
+                prod.DataEvento = Convert.ToDateTime(e.DataEvento);
                 prod.Luogo = e.Luogo;
                 prod.Indirizzo = e.Indirizzo;
                 ListOrdini.Add(prod);

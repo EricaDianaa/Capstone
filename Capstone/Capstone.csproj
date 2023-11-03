@@ -218,6 +218,42 @@
     <Compile Include="Migrations\202311010851286_AddColumnUtenti.designer.cs">
       <DependentUpon>202311010851286_AddColumnUtenti.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311031011220_AddTablePreferiti.cs" />
+    <Compile Include="Migrations\202311031011220_AddTablePreferiti.designer.cs">
+      <DependentUpon>202311031011220_AddTablePreferiti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031025195_RelazioniPreferiti.cs" />
+    <Compile Include="Migrations\202311031025195_RelazioniPreferiti.designer.cs">
+      <DependentUpon>202311031025195_RelazioniPreferiti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031030412_Relazione2Preferiti.cs" />
+    <Compile Include="Migrations\202311031030412_Relazione2Preferiti.designer.cs">
+      <DependentUpon>202311031030412_Relazione2Preferiti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031037380_ProvaRelazione.cs" />
+    <Compile Include="Migrations\202311031037380_ProvaRelazione.designer.cs">
+      <DependentUpon>202311031037380_ProvaRelazione.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031044475_Resolve.cs" />
+    <Compile Include="Migrations\202311031044475_Resolve.designer.cs">
+      <DependentUpon>202311031044475_Resolve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031410438_addColumndataEventi.cs" />
+    <Compile Include="Migrations\202311031410438_addColumndataEventi.designer.cs">
+      <DependentUpon>202311031410438_addColumndataEventi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031415398_nulldataEvento.cs" />
+    <Compile Include="Migrations\202311031415398_nulldataEvento.designer.cs">
+      <DependentUpon>202311031415398_nulldataEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031418295_deletedata.cs" />
+    <Compile Include="Migrations\202311031418295_deletedata.designer.cs">
+      <DependentUpon>202311031418295_deletedata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311031425078_addDate.cs" />
+    <Compile Include="Migrations\202311031425078_addDate.designer.cs">
+      <DependentUpon>202311031425078_addDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
@@ -226,6 +262,7 @@
     <Compile Include="Models\ListaOrdini.cs" />
     <Compile Include="Models\ModelBContent.cs" />
     <Compile Include="Models\Ordini.cs" />
+    <Compile Include="Models\Preferiti.cs" />
     <Compile Include="Models\Recensioni.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Utenti.cs" />
@@ -347,6 +384,7 @@
     <Content Include="Views\Ordini\AddQuantità.cshtml" />
     <Content Include="Views\Home\Preferiti.cshtml" />
     <Content Include="Views\Home\AddPreferiti.cshtml" />
+    <Content Include="Views\Home\RemovePreferiti.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -452,6 +490,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311010851286_AddColumnUtenti.resx">
       <DependentUpon>202311010851286_AddColumnUtenti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031011220_AddTablePreferiti.resx">
+      <DependentUpon>202311031011220_AddTablePreferiti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031025195_RelazioniPreferiti.resx">
+      <DependentUpon>202311031025195_RelazioniPreferiti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031030412_Relazione2Preferiti.resx">
+      <DependentUpon>202311031030412_Relazione2Preferiti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031037380_ProvaRelazione.resx">
+      <DependentUpon>202311031037380_ProvaRelazione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031044475_Resolve.resx">
+      <DependentUpon>202311031044475_Resolve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031410438_addColumndataEventi.resx">
+      <DependentUpon>202311031410438_addColumndataEventi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031415398_nulldataEvento.resx">
+      <DependentUpon>202311031415398_nulldataEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031418295_deletedata.resx">
+      <DependentUpon>202311031418295_deletedata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311031425078_addDate.resx">
+      <DependentUpon>202311031425078_addDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

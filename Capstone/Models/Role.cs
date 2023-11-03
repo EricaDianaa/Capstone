@@ -38,6 +38,7 @@ namespace Capstone.Models
         public override string[] GetRolesForUser(string UsernameLogin)
         {
             ModelBContent db = new ModelBContent();
+            
             Utenti U = db.Utenti.Where(x => x.Username == UsernameLogin).FirstOrDefault();
             if (U != null)
             {

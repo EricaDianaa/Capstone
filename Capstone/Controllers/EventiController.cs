@@ -51,6 +51,8 @@ namespace Capstone.Controllers
                 int IdUtente = (int)Session["Utente"];
                 ViewBag.Recensioni = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente);
                 ViewBag.RecensioniUtente = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente);
+                Preferiti p = db.Preferiti.Where(m => m.IdEvento == id && m.IdUtente == IdUtente).FirstOrDefault();
+                ViewBag.Preferiti = p;
             }
 
             if (eventi == null)
@@ -67,69 +69,67 @@ namespace Capstone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdEvento,NomeEvento,Descrizione,Prezzo,Luogo,Indirizzo,FotoCopertina,Foto1,Foto2,Foto3,Foto4,DataEvento,IdCategoria")] Eventi eventi, HttpPostedFileBase FotoCopertina, HttpPostedFileBase Foto1, HttpPostedFileBase Foto2, HttpPostedFileBase Foto3, HttpPostedFileBase Foto4)
+        public ActionResult Create([Bind(Include = "IdEvento,NomeEvento,Descrizione,Prezzo,Luogo,Indirizzo,FotoCopertina,Foto1,Foto2,Foto3,Foto4,DataEvento,IdCategoria,DataDa")] Eventi eventi, HttpPostedFileBase FotoCopertina, HttpPostedFileBase Foto1, HttpPostedFileBase Foto2, HttpPostedFileBase Foto3, HttpPostedFileBase Foto4)
         {
             if (ModelState.IsValid)
             {
                 if (Session["Utente"] != null)
                 {
-eventi.IdUtente = (int)Session["Utente"];
-                if (FotoCopertina != null)
-                {
+                    eventi.IdUtente = (int)Session["Utente"];
+                    if (FotoCopertina != null)
+                    {
+                        //Salvataggio foto
+                        if (FotoCopertina != null && FotoCopertina.ContentLength > 0)
+                        {
+                            string FotoCopertinaFile = FotoCopertina.FileName;
+                            string FotoCopertinaPath = Path.Combine(Server.MapPath("~/Content/Img"), FotoCopertinaFile);
+                            FotoCopertina.SaveAs(FotoCopertinaPath);
+                            eventi.FotoCopertina = FotoCopertinaFile;
+                        }
 
-                
-                //Salvataggio foto
-                if (FotoCopertina != null && FotoCopertina.ContentLength > 0)
-                {
-                    string FotoCopertinaFile = FotoCopertina.FileName;
-                    string FotoCopertinaPath = Path.Combine(Server.MapPath("~/Content/Img"), FotoCopertinaFile);
-                    FotoCopertina.SaveAs(FotoCopertinaPath);
-                    eventi.FotoCopertina = FotoCopertinaFile;
-                }
+                        if (Foto1 != null && Foto1.ContentLength > 0)
+                        {
+                            string Foto1File = Foto1.FileName;
+                            string Foto1Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto1File);
+                            Foto1.SaveAs(Foto1Path);
+                            eventi.Foto1 = Foto1File;
+                        }
 
-                if (Foto1 != null && Foto1.ContentLength > 0)
-                {
-                    string Foto1File = Foto1.FileName;
-                    string Foto1Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto1File);
-                    Foto1.SaveAs(Foto1Path);
-                    eventi.Foto1 = Foto1File;
-                }
-              
-                if (Foto2 != null&&Foto2.ContentLength > 0)
-                {
-                    string Foto2File = Foto2.FileName;
-                    string Foto2Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto2File);
-                    Foto2.SaveAs(Foto2Path);
-                    eventi.Foto2 = Foto2File;
-                }
-                
-              
+                        if (Foto2 != null && Foto2.ContentLength > 0)
+                        {
+                            string Foto2File = Foto2.FileName;
+                            string Foto2Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto2File);
+                            Foto2.SaveAs(Foto2Path);
+                            eventi.Foto2 = Foto2File;
+                        }
 
-                if (Foto3 != null && Foto3.ContentLength > 0)
-                {
-                    string Foto3File = Foto3.FileName;
-                    string Foto3Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto3File);
-                    Foto3.SaveAs(Foto3Path);
-                    eventi.Foto3 = Foto3File;
-                }
 
-                if (Foto4 != null && Foto4.ContentLength > 0)
-                {
-                    string Foto4File = Foto4.FileName;
-                    string Foto4Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto4File);
-                    Foto4.SaveAs(Foto4Path);
-                    eventi.Foto4 = Foto4File;
-                }
-                db.Eventi.Add(eventi);
-                db.SaveChanges();
-                return RedirectToAction("Index","Eventi");
-                }
-                else
-                {
-                    ViewBag.Errore = "Il campo Foto copertina è obbligatorio";
-                    ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
-                    return View();
-                }
+
+                        if (Foto3 != null && Foto3.ContentLength > 0)
+                        {
+                            string Foto3File = Foto3.FileName;
+                            string Foto3Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto3File);
+                            Foto3.SaveAs(Foto3Path);
+                            eventi.Foto3 = Foto3File;
+                        }
+
+                        if (Foto4 != null && Foto4.ContentLength > 0)
+                        {
+                            string Foto4File = Foto4.FileName;
+                            string Foto4Path = Path.Combine(Server.MapPath("~/Content/Img"), Foto4File);
+                            Foto4.SaveAs(Foto4Path);
+                            eventi.Foto4 = Foto4File;
+                        }
+                        db.Eventi.Add(eventi);
+                        db.SaveChanges();
+                        return RedirectToAction("Index", "Eventi");
+                    }
+                    else
+                    {
+                        ViewBag.Errore = "Il campo Foto copertina è obbligatorio";
+                        ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
+                        return View();
+                    }
                 }
                 else
                 {
@@ -198,7 +198,7 @@ eventi.IdUtente = (int)Session["Utente"];
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdEvento,NomeEvento,Descrizione,Prezzo,Luogo,Indirizzo,FotoCopertinaEdit,Foto1,Foto2,Foto3,Foto4,DataEvento,IdCategoria")] Eventi eventi, HttpPostedFileBase FotoCopertina, HttpPostedFileBase Foto1, HttpPostedFileBase Foto2, HttpPostedFileBase Foto3, HttpPostedFileBase Foto4)
+        public ActionResult Edit([Bind(Include = "IdEvento,NomeEvento,Descrizione,Prezzo,Luogo,Indirizzo,FotoCopertinaEdit,Foto1,Foto2,Foto3,Foto4,DataEvento,IdCategoria,DataDa")] Eventi eventi, HttpPostedFileBase FotoCopertina, HttpPostedFileBase Foto1, HttpPostedFileBase Foto2, HttpPostedFileBase Foto3, HttpPostedFileBase Foto4)
         {
             if (ModelState.IsValid)
             {
@@ -321,6 +321,13 @@ eventi.IdUtente = (int)Session["Utente"];
                         db.Recensioni.Remove(recensioni);
                         db.SaveChanges();
                     }
+                }
+                //poi i preferiti
+                Preferiti preferiti = db.Preferiti.Where(m => m.IdEvento == id).FirstOrDefault();
+                if (preferiti != null)
+                {
+                    db.Preferiti.Remove(preferiti);
+                    db.SaveChanges();
                 }
                 //infine l'evento
                 Eventi eventi = db.Eventi.Find(id);

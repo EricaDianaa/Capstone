@@ -9,6 +9,7 @@
 }
 
 <div id="filtri" style="display:none">
+    @* Categoria *@
     <div>
         <h3>Seleziona per categoria</h3>
         <button id="C" class="btn btn-primary">Concerti</button>
@@ -16,7 +17,9 @@
         <button id="A" class="btn btn-primary">Avventura</button>
         <button id="R" class="btn btn-primary">Relax</button>
         <button id="M" class="btn btn-primary">Musei</button>
-    </div><h3>Seleziona per costo</h3>
+    </div>
+    @* Prezzo *@
+    <h3>Seleziona per costo</h3>
     <div class="d-flex">
 
 
@@ -31,6 +34,7 @@
 
 
     </div>
+    @* Data *@
     <h3>Seleziona per data </h3>
     <div class="d-flex ">
         <div>
@@ -58,6 +62,23 @@
         </div>
 
     </div>
+    @* Luogo *@
+    <h3>Per località</h3>
+    <div class="d-flex ">
+        <div>
+            <div>
+                <input type="text" name="DataEvento" id="InputLuogo" class=" ">
+                <button id="L" class="btn btn-primary">Cerca</button>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div>
+
+
+        </div>
+
+    </div>
     <a class="text-decoration-line" id="RemoveFiltri">Rimuovi filtri</a>
 </div>
 
@@ -75,6 +96,7 @@
                     <p class="card-text">@string.Format("{0:C}", @e.Prezzo)</p>
                     <p class="card-text">@e.Indirizzo</p>
                     <p class="card-text">@string.Format("{0:d}", @e.DataEvento)</p>
+                    <p class="card-text">@string.Format("{0:d}", @e.DataDa)</p>
                     <p>Categoria:@e.Categorie.NomeCategoria</p>
                     @if (User.IsInRole("user"))
                     {
@@ -82,7 +104,7 @@
                     }
 
 
-            
+
                     <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
                 </div>
 
@@ -111,6 +133,7 @@
                         " <p class='card-text'>" + e.Prezzo + "</p>" +
                         "<p class='card-text'>" + e.Indirizzo + "</p>" +
                         "<p class='card-text'>" + e.DataE + "</p>" +
+                        "<p class='card-text'>" + e.DataDaString + "</p>" +
                         "<p>Categoria:" + "</p>" +
                         "<a href='/Recensioni/Create/?id=" + e.IdEvento + "'>Scrivi una recensione</a>" +
                         "<a href='/Eventi/Details/" + e.IdEvento + "'>Dettagli</a></div> </div>"
@@ -119,11 +142,11 @@
                     $("#Eventi").append(licurrent)
                 })
             }
-            function ChiamataAjax(prezzo,nomeCategoria,DataEvento) {
+            function ChiamataAjax(prezzo,nomeCategoria,DataEvento,luogo) {
                 $.ajax({
                     method: "POST",
                     url: "/Home/Filtri",
-                    data: { Prezzo: prezzo, NomeCategoria: nomeCategoria, DataEvento: DataEvento },
+                    data: { Prezzo: prezzo, NomeCategoria: nomeCategoria, DataEvento: DataEvento,Luogo:luogo },
                     success: function (data) {
                         console.log(data)
                         filtri(data);
@@ -147,55 +170,60 @@
             // ottenere la categoria e fare una select al db
            
             $("#G").click(function () {
-                ChiamataAjax(0, null, "01/01/0001")
+                ChiamataAjax(0, null, "01/01/0001","")
 
             })
             $("#P").click(function () {
                 var prezzo = $("#InputPrezzo").val();
 
-                ChiamataAjax(prezzo, null, "01/01/0001")
+                ChiamataAjax(prezzo, null, "01/01/0001", "")
 
             })
             $("#P1").click(function () {
                 var prezzo = $("#InputPrezzo1").val();
-                ChiamataAjax(prezzo, "Da", "01/01/0001")
+                ChiamataAjax(prezzo, "Da", "01/01/0001", "")
 
             })
 
             $("#C").click(function () {
-                ChiamataAjax(0, "Concerti", "01/01/0001")
+                ChiamataAjax(0, "Concerti", "01/01/0001", "")
 
             })
             $("#A").click(function () {
-                ChiamataAjax(0, "Avventura", "01/01/0001")
+                ChiamataAjax(0, "Avventura", "01/01/0001", "")
 
             })
             $("#F").click(function () {
-                ChiamataAjax(0, "Feste", "01/01/0001")
+                ChiamataAjax(0, "Feste", "01/01/0001", "")
 
             })
             $("#R").click(function () {
-                ChiamataAjax(0, "Relax", "01/01/0001")
+                ChiamataAjax(0, "Relax", "01/01/0001", "")
 
             })
             $("#M").click(function () {
-                ChiamataAjax(0, "Musei", "01/01/0001")
+                ChiamataAjax(0, "Musei", "01/01/0001", "")
 
             })
             $("#Data").click(function () {
                 var date = $("#InputDate").val();
                 console.log(date)
-                ChiamataAjax(0, "", date)
+                ChiamataAjax(0, "", date, "")
 
             })
             $("#DataPeriodo").click(function () {
                 var date = $("#InputPeriodo").val();
                 console.log(date)
-                ChiamataAjax(0, "Dal", date)
+                ChiamataAjax(0, "Dal", date, "")
 
             })
             $("#RemoveFiltri").click(function () {
-                ChiamataAjax(-1, null, "01/01/0001")
+                ChiamataAjax(-1, null, "01/01/0001", "")
+            })
+            $("#L").click(function () {
+                var luogo = $("#InputLuogo").val();
+                ChiamataAjax(0, null, "01/01/0001",luogo)
+
             })
         })
     </script>
