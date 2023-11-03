@@ -322,25 +322,18 @@ namespace Capstone.Controllers
                 return View();
             }
         }
-        //Elimina dal carrello 1 prodotto
-        public ActionResult CartRemove()
+        //Quantità(-)
+        public ActionResult CartRemove(int? id)
         {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult CartRemove(EventiOrdini p)
-        {
-
             List<EventiOrdini> prodotto = new List<EventiOrdini>();
             prodotto = (List<EventiOrdini>)Session["Carello"];
-            string id = Request.QueryString["Id"];
-       
-            p.IdEvento = Convert.ToInt16(id);
-           var prod= prodotto.Where(m => m.IdEvento==p.IdEvento).FirstOrDefault();
+         
+
+            var prod = prodotto.Where(m => m.IdEvento ==id).FirstOrDefault();
             //Se il prodotto ha più di una quantità elimino solo dalla quantità
-            if (prod.Quantità>1)
+            if (prod.Quantità > 1)
             {
-              
+
                 List<EventiOrdini> list = new List<EventiOrdini>();
                 prod.Quantità = prod.Quantità - 1;
                 list.Add(prod);
@@ -349,7 +342,32 @@ namespace Capstone.Controllers
             //altrimenti elimino il prodotto
             else
             {
-                prodotto.Remove(prodotto.FirstOrDefault(m => m.IdEvento == p.IdEvento));
+                prodotto.Remove(prodotto.FirstOrDefault(m => m.IdEvento == id));
+            }
+            Session["Carello"] = prodotto;
+
+            return RedirectToAction("Cart", "Ordini");
+        }
+        //Quantità(+)
+        public ActionResult AddQuantità(int? id)
+        {
+            List<EventiOrdini> prodotto = new List<EventiOrdini>();
+            prodotto = (List<EventiOrdini>)Session["Carello"];
+
+            var prod = prodotto.Where(m => m.IdEvento == id).FirstOrDefault();
+            
+            if (prod.Quantità >= 1)
+            {
+
+                List<EventiOrdini> list = new List<EventiOrdini>();
+                prod.Quantità = prod.Quantità + 1;
+                list.Add(prod);
+                Session["Carello"] = prod;
+            }
+           
+            else
+            {
+                return View();
             }
             Session["Carello"] = prodotto;
 

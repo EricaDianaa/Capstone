@@ -175,6 +175,68 @@ namespace Capstone.Controllers
 
         }
 
+        public ActionResult RecuperoPassword()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RecuperoPassword([Bind(Include = "IdUtente,Username,Ruolo,Password,Indirizzo,Email,Telefono,IsAzienda,CodiceFiscale,PartitaIva")] string NewPassword, string CodiceFiscale,string Username)
+        {
+
+            try
+            {
+                using (var context = new ModelBContent())
+                {
+                    Utenti u = db.Utenti.Where(m => m.CodiceFiscale == CodiceFiscale&&m.Username==Username).FirstOrDefault();
+                 
+                  
+                    if (u != null)
+                    {
+                        var keyNew = Hash.GeneratePassword(10);
+                        if (!Regex.IsMatch(NewPassword, @"\d"))
+                        {
+                            ViewBag.ErroreNumerico = "la password deve contenere un carattere numerico";
+
+                        }
+
+                        if (!Regex.IsMatch(NewPassword, @"[@#$%^&+=]"))
+                        {
+                            ViewBag.ErroreCarattereSpeciale = "la password deve contenere un carattere speciale";
+
+                        }
+                        if (!Regex.IsMatch(NewPassword, @"[A-Z]"))
+                        {
+                            ViewBag.ErroreletteraMaiuscola = "la password deve contenere una lettera maiuscola";
+
+                        }
+                        if (Regex.IsMatch(NewPassword, @"\d") && Regex.IsMatch(NewPassword, @"[@#$%^&+=]") && Regex.IsMatch(NewPassword, @"[A-Z]"))
+                        {
+                            var password = Hash.EncodePassword(NewPassword, keyNew);
+                            u.Password = password;
+                            u.VCode = keyNew;
+                            db.Entry(u).State = EntityState.Modified;
+                            db.SaveChanges();
+                            ModelState.Clear();
+                            return RedirectToAction("index", "Home");
+
+
+                        }
+                    }
+                    ViewBag.ErrorMessage = "Username o codice fiscale non validi";
+                    return View();
+                }
+            }
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
+                return View();
+            }
+
+        }
+
         [Authorize(Roles ="Admin")]
         
         protected override void Dispose(bool disposing)

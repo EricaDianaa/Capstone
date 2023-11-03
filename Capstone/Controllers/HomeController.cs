@@ -120,7 +120,7 @@ namespace Capstone.Controllers
                             }
                             if (Regex.IsMatch(u.Password, @"\d") && Regex.IsMatch(u.Password, @"[@#$%^&+=]") && Regex.IsMatch(u.Password, @"[A-Z]"))
                             {
-
+                                //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
                                 if (utente == null && utente1 == null && utente2 == null)
                                 {
                                     u.Password = password;
@@ -132,9 +132,9 @@ namespace Capstone.Controllers
 
                                 }
                             }
-                            
 
-                            //Se Username/Email/CodiceFiscale non sono presenti nel database salvo l'utente
+
+
 
                             //Altrimenti rimando la pagin messaggi errore
                             else
@@ -319,6 +319,43 @@ namespace Capstone.Controllers
                
         }
 
+        public ActionResult AddPreferiti(int IdEvento)
+        {
+            Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
+            //Selezione del prodotto a un nuovo modello contenente Evento e Ordini
+            List<Eventi> list = new List<Eventi>();
+  
+            if (Session["Preferiti"] == null)
+            {
+                Session["Preferiti"] = list;
+            }//altrimenti la session esiste già e aggiungo il nuovo evento
+            else
+            {
+                List<Eventi> prodott = new List<Eventi>();
+                prodott = (List<Eventi>)Session["Preferiti"];
+
+                Eventi prodotto = prodott.Where(m => m.IdEvento == IdEvento).FirstOrDefault();
+                //se l'evento è gia presente nel carello
+                if (prodotto != null && IdEvento == prodotto.IdEvento)
+                {
+                   
+                }//Altrimenti aggiungi l'evento
+                else
+                {
+                    prodott.Add(e);
+
+                }
+                Session["Carello"] = prodott;
+            };
+
+            return RedirectToAction("Preferiti", "Home");
+        }
+   
+        public ActionResult Preferiti()
+        {
+
+            return View();
+        }
 
     }
 }

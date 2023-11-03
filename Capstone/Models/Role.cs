@@ -39,11 +39,18 @@ namespace Capstone.Models
         {
             ModelBContent db = new ModelBContent();
             Utenti U = db.Utenti.Where(x => x.Username == UsernameLogin).FirstOrDefault();
-
-            List<string> roles = new List<string>();
+            if (U != null)
+            {
+      List<string> roles = new List<string>();
             string ruolo = U.Ruolo;
             roles.Add(ruolo);
             return roles.ToArray();
+            }
+            else
+            {
+                return null;
+            }
+      
         }
 
         public override string[] GetUsersInRole(string roleName)

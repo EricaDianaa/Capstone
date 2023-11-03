@@ -26,8 +26,9 @@
                             <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
                             <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
 
-                            <a href="/Ordini/CartRemove/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">Elimina</a>
-                            <a href="/Ordini/CartRemoveAllProdotto/?Id=@p.IdEvento" class="btn btn-danger" id="EliminaP">Elimina intero prodotto</a>
+                            <a href="/Ordini/CartRemove/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">-</a>
+                            <a href="/Ordini/AddQuantità/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">+</a>
+                            <a href="/Ordini/CartRemoveAllProdotto/?Id=@p.IdEvento" class="btn btn-danger" id="EliminaP">Elimina</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@
 
 </div>
 
-@section scripts{
+@*@section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Elimina").click(function () {
@@ -62,4 +63,4 @@
         })
 
     </script>
-}
+}*@

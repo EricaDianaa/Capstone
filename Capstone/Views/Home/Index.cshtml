@@ -1,6 +1,7 @@
 ﻿@*@model List<Capstone.Models.Eventi>*@
 @using Capstone.Models
 
+
 @* Sezione filtri *@
 @if (User.IsInRole("user"))
 {
@@ -71,7 +72,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@e.NomeEvento</h5>
                     <p class="card-text">@e.Descrizione</p>
-                    <p class="card-text">@string.Format("{0:C}",@e.Prezzo)</p>
+                    <p class="card-text">@string.Format("{0:C}", @e.Prezzo)</p>
                     <p class="card-text">@e.Indirizzo</p>
                     <p class="card-text">@string.Format("{0:d}", @e.DataEvento)</p>
                     <p>Categoria:@e.Categorie.NomeCategoria</p>
@@ -81,12 +82,7 @@
                     }
 
 
-
-                    @*<button id="buttonmostra" class="btn btn-primary">scrivi una recensione</button>
-        <div id="recensioni" style="display:none">
-            @Html.Action("CreateRecensioni", "Recensioni")
-        </div>*@
-
+            
                     <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
                 </div>
 
