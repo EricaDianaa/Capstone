@@ -4,48 +4,75 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2 id="Title" class="text-center">Accedi al tuo account</h2>
+<link href="~/Content/LoginRegister.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700&family=Indie+Flower&family=Montserrat:ital,wght@0,400;0,700;1,700&family=Open+Sans:wght@400;700&family=Oswald:wght@400;700&family=Roboto+Slab&family=Roboto:wght@400;700&family=Spectral:wght@400;700&display=swap" rel="stylesheet">
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Utenti</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UsernameLogin, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UsernameLogin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UsernameLogin, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <h6 class="text-danger">@ViewBag.ErrorMessage</h6>
+    <div class="d-md-flex align-items-start  border border-dark w-50 mx-auto" id="Form">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="m-3 text-white p-3 text-center rounded-3  border border-dark" style="background-color: #ae0000d4">
+            @Html.ValidationSummary(true, "", new { @class = "text-warning" })
+            <div class="form-group">
+                <i class="fa-solid fa-user"></i>
+                @Html.LabelFor(model => model.UsernameLogin, "Username", htmlAttributes: new { @class = "" })
+                <div class="">
+                    @Html.EditorFor(model => model.UsernameLogin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UsernameLogin, "", new { @class = "text-warning" })
+                </div>
             </div>
+
+
+            <div class="form-group">
+                <i class="fa-solid fa-lock"></i>
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+            <div class="">
+                <p id="password"><i class="fa-solid fa-eye"></i></p>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", id = "Password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-warning" })
+            </div>
+            </div>
+            <h6 class="text-warning">@ViewBag.ErrorMessage</h6>
+
+            <div class="form-group">
+                <div class="col-md-offset-2">
+                    <input type="submit" value="Accedi" class="btn btn-  d-flex mx-auto" style="background-color:darkorange" />
+                </div>
+            </div>
+            <a href="/Utenti/RecuperoPassword" class="text-warning">Hai dimenticato la password?</a>
+        </div>
+        <div class="text-center text-white" id="Input">
+            <h5>Non hai un account?</h5>
+            <a href="/Home/Register" class="btn " style="background-color:darkorange">Registrati</a>
         </div>
     </div>
-    <a href="/Utenti/RecuperoPassword">Hai dimenticato la password?</a>
+
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="text-center">
+    <a href="/Home/Index" class="text-warning bg-dark p-2 rounded-3"><i class="fa-solid fa-arrow-left"></i></a>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $("#password").click(function () {
+            if ($("#Password").type == "password") {
+                $("#Password").type = "text"
+            } else {
+                $("#Password").type="password"
+            }
+        })
+    })
+</script>
 }

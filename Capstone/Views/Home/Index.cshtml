@@ -1,113 +1,106 @@
 ﻿@*@model List<Capstone.Models.Eventi>*@
 @using Capstone.Models
 
+<link href="~/Content/StyleIndexHome.css" rel="stylesheet" />
 
+<h2 id="Title" class="text-center"> Homepage EventSardigna</h2>
+
+<div class="text-dark text-center">
+
+    Benvenuti in EventSardegna! Scoprite la Sardegna una terra ricca di tradizioni,
+    cultura e bellezze naturali, grazie a questa app che vi terrà sempre aggiornati sugli eventi
+    più interessanti in tutta la regione. Trovate facilmente festival, concerti, mostre, sagre locali e tanto altro.
+    Pianificate il vostro viaggio alla scoperta della Sardegna con comodità, e non perdete mai l’occasione di partecipare
+    a esperienze uniche.Accedi o registrati oggi e immergetevi nell’energia e nell’ospitalità della Sardegna!
+</div>
 @* Sezione filtri *@
 @if (User.IsInRole("user"))
 {
-  <button id="ButtonFiltri">Filtri</button>
-}
+    <button id="ButtonFiltri"style="background-color:orange" class="btn d-flex mx-auto mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filtri</button>
 
-<div id="filtri" style="display:none">
-    @* Categoria *@
-    <div>
-        <h3>Seleziona per categoria</h3>
-        <button id="C" class="btn btn-primary">Concerti</button>
-        <button id="F" class="btn btn-primary">Feste</button>
-        <button id="A" class="btn btn-primary">Avventura</button>
-        <button id="R" class="btn btn-primary">Relax</button>
-        <button id="M" class="btn btn-primary">Musei</button>
-    </div>
-    @* Prezzo *@
-    <h3>Seleziona per costo</h3>
-    <div class="d-flex">
-
-
-        <button id="G" class="btn btn-primary">Gratis</button>
-        <input type="number" name="Prezzo" id="InputPrezzo" />
-        <button id="P" class="btn btn-primary">Cerca</button>
-
-        <h3>Da</h3>
-        <input type="number" name="Prezzo" id="InputPrezzo1" />
-        <button id="P1" class="btn btn-primary">Cerca</button>
-
-
-
-    </div>
-    @* Data *@
-    <h3>Seleziona per data </h3>
-    <div class="d-flex ">
-        <div>
-            <h5>Per singola data</h5>
-            <div class="d-flex ms-2">
-                <div>
-                    <h6>Il</h6>
-                    <input type="date" name="DataEvento" id="InputDate" class="btn btn-primary"></>
-                    <button id="Data" class="btn btn-primary">Cerca</button>
-                </div>
-            </div>
-            <div>
-            </div>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div>
+        <div class="offcanvas-body text-dark " id="Filtri">
+
+            <h4 class="mt-1">SELEZIONA PER CATEGORIA</h4>
+            <button id="C" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Concerti</button>
+            <button id="F" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Feste</button>
+            <button id="A" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Avventura</button>
+            <button id="R" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Relax</button>
+            <button id="M" class="btn btn-primary mt-2" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Musei</button>
+            <hr />
+            <h4 class="mt-3">SELEZIONA PER PREZZO</h4>
+            <button id="G" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Gratis</button>
+            <br />
+            <h5>Inserisci un prezzo</h5>
+            <input type="number" name="Prezzo" id="InputPrezzo" class=" w-25 rounded-3 border border-secondary" />
+            <button id="P" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Cerca</button>
+
+            <h5>Inserisci un prezzo base</h5>
+            <input type="number" name="Prezzo" id="InputPrezzo1" class=" w-25 rounded-3 border border-secondary"/>
+            <button id="P1" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Cerca</button>
+            <hr />
+            <h4 class="mt-3">SELEZIONA PER DATA</h4>
+
+            <h5>Per singola data</h5>
+            <h6>Inserisci una data</h6>
+            <input type="date" name="DataEvento" id="InputDate" class="" />
+            <button id="Data" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Cerca</button>
 
             <h5>Per un periodo</h5>
-            <div class="d-flex ms-2">
-                <div>
-                    <h6>Dal</h6>
-                    <input type="date" name="DataEvento" id="InputPeriodo" class="btn btn-primary" />
-                    <button id="DataPeriodo" class="btn btn-primary">Cerca</button>
-                </div>
-            </div>
-        </div>
 
+            <h6>Inserisci una data di inizio</h6>
+            <input type="date" name="DataEvento" id="InputPeriodo" class="" />
+            <button id="DataPeriodo" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Cerca</button>
+            <hr />
+            <h4 class="mt-3">SELEZIONA PER LOCALITÀ</h4>
+
+            <input type="text" name="DataEvento" id="InputLuogo" class=" rounded-3 border border-secondary">
+            <button id="L" class="btn btn-primary" style="background-color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Cerca</button>
+            <hr />
+            <a class="text-decoration-line" id="RemoveFiltri" style="color:darkorange" data-bs-dismiss="offcanvas" aria-label="Close">Rimuovi filtri</a>
+        </div>
     </div>
-    @* Luogo *@
-    <h3>Per località</h3>
-    <div class="d-flex ">
-        <div>
-            <div>
-                <input type="text" name="DataEvento" id="InputLuogo" class=" ">
-                <button id="L" class="btn btn-primary">Cerca</button>
-            </div>
-            <div>
-            </div>
-        </div>
-        <div>
+}
 
 
-        </div>
-
-    </div>
-    <a class="text-decoration-line" id="RemoveFiltri">Rimuovi filtri</a>
-</div>
-
-<div class="container">
+<div class="container mt-3">
     <div class="row" id="Eventi">
         @* Eventi *@
         @foreach (Capstone.Models.Eventi e in Model)
         {
+            <div class='col col-md-6 col-lg-4 col-xl-3'>
+                <main id='main'>
+                    <div class='card'>
+                        <span class='badge' style='text-shadow:2px 2px 6px black; color:darkorange'> @e.NomeEvento</span>
+                        <img src='/Content/Img/@e.FotoCopertina' class='card-img-top' alt='...'>
+                        <div class='text'>
 
-            <div class="card col" style="width: 18rem;">
-                <img src="~/Content/Img/@e.FotoCopertina" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">@e.NomeEvento</h5>
-                    <p class="card-text">@e.Descrizione</p>
-                    <p class="card-text">@string.Format("{0:C}", @e.Prezzo)</p>
-                    <p class="card-text">@e.Indirizzo</p>
-                    <p class="card-text">@string.Format("{0:d}", @e.DataEvento)</p>
-                    <p class="card-text">@string.Format("{0:d}", @e.DataDa)</p>
-                    <p>Categoria:@e.Categorie.NomeCategoria</p>
-                    @if (User.IsInRole("user"))
-                    {
-                        <a href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
-                    }
+                            <h2 style='text-shadow: 2px 2px 6px black; color: darkorange'> @e.NomeEvento </h2>
+                            <p class="card-text"><strong>Prezzo:</strong>@string.Format("{0:C}", @e.Prezzo)</p>
+                            <p class="card-text"><strong>Indirizzo:</strong>@e.Indirizzo</p>
 
-
-
-                    <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
-                </div>
-
+                            @if (e.DataDa != null)
+                            {
+                                <p class="card-text"><strong>Data inizio:</strong>@string.Format("{0:d}", @e.DataDa)</p>
+                                <p class="card-text"><strong>Data fine:</strong>@string.Format("{0:d}", @e.DataEvento)</p>
+                            }
+                            else
+                            {
+                                <p class="card-text"><strong>Data:</strong>@string.Format("{0:d}", @e.DataEvento)</p>
+                            }
+                            <p>Categoria:@e.Categorie.NomeCategoria</p>
+                            @if (User.IsInRole("user"))
+                            {
+                                <a href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
+                            }
+                            <a href='/Eventi/Details/ @e.IdEvento'>Dettagli</a>
+                        </div>
+                    </div>
+                </main>
             </div>
 
         }
@@ -123,54 +116,53 @@
             function filtri(data) {
                 $("#List").html("")
                 $("#Eventi").html("");
+
                 $.each(data, function (i, e) {
-                   
-                    var licurrent = "<div  class='card col-6 col-md-4 col-lg-3' style='width: 18rem;'>" +
+                    var Data;
+                    if (e.DataDaString != null) {
+                        Data = "<p class='card-text'><strong>Data di inizio:</strong>" + e.DataDaString + "</p>" +
+                            " <p class='card-text''><strong>Data di fine:</strong>" + e.DataE + "</p>";
+                    } else {
+                        Data = "<p class='card-text'><strong>Data:</strong>" + e.DataE + "</p>";
+
+                    }
+                    var licurrent1 = "<div class='col col-md-6 col-lg-4 col-xl-3'><main id='main'>" +
+                        "  <div class='card'>" +
+                        "   <span class='badge' style='text-shadow:2px 2px 6px black;  color:darkorange'>" + e.NomeEvento + "</span>" +
                         " <img src='/Content/Img/" + e.FotoCopertina + "' class='card-img-top' alt='...'>" +
-                        "<div class='card-body'>" +
-                        " <h5 class='card-title'>" + e.NomeEvento + "</h5>" +
-                        " <p class='card-text'>" + e.Descrizione + "</p>" +
-                        " <p class='card-text'>" + e.Prezzo + "</p>" +
-                        "<p class='card-text'>" + e.Indirizzo + "</p>" +
-                        "<p class='card-text'>" + e.DataE + "</p>" +
-                        "<p class='card-text'>" + e.DataDaString + "</p>" +
+                        "<div class='text'>" +
+                        "<h2  style='text-shadow:2px 2px 6px black; color:darkorange'>" + e.NomeEvento + "</h2>" +
+                        " <p class='card-text'><strong>Descrizione:</strong>" + e.Descrizione + "</p>" +
+                        " <p class='card-text'><strong>Prezzo:</strong>" + e.Prezzo + "</p>" +
+                        "<p class='card-text'><strong>Indirizzo:</strong>" + e.Indirizzo + "</p>" +
+                        Data +
                         "<p>Categoria:" + "</p>" +
                         "<a href='/Recensioni/Create/?id=" + e.IdEvento + "'>Scrivi una recensione</a>" +
                         "<a href='/Eventi/Details/" + e.IdEvento + "'>Dettagli</a></div> </div>"
+                    "</div>" +
+                        "</div>" +
+                        "</main ></div>";
 
-
-                    $("#Eventi").append(licurrent)
+                    $("#Eventi").append(licurrent1)
                 })
             }
-            function ChiamataAjax(prezzo,nomeCategoria,DataEvento,luogo) {
+            function ChiamataAjax(prezzo, nomeCategoria, DataEvento, luogo) {
                 $.ajax({
                     method: "POST",
                     url: "/Home/Filtri",
-                    data: { Prezzo: prezzo, NomeCategoria: nomeCategoria, DataEvento: DataEvento,Luogo:luogo },
+                    data: { Prezzo: prezzo, NomeCategoria: nomeCategoria, DataEvento: DataEvento, Luogo: luogo },
                     success: function (data) {
                         console.log(data)
                         filtri(data);
                     }
                 })
             }
-            $("#ButtonFiltri").click(function () {
-                //Mostra/NonMostra i filtri
-                if ($("#filtri").css("display") === "none") {
-                    $("#filtri").css("display", "block")
-
-                }
-                else {
-                    $("#filtri").css("display", "none")
-
-                }
-            })
 
             //Sezione Filtri
-            //Al click di un bottone dei filtri genero una chiamata ajax per
-            // ottenere la categoria e fare una select al db
-           
+            //Al click di un bottone dei filtri genero una chiamata ajax per ottenere la categoria e fare una select al db
+
             $("#G").click(function () {
-                ChiamataAjax(0, null, "01/01/0001","")
+                ChiamataAjax(0, null, "01/01/0001", "")
 
             })
             $("#P").click(function () {
@@ -222,7 +214,7 @@
             })
             $("#L").click(function () {
                 var luogo = $("#InputLuogo").val();
-                ChiamataAjax(0, null, "01/01/0001",luogo)
+                ChiamataAjax(0, null, "01/01/0001", luogo)
 
             })
         })

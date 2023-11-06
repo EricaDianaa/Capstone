@@ -1,0 +1,174 @@
+﻿:root {
+    --cover-timing: 0.5s;
+    --cover-ease: cubic-bezier(0.66, 0.08, 0.19, 0.97);
+    --cover-stagger: 0.15s;
+    --text-timing: 0.75s;
+    --text-stagger: 0.015s;
+    --text-ease: cubic-bezier(0.38, 0.26, 0.05, 1.07);
+    --title-stagger: 0.05s;
+    --highlight: -webkit-linear-gradient(130deg, rgba(255,255,255,1), rgba(255,127,80,1));
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 0.75;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 5vw 6vw -8vw, rgba(255, 255, 255, 0) 0 4.5vw 5vw -6vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+    transition: box-shadow 1s var(--cover-ease);
+}
+
+    .card > * {
+        z-index: 2;
+    }
+
+    .card h2, .card p {
+        background: -webkit-linear-gradient(130deg, rgba(255,255,255,1), rgba(255,127,80,1));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.97, 0.8, 0.19, 0.97);
+    }
+
+    .card > img {
+        z-index: 0;
+        transition: all 0.8s cubic-bezier(0.66, 0.08, 0.19, 0.97);
+    }
+
+    .card::before, .card::after {
+        content: "";
+        width: 100%;
+        height: 50%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        transform-origin: top left;
+        transform: scaleY(0) rotateY(-45deg);
+        transition: all var(--cover-timing) var(--cover-ease);
+        z-index: 1;
+    }
+
+    .card::after {
+        transition-delay: var(--cover-stagger);
+        transform: scaleY(0) rotateY(45deg);
+        right: 0%;
+        top: 50%;
+        transform-origin: bottom right;
+    }
+
+    .card:hover {
+        box-shadow: white 0 5vw 6vw -9vw, var(--highlight) 0 5.5vw 5vw -7.5vw, rgba(50, 50, 80, 0.5) 0px 4vw 8vw -2vw, rgba(0, 0, 0, 0.8) 0px 4vw 5vw -3vw;
+    }
+
+        .card:hover::before, .card:hover::after {
+            transform: scaleY(1) rotateX(0deg);
+        }
+
+        .card:hover h2, .card:hover p {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg);
+            color: inherit;
+            transition: all var(--cover-timing) var(--cover-ease);
+            background: white;
+            color: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+    .card:nth-of-type(1) {
+        --highlight: coral;
+    }
+
+.text {
+    position: absolute;
+    inset: 20px;
+    top: auto;
+}
+
+h2 {
+    font-size: 30px;
+    font-size: clamp(20px, 4vw, 40px);
+    font-weight: 800;
+    margin-bottom: 0.2em;
+}
+
+p {
+    font-size: 12px;
+    font-size: clamp(10px, 1.25vw, 14px);
+    line-height: 1.4;
+    text-align: justify;
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
+.badge {
+    color: #ffffff;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 0.4rem;
+    margin-right: auto;
+    background: #333333;
+    border: 0.25rem solid #dddddd;
+    font-weight: 700;
+}
+
+img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px;
+    grid-gap: 2em;
+}
+
+.card {
+    width: 90vw;
+    max-width: 300px;
+}
+
+h1 {
+    color: #5b6377;
+    font-weight: 100;
+}
+ main {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    justify-content: center;
+}
+
+body, html {
+    color: white;
+    background-color: lightcyan;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    padding: 1em 0 3em;
+    min-height: calc(100vh - 4em);
+}
+
+#Filtri {
+    font-family: cursive;
+    color:orange;
+}
+#Title {
+    color: orange;
+    font-family: fantasy;
+}
