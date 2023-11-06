@@ -32,7 +32,7 @@
                 <i class="fa-solid fa-lock"></i>
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
             <div class="">
-                <p id="password"><i class="fa-solid fa-eye"></i></p>
+                @*<p id="password"><i class="fa-solid fa-eye"></i></p>*@
                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password", id = "Password" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-warning" })
             </div>
