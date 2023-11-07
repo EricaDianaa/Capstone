@@ -174,7 +174,7 @@ namespace Capstone.Controllers
         }
         public ActionResult Edit(int? id)
         {
-            CultureInfo.CurrentCulture = new CultureInfo("it-IT");
+            //CultureInfo.CurrentCulture = new CultureInfo("it-IT");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -233,7 +233,7 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdEvento,NomeEvento,Descrizione,Prezzo,Luogo,Indirizzo,FotoCopertinaEdit,Foto1,Foto2,Foto3,Foto4,DataEvento,IdCategoria,DataDa")] Eventi eventi, HttpPostedFileBase FotoCopertina, HttpPostedFileBase Foto1, HttpPostedFileBase Foto2, HttpPostedFileBase Foto3, HttpPostedFileBase Foto4)
         {
-            CultureInfo.CurrentCulture = new CultureInfo("it-IT");
+            //CultureInfo.CurrentCulture = new CultureInfo("it-IT");
             if (ModelState.IsValid)
             {
                 if (Session["Utente"] != null)
