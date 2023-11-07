@@ -1,9 +1,16 @@
 ﻿@model Capstone.Models.Eventi
-
+<script src="~/Scripts/bootstrap.min.js"></script>
 @{
     ViewBag.Title = "Details";
+    var Tot5st = @ViewBag.Tot5st;
+    var Tot4st = @ViewBag.Tot4st;
+    var Tot3st = @ViewBag.Tot3st;
+    var Tot2st = @ViewBag.Tot2st;
+    var Tot1st = @ViewBag.Tot1st;
+
+
 }
-<link href="~/Content/StylePreferiti.css" rel="stylesheet" />
+
 
 <h2 id="Title" class="text-center" style=" color: orange; font-family: fantasy;">   @Html.DisplayFor(model => model.NomeEvento)</h2>
 @if (User.IsInRole("User"))
@@ -56,7 +63,7 @@
     </div>
 
     <div class="row w-100">
-        <div class=" col-4 ps-3  ms-5 mb-3 border border-dark text-center " style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
+        <div class=" col-4 ps-3  ms-5 mb-3 border border-dark rounded-4 text-center " style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
             <strong style="font-family:cursive;color:orange">Categoria</strong>
             <p>@Html.DisplayFor(model => model.Categorie.NomeCategoria) </p>
             <strong style="font-family:cursive;color:orange">Prezzo</strong>
@@ -71,18 +78,19 @@
             <p>@Html.DisplayFor(model => model.DataEvento) </p>
         </div>
         <div class="col-6 text-center d-flex flex-column justify-content-evenly">
-            <div >
+            <div>
                 <strong style="font-family:cursive;color:orange">Descrizione</strong>
                 <p>@Html.DisplayFor(model => model.Descrizione)</p>
             </div>
-           
+
             @if (Model.Prezzo >= 1 && User.IsInRole("User"))
             {
-                <div class="border border-dark p-3 w-50 mx-auto" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
+                <div class="border border-dark p-3 w-50 mx-auto rounded-4" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
                     <p class="m-3">
-                        <h6 style="font-family:cursive;color:orange">Inserisci una quantità: </h6> <input type="number" class="form-control"name="Quantità" value="" id="quantità" />
+                        <h6 style="font-family:cursive;color:orange">Inserisci una quantità: </h6> <input type="number" class="form-control" name="Quantità" value="" id="quantità" />
                         <br />
-                        <button type="submit" class="btn btn-primary mx-auto mt-2 m-2" id="Button" style="background-color:orange">Aggiungi al carrello</button>
+                        <button type="submit" class="btn btn-primary mx-auto mt-2 m-2 d-none d-md-block" id="Button" style="background-color:orange">Aggiungi al carrello</button>
+                       <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button> 
                     </p>
                 </div>
             }
@@ -99,209 +107,267 @@
 </div>
 
 
-<h2 class="text-center">Recensioni</h2>
-@if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Azienda") && ViewBag.Recensioni != null && ViewBag.RecensioniUtente != null)
+@if (Model.Recensioni.Count != 0)
 {
-    foreach (Capstone.Models.Recensioni r in ViewBag.Recensioni)
+    if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Azienda"))
     {
-        <div class="bg-secondary p-3 m-2 rounded-3">
+
+            <h2 class="text-center mt-2"><i class="fa-solid fa-star text-warning"></i>@ViewBag.MediaRecensione- @ViewBag.CountRecensione Recensioni</h2>
+
+        <div class=" d-flex flex-column mt-3 justify-content-center mx-auto">
             <div class="d-flex">
-                <img style="width: 3%; height:3%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                <p>@r.Utenti.Username</p>
+                <p>5 stelle </p>
+                <div class=" ms-2" style="height:24px;width:50% ;background-color:lightgray">
+                    <div class=" " style="height: 24px; width: @(Tot5st)%; background-color: orange"></div>
+                </div>
+                <p>@(Tot5st)%</p>
             </div>
-            <div class=" bg-white bg-opacity-50 rounded-3">
-                <p>@r.Descrizione</p>
-
+            <div class="d-flex">
+                <p>4 stelle </p>
+                <div class=" ms-2" style="height:24px;width:50% ;background-color:lightgray">
+                    <div class=" " style="height: 24px; width:  @(Tot4st)%;background-color:orange"></div>
+                </div>
+                <p>@(Tot4st)%</p>
             </div>
-
-            @if (r.Voto == 1)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-
-            }
-            else if (r.Voto == 2)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-            }
-            else if (r.Voto == 3)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-
-            }
-            else if (r.Voto == 4)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-            }
-            else if (r.Voto == 5)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-            }
-
-
-            @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
-            {
-                <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
-            }
-
-
-
+            <div class="d-flex">
+                <p>3 stelle </p>
+                <div class=" ms-2" style="height:24px;width:50% ;background-color:lightgray">
+                    <div class=" " style="height: 24px; width:  @(Tot3st)%;background-color:orange"></div>
+                </div>
+                <p>@(Tot3st)%</p>
+            </div>
+            <div class="d-flex">
+                <p>2 stelle </p>
+                <div class=" ms-2" style="height:24px;width:50% ;background-color:lightgray">
+                    <div class=" " style="height: 24px; width: @(Tot2st)%;background-color:orange"></div>
+                </div>
+                <p>@(Tot2st)%</p>
+            </div>
+            <div class="d-flex">
+                <p>1 stelle </p>
+                <div class=" ms-2" style="height:24px;width:50% ;background-color:lightgray">
+                    <div class=" " style="height: 24px; width: @(Tot1st)%;background-color:orange"></div>
+                </div>
+                <p>@(Tot1st)%</p>
+            </div>
         </div>
 
+            <h4 class="text-center" style="font-family:cursive;color:orange">Le tue recensioni </h4>
+            foreach (Capstone.Models.Recensioni r in ViewBag.Recensioni)
+            {
+
+                <div class=" text-center d-flex flex-column justify-content-center justify-content-center">
+                    <div class="  d-flex flex-column justify-content-center p-3 m-2 ">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <p>
+                                <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                                <strong>@r.Utenti.Username</strong>
+                            </p>
+                        </div>
+                        <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
+                            <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
+                        </div>
+
+                        <div>
+                            @if (r.Voto == 1)
+                            {
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+
+                            }
+                            else if (r.Voto == 2)
+                            {
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            }
+                            else if (r.Voto == 3)
+                            {
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+
+                            }
+                            else if (r.Voto == 4)
+                            {
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            }
+                            else if (r.Voto == 5)
+                            {
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                                <i class="fa-solid fa-star text-warning"></i>
+                            }
+                        </div>
+
+                        @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
+                        {
+                            <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                        }
+
+
+                    </div>
+                </div>
+
+
+            }
+
+        
+        <div class="container">
+
+                <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
+                <div class="row">
+                    @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
+                    {
+                        <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
+                            <div class="  d-flex flex-column justify-content-centerp-3 m-2 ">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <p>
+                                        <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                                        <strong>@r.Utenti.Username</strong>
+                                    </p>
+                                </div>
+                                <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
+                                    <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
+                                </div>
+
+                                <div>
+                                    @if (r.Voto == 1)
+                                    {
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+
+                                    }
+                                    else if (r.Voto == 2)
+                                    {
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                    }
+                                    else if (r.Voto == 3)
+                                    {
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+
+                                    }
+                                    else if (r.Voto == 4)
+                                    {
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-regular fa-star text-warning"></i>
+                                    }
+                                    else if (r.Voto == 5)
+                                    {
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                        <i class="fa-solid fa-star text-warning"></i>
+                                    }
+                                </div>
+
+                                @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
+                                {
+                                    <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                                }
+
+
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            
+
+        </div>
     }
-<div class="container">
-    <div class="row">
-        @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
+    else
+    {
+        foreach (Capstone.Models.Recensioni r in Model.Recensioni)
         {
-            <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
-            <div class="  d-flex flex-column justify-content-centerp-3 m-2 ">
-                <div class="d-flex align-items-center justify-content-center">
-                    <p> <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                    <strong>@r.Utenti.Username</strong></p>
+            <div class="bg-secondary p-3 m-2 rounded-3">
+                <div class="d-flex">
+                    <img style="width: 10%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                    <p>@r.Utenti.Username</p>
                 </div>
-                <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
-                    <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
-                </div>
+                <div class=" bg-white bg-opacity-50 rounded-3">
+                    <p>@r.Descrizione</p>
 
-                <div>
-                    @if (r.Voto == 1)
-                    {
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-
-                    }
-                    else if (r.Voto == 2)
-                    {
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                    }
-                    else if (r.Voto == 3)
-                    {
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-
-                    }
-                    else if (r.Voto == 4)
-                    {
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-regular fa-star text-warning"></i>
-                    }
-                    else if (r.Voto == 5)
-                    {
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                        <i class="fa-solid fa-star text-warning"></i>
-                    }
                 </div>
 
-                @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
+                @if (r.Voto == 1)
                 {
-                    <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+
+                }
+                else if (r.Voto == 2)
+                {
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                }
+                else if (r.Voto == 3)
+                {
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+
+                }
+                else if (r.Voto == 4)
+                {
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-regular fa-star text-warning"></i>
+                }
+                else if (r.Voto == 5)
+                {
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
                 }
 
-
-            </div>
             </div>
 
         }
-
-    </div>
-</div>
-}
-else
-{
-    foreach (Capstone.Models.Recensioni r in Model.Recensioni)
-    {
-        <div class="bg-secondary p-3 m-2 rounded-3">
-            <div class="d-flex">
-                <img style="width: 10%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                <p>@r.Utenti.Username</p>
-            </div>
-            <div class=" bg-white bg-opacity-50 rounded-3">
-                <p>@r.Descrizione</p>
-
-            </div>
-
-            @if (r.Voto == 1)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-
-            }
-            else if (r.Voto == 2)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-            }
-            else if (r.Voto == 3)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-
-            }
-            else if (r.Voto == 4)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-regular fa-star text-warning" ></i>
-            }
-            else if (r.Voto == 5)
-            {
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-                <i class="fa-solid fa-star text-warning" ></i>
-            }
-
-        </div>
-
     }
 }
+
 
 
 @if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
@@ -341,6 +407,28 @@ else
                     $("#MessaggioErrore").hide()
                 }
             })
+            $("#Button1").click(function () {
+        console.log("Ordine", $("#quantità").val(),@Html.DisplayFor(model => model.IdEvento))
+        var prodotto = {
+        Quantità: $("#quantità").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
+
+
+        $.ajax({
+            method: "POST",
+            url: "/Ordini/AggiungiOrdine",
+            data: { Quantità: prodotto.Quantità, IdEvento: prodotto.Prodotto },
+            success: function (data) {
+                console.log(data)
+
+            }
+        });
+        if ($("#quantità").val() <= 1) {
+            $("#MessaggioErrore").show()
+        }
+        if ($("#quantità").val() >= 1) {
+            $("#MessaggioErrore").hide()
+        }
+    })
             $(".con-like3").hide();
             $(".con-like4").hide();
 

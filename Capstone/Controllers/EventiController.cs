@@ -49,8 +49,39 @@ namespace Capstone.Controllers
             if (Session["Utente"] != null)
             {
                 int IdUtente = (int)Session["Utente"];
-                ViewBag.Recensioni = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente);
+                List<Recensioni> r = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente).ToList();
+                ViewBag.Recensioni = r;
                 ViewBag.RecensioniUtente = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente);
+                ViewBag.CountRecensione = db.Recensioni.Where(m=> m.IdEvento == id).Count();
+
+                //Media Recensioni
+                if (ViewBag.CountRecensione != 0)
+                {
+                 ViewBag.MediaRecensione = db.Recensioni.Where(m => m.IdEvento == id).Average(m => m.Voto);
+                 ViewBag.MediaRecensione = Math.Round(ViewBag.MediaRecensione,2);
+                } 
+                //Percentuale Recensioni
+                //Totale recensioni evento
+                var Recensioni = db.Recensioni.Where(m => m.IdEvento == id).Count();
+                //Numero recensioni stelle
+                int star5 = db.Recensioni.Where(m => m.IdEvento == id&&m.Voto==5).Count();
+                int star4 = db.Recensioni.Where(m => m.IdEvento == id && m.Voto == 4).Count();
+                int star3 = db.Recensioni.Where(m => m.IdEvento == id && m.Voto == 3).Count();
+                int star2 = db.Recensioni.Where(m => m.IdEvento == id && m.Voto == 2).Count();
+                int star1 = db.Recensioni.Where(m => m.IdEvento == id && m.Voto == 1).Count();
+                //Calcolo percentuale
+                ViewBag.Tot5st = ((double)star5 / Recensioni) * 100;
+                ViewBag.Tot4st = ((double)star4 / Recensioni) * 100;
+                ViewBag.Tot3st = ((double)star3 / Recensioni) * 100;
+                ViewBag.Tot2st = ((double)star2 / Recensioni) * 100;
+                ViewBag.Tot1st = ((double)star1 / Recensioni) * 100;
+                //Arrotondo il numero
+                ViewBag.Tot5st =  Math.Round(ViewBag.Tot5st);
+                ViewBag.Tot4st= Math.Round(ViewBag.Tot4st);
+                ViewBag.Tot3st= Math.Round(ViewBag.Tot3st);
+                ViewBag.Tot2st= Math.Round(ViewBag.Tot2st);
+                ViewBag.Tot1st= Math.Round(ViewBag.Tot1st);
+                //Preferiti(per popolare il cuore all'avvio della pagina)
                 Preferiti p = db.Preferiti.Where(m => m.IdEvento == id && m.IdUtente == IdUtente).FirstOrDefault();
                 ViewBag.Preferiti = p;
             }
