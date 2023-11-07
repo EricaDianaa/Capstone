@@ -4,86 +4,113 @@
 
 
 }
-
-<h2>Account</h2>
+<link href="~/Content/StyleAccount.css" rel="stylesheet" />
+<h2 id="Title">Account</h2>
 <div>
-    <h4>Utenti</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <div class="dl-horizontal text-center border border-warning w-25 mx-auto">
+
+        <h5>
+            <i class="fa-solid fa-user"></i>
             @Html.DisplayNameFor(model => model.Username)
-        </dt>
+        </h5>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Username)
-        </dd>
+        </p>
+        <hr />
+        <div class="d-flex align-items-center justify-content-evenly">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            <div>
 
-        <dd>
-            .............  <a href="/Utenti/EditPassword">Modifica la password</a>
-        </dd>
+                <h5 class="mt-3">
+                    <i class="fa-solid fa-lock"></i>
+                    @Html.DisplayNameFor(model => model.Password)
+                </h5>
+                <p class="mx-auto">
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                    <i class="fa-solid fa-circle fa-2xs"></i>
+                </p>
 
-        <dt>
+            </div>
+            <div class="text-center">
+                <a href="/Utenti/EditPassword" class="text-warning p-2 rounded-3"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+
+
+        <hr />
+        <h5>
+            <i class="fa-solid fa-location-dot"></i>
             @Html.DisplayNameFor(model => model.Indirizzo)
-        </dt>
+        </h5>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Indirizzo)
-        </dd>
-
-        <dt>
+        </p>
+        <hr />
+        <h5>
+            <i class="fa-solid fa-envelope"></i>
             @Html.DisplayNameFor(model => model.Email)
-        </dt>
+        </h5>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
+        </p>
+        <hr />
+        <h5>
+            <i class="fa-solid fa-phone"></i>
             @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
+        </h5>
 
-        <dd>
+        <p>
             @Html.DisplayFor(model => model.Telefono)
-        </dd>
+        </p>
+        <hr />
+        @if (Model.IsAzienda == true)
+        {
+            <h5>
+                @Html.DisplayNameFor(model => model.IsAzienda)
+            </h5>
+            <p>
+                @Html.DisplayFor(model => model.IsAzienda)
+            </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAzienda)
-        </dt>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAzienda)
-        </dd>
+
 
 
         @if (Model.PartitaIva != null)
         {
-            <dt>
+            <h5>
+                <i class="fa-regular fa-address-card"></i>
                 @Html.DisplayNameFor(model => model.PartitaIva)
-            </dt>
+            </h5>
 
-            <dd>
+            <p>
                 @Html.DisplayFor(model => model.PartitaIva)
-            </dd>
+            </p>
         }
         @if (Model.CodiceFiscale != null)
         {
-            <dt>
+            <h5>
+                <i class="fa-regular fa-address-card"></i>
                 @Html.DisplayNameFor(model => model.CodiceFiscale)
-            </dt>
+            </h5>
 
-            <dd>
+            <p>
                 @Html.DisplayFor(model => model.CodiceFiscale)
-            </dd>
+            </p>
         }
-    </dl>
+        <p>
+            <a href="/Utenti/Edit/ @Html.DisplayFor(model => model.IdUtente)" class="btn " style="background-color:orange">Modifica</a>
+        </p>
+    </div>
 </div>
 
-<p>
-   
-    <a href="/Utenti/Edit/ @Html.DisplayFor(model => model.IdUtente)">Modifica</a>
 
-</p>

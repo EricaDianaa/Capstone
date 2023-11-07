@@ -1,4 +1,4 @@
-﻿* {
+﻿/** {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -9,6 +9,9 @@ body {
     height: 100vh;
 
     background-color: #e8e8e8;
+}
+body {
+    font-family: cursive;
 }
 
 .con-like {
@@ -92,15 +95,14 @@ body {
         opacity: 0;
         display: none;
     }
-}
+}*/
 
 #Title {
     color: orange;
     font-family: fantasy;
 }
 
-#AddCart {
-    box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);
+#Card {
+
+    box-shadow: 13px 17px 12px -6px rgba(0,0,0,0.77);
 }

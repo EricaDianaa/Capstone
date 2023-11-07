@@ -1,8 +1,5 @@
 ﻿body {
 }
-body {
-    background-color: #436ea5;
-}
 
 .ticket {
     font-family: sans-serif;
@@ -29,7 +26,7 @@ body {
 }
 
     .date .day {
-        font-size: 80px;
+        font-size: 35px;
         float: left;
     }
 
@@ -104,3 +101,21 @@ body {
 }
 
 
+@media screen and (max-width: 400px) {
+    .ticket {
+        font-family: sans-serif;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: 100%;
+        background-color: #04030C;
+        width: 400px;
+        height: 200px;
+        border-radius: 15px;
+        -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+        filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+        display: block;
+        margin: 10% auto auto auto;
+        color: black;
+        text-shadow: 2px 2px 6px black;
+    }
+}

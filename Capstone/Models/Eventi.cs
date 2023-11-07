@@ -29,7 +29,7 @@ namespace Capstone.Models
         public string Descrizione { get; set; }
 
         [Column(TypeName = "money")]
-        [DisplayFormat(DataFormatString = "{0:C}")]
+        [DisplayFormat(DataFormatString = "{0:N2}")]
         public decimal Prezzo { get; set; }
 
         [Required]

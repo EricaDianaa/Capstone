@@ -83,10 +83,13 @@ namespace Capstone.Controllers
         {
 
             Utenti u = db.Utenti.Where(m => m.IdUtente == utenti.IdUtente).FirstOrDefault();
-            utenti.Username = u.Username;
-
+           
             if (!User.IsInRole("Admin"))
-            {
+            { 
+                utenti.Username = u.Username;
+                utenti.Password = u.Password;
+                utenti.IsAzienda = u.IsAzienda;
+                utenti.CodiceFiscale = u.CodiceFiscale;
                 utenti.Ruolo = u.Ruolo;
             }
             var local = db.Set<Utenti>().Local.FirstOrDefault(f => f.IdUtente == u.IdUtente);

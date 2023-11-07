@@ -3,21 +3,42 @@
     ViewBag.Title = "Preferiti";
 }
 <link href="~/Content/StylePreferiti.css" rel="stylesheet" />
-<h2>Preferiti</h2>
-
+<h2 id="Title" class="text-center">Preferiti</h2>
+<style>
+    #Card:hover {
+    transform:scale(1.1);
+    z-index:2;
+    
+    }
+</style>
 @foreach (Eventi e in Model)
 {
-    <div class="card col" style="width: 18rem;">
-        <img src="~/Content/Img/@e.FotoCopertina" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">@e.NomeEvento</h5>
-            <p class="card-text">@e.Descrizione</p>
-            <p class="card-text">@string.Format("{0:C}", @e.Prezzo)</p>
-            <p class="card-text">@e.Indirizzo</p>
-            <p class="card-text">@string.Format("{0:d}", @e.DataEvento)</p>
-            <p>Categoria:@e.Categorie.NomeCategoria</p>
-            <a href="/Eventi/Details/@e.IdEvento">Dettagli</a>
-        </div>
+    <div class="card  mb-3 w-50 mx-auto" style=" font-family: cursive; box-shadow: 13px 17px 12px -6px rgba(0,0,0,0.77);" id="Card">
+        <div class="row g-0">
+            <div class="col-md-6">
+                <img src="~/Content/Img/@e.FotoCopertina" class="img-fluid d-flex h-75 w-75 mt-3 justify-content-center rounded-5 mx-auto my-auto" alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h5 class="card-title "><a class="text-warning text-decoration-none" href="/Eventi/Details/@e.IdEvento"> @e.NomeEvento.ToUpper()</a></h5>
+                    <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @e.Prezzo)</p>
+                    @if (e.DataDa != null && e.DataEvento != null)
+                    {
+                        <p class="card-text"><strong>Data inizio evento: </strong>   @string.Format("{0:d}", @e.DataDa)</p>
+                        <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                    }
+                    else if (e.DataDa == null && e.DataEvento == null)
+                    {
 
+                    }
+                    else
+                    {
+                        <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                    }
+                    <p class="card-text"><strong>Indirizzo: </strong>  @e.Indirizzo</p>
+                    <p class="card-text">  <strong>Luogo : </strong> @e.Luogo  </p>
+                </div>
+            </div>
+        </div>
     </div>
 }

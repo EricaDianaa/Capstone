@@ -3,25 +3,25 @@
     ViewBag.Title = "OrdiniEffettuati";
 }
 <link href="~/Content/BigliettiOrdini.css" rel="stylesheet" />
-
+<link href="~/Content/StyleBiglietti.css" rel="stylesheet" />
 @foreach (Ordini o in Model)
 {
 
     if (o.Data >= DateTime.Today)
     {
-        <div class="bg-dark m-5">
+        <div class="border border-warning d-none d-md-block m-5 p-4">
             <h3 class="text-center text-white">Ordine n° @o.IdOrdini</h3>
 
             @foreach (ListaOrdini li in o.ListaOrdini)
             {
 
-                <div class="ticket ticket-1 text-white" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
+                <div class="ticket ticket-1 text-white mb-5" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
                     <div class="date">
-                        <span class="day">@li.Eventi.DataEvento</span>
+                        <span class="day" style="font-size:35px">@string.Format("{0:d}", @li.Eventi.DataEvento)</span>
                         <span class="month-and-time">
-                            @li.Eventi.DataEvento
+
                             <br />
-                            <span class="small">  @li.Eventi.DataEvento</span>
+                            <span class="small"> </span>
                         </span>
                     </div>
                     <div class="artist">
@@ -102,6 +102,50 @@
 
 
         </div>
+    }
+
+}
+
+@foreach (Ordini o in Model)
+{
+
+    if (o.Data >= DateTime.Today)
+    {
+        
+     <h2 class="text-center">Ordine n° @o.IdOrdini</h2>   
+
+        foreach (ListaOrdini li in o.ListaOrdini)
+        {
+       <div class="coupon d-md-none">
+           <div class="left">
+               <div>@li.Eventi.Luogo</div>
+               <div>@li.Eventi.Indirizzo</div>
+           </div>
+           <div class="center">
+               <div>
+                   <h6 class="bg-dark text-warning p-1">@li.Eventi.NomeEvento</h6>
+                   <h5>Dal @string.Format("{0:d}", @li.Eventi.DataDa)</h5>
+                   <small>Valido fino al @string.Format("{0:d}", @li.Eventi.DataEvento)</small>
+               </div>
+           </div>
+
+           <div class="right">
+               <div>@li.IdListaOrdine</div>
+           </div>
+
+       </div>
+        }
+
+    }
+    else
+    {
+
+        foreach (ListaOrdini li in o.ListaOrdini)
+        {
+
+
+        }
+
     }
 
 }
