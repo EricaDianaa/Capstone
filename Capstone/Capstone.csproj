@@ -254,6 +254,10 @@
     <Compile Include="Migrations\202311031425078_addDate.designer.cs">
       <DependentUpon>202311031425078_addDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311081120125_PrezzoType.cs" />
+    <Compile Include="Migrations\202311081120125_PrezzoType.designer.cs">
+      <DependentUpon>202311081120125_PrezzoType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
@@ -295,6 +299,7 @@
     <Content Include="Content\StyleAccount.css" />
     <Content Include="Content\StyleBiglietti.css" />
     <Content Include="Content\StyleCart.css" />
+    <Content Include="Content\StyleIndexAdmin.css" />
     <Content Include="Content\StyleIndexHome.css" />
     <Content Include="Content\StylePreferiti.css" />
     <Content Include="favicon.ico" />
@@ -525,6 +530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311031425078_addDate.resx">
       <DependentUpon>202311031425078_addDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311081120125_PrezzoType.resx">
+      <DependentUpon>202311081120125_PrezzoType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

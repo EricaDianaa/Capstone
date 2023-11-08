@@ -30,3 +30,20 @@ body {
     color: orange;
     font-family:fantasy;
 }
+
+#Form {
+    width: 25%;
+}
+
+@media screen and (max-width:1000px) {
+
+    #Form {
+        width: 70%;
+    }
+}
+@media screen and (max-width:600px) {
+
+    #Form {
+        width: 100%;
+    }
+}

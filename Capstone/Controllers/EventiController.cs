@@ -298,8 +298,22 @@ namespace Capstone.Controllers
                 {
                     eventi.Foto4 = TempData["Foto4"].ToString();
                 }
-
-                db.Entry(eventi).State = EntityState.Modified;
+                   
+                    Eventi e =db.Eventi.Where(m=>m.IdEvento==eventi.IdEvento).FirstOrDefault();
+                    if (eventi.DataDa == null)
+                    {
+                        eventi.DataDa = e.DataDa;
+                    }
+                    if (eventi.DataEvento == null)
+                    {
+                        eventi.DataEvento = e.DataEvento;
+                    }
+                    var local = db.Set<Eventi>().Local.FirstOrDefault(f => f.IdEvento == eventi.IdEvento);
+                    if (local != null)
+                    {
+                        db.Entry(local).State = EntityState.Detached;
+                    }
+                    db.Entry(eventi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Eventi");
                 }

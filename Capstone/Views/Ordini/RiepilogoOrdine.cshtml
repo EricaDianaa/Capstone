@@ -3,53 +3,80 @@
     ViewBag.Title = "Cart";
 }
 
+<link href="~/Content/StyleCart.css" rel="stylesheet" />
 
-
-<div class="bg-dark p-3">
+<div id="Container" class=" p-3">
 
     @if (Session["Carello"] != null)
     {<div class=" text-primary text-center ">
 
-            <h2> Ciao @ViewBag.Nome ecco il tuo Riepilogo ordine</h2>
+            <h2 id="Title"> Ciao @ViewBag.Nome ecco il tuo Riepilogo ordine</h2>
         </div>
-        <div class="bg-black text-center text-white mb-2 p-2 border border-white">
-            <strong>Il tuo indirizzo di consegna</strong>
 
-            <p>@ViewBag.Indirizzo</p>
-            <a href="/Utenti/Edit/@ViewBag.IdUtente">Modifica</a>
-        </div>
         <div class="bg-black text-center text-white mb-2 p-2 border border-white">
             <strong>Il tuo numero di telefono</strong>
 
             <p>@ViewBag.Telefono</p>
             <a href="/Utenti/Edit/@ViewBag.IdUtente">Modifica</a>
         </div>
-        foreach (EventiOrdini p in Model)
+        foreach (EventiOrdini e in Model)
         {
-
-            <div class="card bg-dark text-white mb-3 text-center ">
+            <div class="card  mb-3  mx-auto" id="Card">
                 <div class="row g-0">
-                    <div class="d-flex flex-column  justify-content-center">
-                        <img src="~/Content/Img/@p.FotoCopertina" class="img-fluid rounded-pill mx-auto " style="width:10%; height:20%" alt="...">
-
-
-                        <h5 class="card-title"> @p.NomeEvento</h5>
-                        <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
-                        <p class="card-text"><strong>Data evento: </strong>  @string.Format("{0:d}", @p.DataEvento) </p>
-                        <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
-                        <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
-                        <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
-
-
-
+                    <div class="col-md-6">
+                        <img src="~/Content/Img/@e.FotoCopertina" class="img-fluid d-flex h-75 w-75 mt-3 justify-content-center rounded-5 mx-auto my-auto" alt="...">
                     </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title "><a class="text-warning text-decoration-none" href="/Eventi/Details/@e.IdEvento"> @e.NomeEvento.ToUpper()</a></h5>
+                            <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @e.Prezzo)</p>
+                            @if (e.DataDa != null && e.DataEvento != null)
+                            {
+                                <p class="card-text"><strong>Data inizio evento: </strong>   @string.Format("{0:d}", @e.DataDa)</p>
+                                <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                            }
+                            else if (e.DataDa == null && e.DataEvento == null)
+                            {
 
+                            }
+                            else
+                            {
+                                <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                            }
+                            <p class="card-text"><strong>Indirizzo: </strong>  @e.Indirizzo</p>
+                            <p class="card-text">  <strong>Luogo : </strong> @e.Luogo  </p>
+                            <p class="card-text">  <strong>Quantità : </strong> @e.Quantità  </p>
+
+                            <a href="/Ordini/CartRemove/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">-</a>
+                            <a href="/Ordini/AddQuantità/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">+</a>
+                            <a href="/Ordini/CartRemoveAllProdotto/?Id=@e.IdEvento" class="btn btn-danger" id="EliminaP">Elimina</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            @*<div class="card  text-center mb-3" >
+                    <div class="row g-0">
+                        <div class="d-flex flex-column  justify-content-center " >
+                            <img src="~/Content/Img/@p.FotoCopertina" class="img-fluid rounded-pill mx-auto " style="width:10%; height:20%" alt="...">
+
+
+                            <h5 class="card-title"> @p.NomeEvento</h5>
+                            <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
+                            <p class="card-text"><strong>Data evento: </strong>  @string.Format("{0:d}", @p.DataEvento) </p>
+                            <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
+                            <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
+                            <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
+
+
+
+                        </div>
+
+                    </div>
+                </div>*@
 
         }
-        <div class="bg-black border border-white text-center p-2">
-            <h3 class="text-white ">Totale ordine: @string.Format("{0:C}", @ViewBag.totale) </h3>
+        <div id="Total" class="border border-dark text-center p-2">
+            <h3 class=" ">Totale ordine: @string.Format("{0:C}", @ViewBag.totale) </h3>
 
         </div>
     }

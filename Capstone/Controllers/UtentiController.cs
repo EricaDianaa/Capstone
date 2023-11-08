@@ -122,7 +122,9 @@ namespace Capstone.Controllers
         {
            
             int id = (int)Session["Utente"];
-            try
+            if (id != 0)
+            {
+ try
             {
                 using (var context = new ModelBContent())
                 {
@@ -159,7 +161,7 @@ namespace Capstone.Controllers
                             db.Entry(u).State = EntityState.Modified;
                             db.SaveChanges();
                             ModelState.Clear();
-                            return RedirectToAction("Home", "Home");
+                            return RedirectToAction("Home", "index");
 
 
                         }
@@ -173,6 +175,11 @@ namespace Capstone.Controllers
             catch (Exception e)
             {
                 ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
+                return View();
+            }
+            }
+            else
+            {
                 return View();
             }
 

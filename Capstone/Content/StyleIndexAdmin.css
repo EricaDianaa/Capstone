@@ -1,0 +1,36 @@
+﻿body {
+}
+
+/* Stili per la tabella */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+    }
+
+/* Stili per schermi più piccoli */
+@media screen and (max-width: 768px) {
+    .table {
+        display: block;
+    }
+
+        .table tr {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .table th, .table td {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Nascondi intestazione e mostra solo dati */
+        .table th {
+            display: none;
+        }
+}

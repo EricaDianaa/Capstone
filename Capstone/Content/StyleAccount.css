@@ -6,3 +6,12 @@
     font-family: fantasy;
     text-align:center;
 }
+#Div{
+    width:25%;
+}
+@media screen and (max-width:600px){
+
+    #Div {
+        width: 100%;
+    }
+}

@@ -3,9 +3,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/StyleIndexAdmin.css" rel="stylesheet" />
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -24,7 +23,7 @@ else if (TempData["Elimina"]!=null)
     <h3 class="text-danger">Elimina avvenuta con successo</h3>
 </div>
             }
-<table class="table">
+<table class="table table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Utenti.IdUtente)
