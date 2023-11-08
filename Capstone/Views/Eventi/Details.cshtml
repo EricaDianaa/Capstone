@@ -90,7 +90,7 @@
                         <h6 style="font-family:cursive;color:orange">Inserisci una quantità: </h6> <input type="number" class="form-control" name="Quantità" value="" id="quantità" />
                         <br />
                         <button type="submit" class="btn btn-primary mx-auto mt-2 m-2 d-none d-md-block" id="Button" style="background-color:orange">Aggiungi al carrello</button>
-                       <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button> 
+                        <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button>
                     </p>
                 </div>
             }
@@ -112,7 +112,7 @@
     if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Azienda"))
     {
 
-            <h2 class="text-center mt-2"><i class="fa-solid fa-star text-warning"></i>@ViewBag.MediaRecensione- @ViewBag.CountRecensione Recensioni</h2>
+        <h2 class="text-center mt-2"><i class="fa-solid fa-star text-warning"></i>@ViewBag.MediaRecensione- @ViewBag.CountRecensione Recensioni</h2>
 
         <div class=" d-flex flex-column mt-3 justify-content-center mx-auto">
             <div class="d-flex">
@@ -152,219 +152,239 @@
             </div>
         </div>
 
-            <h4 class="text-center" style="font-family:cursive;color:orange">Le tue recensioni </h4>
-            foreach (Capstone.Models.Recensioni r in ViewBag.Recensioni)
-            {
+        <h4 class="text-center" style="font-family:cursive;color:orange">Le tue recensioni </h4>
+        foreach (Capstone.Models.Recensioni r in ViewBag.Recensioni)
+        {
 
-                <div class=" text-center d-flex flex-column justify-content-center justify-content-center">
-                    <div class="  d-flex flex-column justify-content-center p-3 m-2 ">
-                        <div class="d-flex align-items-center justify-content-center">
-                            <p>
-                                <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                                <strong>@r.Utenti.Username</strong>
-                            </p>
-                        </div>
-                        <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
-                            <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
-                        </div>
-
-                        <div>
-                            @if (r.Voto == 1)
-                            {
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-
-                            }
-                            else if (r.Voto == 2)
-                            {
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                            }
-                            else if (r.Voto == 3)
-                            {
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-
-                            }
-                            else if (r.Voto == 4)
-                            {
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-regular fa-star text-warning"></i>
-                            }
-                            else if (r.Voto == 5)
-                            {
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star text-warning"></i>
-                            }
-                        </div>
-
-                        @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
-                        {
-                            <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
-                        }
-
-
+            <div class=" text-center d-flex flex-column justify-content-center justify-content-center">
+                <div class="  d-flex flex-column justify-content-center p-3 m-2 ">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <p>
+                            <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                            <strong>@r.Utenti.Username</strong>
+                        </p>
                     </div>
-                </div>
+                    <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
+                        <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
+                    </div>
 
+                    <div>
+                        @if (r.Voto == 1)
+                        {
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
 
-            }
+                        }
+                        else if (r.Voto == 2)
+                        {
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                        }
+                        else if (r.Voto == 3)
+                        {
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
 
-        
-        <div class="container">
+                        }
+                        else if (r.Voto == 4)
+                        {
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-regular fa-star text-warning"></i>
+                        }
+                        else if (r.Voto == 5)
+                        {
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                            <i class="fa-solid fa-star text-warning"></i>
+                        }
+                    </div>
 
-                <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
-                <div class="row">
-                    @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
+                    @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
                     {
-                        <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
-                            <div class="  d-flex flex-column justify-content-centerp-3 m-2 ">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <p>
-                                        <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                                        <strong>@r.Utenti.Username</strong>
-                                    </p>
-                                </div>
-                                <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
-                                    <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
-                                </div>
-
-                                <div>
-                                    @if (r.Voto == 1)
-                                    {
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-
-                                    }
-                                    else if (r.Voto == 2)
-                                    {
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                    }
-                                    else if (r.Voto == 3)
-                                    {
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-
-                                    }
-                                    else if (r.Voto == 4)
-                                    {
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-regular fa-star text-warning"></i>
-                                    }
-                                    else if (r.Voto == 5)
-                                    {
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                        <i class="fa-solid fa-star text-warning"></i>
-                                    }
-                                </div>
-
-                                @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
-                                {
-                                    <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
-                                }
-
-
-                            </div>
-                        </div>
-
+                        <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
                     }
 
+
                 </div>
-            
+            </div>
+
+
+        }
+
+
+        <div class="container">
+
+            <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
+            <div class="row">
+                @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
+                {
+                    <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
+                        <div class="  d-flex flex-column justify-content-centerp-3 m-2 ">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <p>
+                                    <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                                    <strong>@r.Utenti.Username</strong>
+                                </p>
+                            </div>
+                            <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
+                                <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
+                            </div>
+
+                            <div>
+                                @if (r.Voto == 1)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+
+                                }
+                                else if (r.Voto == 2)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                }
+                                else if (r.Voto == 3)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+
+                                }
+                                else if (r.Voto == 4)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                }
+                                else if (r.Voto == 5)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                }
+                            </div>
+
+                            @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
+                            {
+                                <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                            }
+
+
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
 
         </div>
     }
     else
     {
-        foreach (Capstone.Models.Recensioni r in Model.Recensioni)
-        {
-            <div class="bg-secondary p-3 m-2 rounded-3">
-                <div class="d-flex">
-                    <img style="width: 10%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
-                    <p>@r.Utenti.Username</p>
-                </div>
-                <div class=" bg-white bg-opacity-50 rounded-3">
-                    <p>@r.Descrizione</p>
 
-                </div>
+        <div class="container">
 
-                @if (r.Voto == 1)
+            <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
+            <div class="row">
+                @foreach (Capstone.Models.Recensioni r in Model.Recensioni)
                 {
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
+                    <div class="col col-sm-12 col-md-6 text-center mt-4 d-flex flex-column justify-content-center">
+                        <div class="d-flex flex-column justify-content-centerp-3 m-2 ">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <p>
+                                    <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
+                                    <strong>@r.Utenti.Username</strong>
+                                </p>
+                            </div>
+                            <div class=" bg-white bg-opacity-50 rounded-3 text-center w-50 mx-auto">
+                                <p class="d-flex justify-content-center mx-auto">@r.Descrizione</p>
+                            </div>
 
-                }
-                else if (r.Voto == 2)
-                {
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                }
-                else if (r.Voto == 3)
-                {
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
+                            <div>
+                                @if (r.Voto == 1)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
 
-                }
-                else if (r.Voto == 4)
-                {
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-regular fa-star text-warning"></i>
-                }
-                else if (r.Voto == 5)
-                {
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                    <i class="fa-solid fa-star text-warning"></i>
-                }
+                                }
+                                else if (r.Voto == 2)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                }
+                                else if (r.Voto == 3)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
 
+                                }
+                                else if (r.Voto == 4)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-regular fa-star text-warning"></i>
+                                }
+                                else if (r.Voto == 5)
+                                {
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                }
+                            </div>
+
+                            @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
+                            {
+                                <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                            }
+
+
+                        </div>
+                    </div>
+              
+                }
             </div>
 
-        }
+
+        </div>
     }
 }
 

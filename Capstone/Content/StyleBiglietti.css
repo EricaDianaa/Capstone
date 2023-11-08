@@ -53,6 +53,7 @@ body {
     border-right: 2px dashed rgba(0, 0, 0, 0.13);
 }
 
+
     .left div {
         transform: rotate(-90deg);
         white-space: nowrap;
@@ -93,18 +94,42 @@ body {
     font-weight: 600;
     letter-spacing: 2px;
 }
+#Div {
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
 
-@media screen and (max-width:300px) {
+@media screen and (max-width:1000px) {
+    #Div {
+        width: 70%
+    }
+}
+@media screen and (max-width:980px) {
+    #Div {
+        width: 100%
+    }
+
+}
+@media screen and (max-width:450px) {
+   #Div{
+       width:100%
+   }
     .coupon {
-        display: grid;
-        grid-template-columns: 1fr;
+        width: 340px;
+        height: 200px;
     }
+}
+@media screen and (max-width:360px) {
+    .coupon {
+        width: 320px;
+        height: 200px;
+    }
+}
 
-    .left div {
-        transform: rotate(0deg);
-    }
 
-    .right div {
-        transform: rotate(0deg);
-    }
+#Title {
+    color: orange;
+    font-family: fantasy;
+    text-align: center;
 }

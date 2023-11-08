@@ -4,149 +4,80 @@
 }
 <link href="~/Content/BigliettiOrdini.css" rel="stylesheet" />
 <link href="~/Content/StyleBiglietti.css" rel="stylesheet" />
-@foreach (Ordini o in Model)
-{
 
-    if (o.Data >= DateTime.Today)
-    {
-        <div class="border border-warning d-none d-md-block m-5 p-4">
-            <h3 class="text-center text-white">Ordine n° @o.IdOrdini</h3>
-
-            @foreach (ListaOrdini li in o.ListaOrdini)
-            {
-
-                <div class="ticket ticket-1 text-white mb-5" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
-                    <div class="date">
-                        <span class="day" style="font-size:35px">@string.Format("{0:d}", @li.Eventi.DataEvento)</span>
-                        <span class="month-and-time">
-
-                            <br />
-                            <span class="small"> </span>
-                        </span>
-                    </div>
-                    <div class="artist">
-                        <span class="name">@li.Eventi.NomeEvento</span>
-                        <br />
-                        <span class="live small">@ViewBag.NomeUtente</span>
-                    </div><h3>X @li.Quantità</h3>
-                    <div class="location d-flex align-items-center justify-content-start">
-
-                        <span>@li.Eventi.Luogo</span>
-                        <br />
-                        <span class="small"><span>@li.Eventi.Indirizzo</span></span>
-                    </div>
-
-                    <div class="rip">
-
-                    </div>
-
-                    <div class="cta">
-                        <button class="buy" href="#">@li.IdListaOrdine TICKET</button>
-                    </div>
-
-                </div>
-                @*if (o.Data <= DateTime.Today)
-                    {
-                        <a href="/ListaOrdini/Edit/@li.IdListaOrdine" class="btn btn-primary">Modifica</a>
-                        <a href="/ListaOrdini/Delete/@li.IdListaOrdine" class="btn btn-primary">Elimina</a>
-                    }*@
-            }
-
-
-        </div>
-    }
-    else
-    {
-        <div class="bg-secondary m-5">
-            <h3 class="text-center text-white">Ordine n° @o.IdOrdini</h3>
-
-            @foreach (ListaOrdini li in o.ListaOrdini)
-            {
-
-                <div class="ticket ticket-1 text-white" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina)">
-                    <div class="date">
-                        <span class="day">@li.Eventi.DataEvento.</span>
-                        <span class="month-and-time">
-                            @li.Eventi.DataEvento
-                            <br />
-                            <span class="small">  @li.Eventi.DataEvento</span>
-                        </span>
-                    </div>
-                    <div class="artist">
-                        <span class="name">@li.Eventi.NomeEvento</span>
-                        <br />
-                        <span class="live small">@ViewBag.NomeUtente</span>
-                    </div><h3>X @li.Quantità</h3>
-                    <div class="location d-flex align-items-center justify-content-start">
-
-                        <span>@li.Eventi.Luogo</span>
-                        <br />
-                        <span class="small"><span>@li.Eventi.Indirizzo</span></span>
-                    </div>
-
-                    <div class="rip">
-
-                    </div>
-
-                    <div class="cta">
-                        <button class="buy" href="#">@li.IdListaOrdine TICKET</button>
-                    </div>
-
-                </div>
-                @*if (o.Data <= DateTime.Today)
-                    {
-                        <a href="/ListaOrdini/Edit/@li.IdListaOrdine" class="btn btn-primary">Modifica</a>
-                        <a href="/ListaOrdini/Delete/@li.IdListaOrdine" class="btn btn-primary">Elimina</a>
-                    }*@
-            }
-
-
-        </div>
-    }
-
-}
+<h2 id="Title" class="text-center">I tuoi biglietti</h2>
 
 @foreach (Ordini o in Model)
 {
+    <div id="Div" class="border border-warning border-2 mt-3  rounded-3"  style="font-family: cursive; background-color: #ffa500bd;">
+        <h3 class="text-center ">Ordine n° @o.IdOrdini</h3>
 
-    if (o.Data >= DateTime.Today)
-    {
-        
-     <h2 class="text-center">Ordine n° @o.IdOrdini</h2>   
-
-        foreach (ListaOrdini li in o.ListaOrdini)
+        @foreach (ListaOrdini li in o.ListaOrdini)
         {
-       <div class="coupon d-md-none">
-           <div class="left">
-               <div>@li.Eventi.Luogo</div>
-               <div>@li.Eventi.Indirizzo</div>
-           </div>
-           <div class="center">
-               <div>
-                   <h6 class="bg-dark text-warning p-1">@li.Eventi.NomeEvento</h6>
-                   <h5>Dal @string.Format("{0:d}", @li.Eventi.DataDa)</h5>
-                   <small>Valido fino al @string.Format("{0:d}", @li.Eventi.DataEvento)</small>
-               </div>
-           </div>
+            if (li.Eventi.DataEvento >= DateTime.Today)
+            {
+                <div class="coupon mt-3 mb-3">
+                    <div class="left">
+                        <div style=" margin-left: 30%;">@li.Eventi.Luogo <br /> @li.Eventi.Indirizzo</div>
+                    </div>
+                    <div class="center" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina); background-size:cover">
+                        <div>
+                            <h6 class="bg-dark text-warning p-1">@li.Eventi.NomeEvento</h6>
+                            @if (li.Eventi.DataDa != null)
+                            {
+                                <h5 class="text-warning bg-dark">Dal @string.Format("{0:d}", @li.Eventi.DataDa)</h5>
+                            }
+                            else
+                            {
+                                <h5 class="text-warning bg-dark"> @string.Format("{0:d}", @li.Eventi.DataEvento)</h5>
+                            }
 
-           <div class="right">
-               <div>@li.IdListaOrdine</div>
-           </div>
+                            <small class="text-warning bg-dark">Valido fino al @string.Format("{0:d}", @li.Eventi.DataEvento)</small>
+                        </div>
+                    </div>
 
-       </div>
+                    <div class="right">
+                        <div>@li.IdListaOrdine</div>
+                    </div>
+
+                </div>
+            }
         }
+    </div>
 
-    }
-    else
+
+
+    @*foreach (ListaOrdini li in o.ListaOrdini)
     {
-
-        foreach (ListaOrdini li in o.ListaOrdini)
+        if (li.Eventi.DataEvento <= DateTime.Today)
         {
+            <div class="border border-2 border-warning mt-3 " style="font-family:cursive; background-color: #80808033;">
+                <h3 class="text-center">Ordine n° @o.IdOrdini</h3>
+                @foreach (ListaOrdini lis in o.ListaOrdini)
+                {
+                    <div class="coupon mb-3">
+                        <div class="left">
+                            <div style="margin-left: 30%;">@lis.Eventi.Luogo <br />@lis.Eventi.Indirizzo</div>
+                        </div>
+                        <div class="center" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina); background-size:cover">
+                            <div>
+                                <h6 class="bg-dark text-warning p-1">@lis.Eventi.NomeEvento</h6>
+                                <h5 class="text-warning bg-dark" style=" text-shadow: 2px 2px 6px black;">Dal @string.Format("{0:d}", @lis.Eventi.DataDa)</h5>
+                                <small class="text-warning bg-dark">Valido fino al @string.Format("{0:d}", @lis.Eventi.DataEvento)</small>
+                            </div>
+                        </div>
 
+                        <div class="right">
+                            <div>@lis.IdListaOrdine</div>
+                        </div>
 
+                    </div>
+                }
+            </div>
         }
+    }*@
 
-    }
+
 
 }
 

@@ -1,0 +1,20 @@
+﻿body {
+    font-family: cursive;
+}
+
+#Container {
+    background-color: #ffc54e;
+    border: 1px solid black;
+}
+#Total {
+    background-color: orange !important;
+}
+
+#Title {
+    color: orange;
+    font-family: fantasy;
+    text-align: center;
+}
+#Card {
+    box-shadow: 13px 17px 12px -6px rgba(0,0,0,0.77);
+}

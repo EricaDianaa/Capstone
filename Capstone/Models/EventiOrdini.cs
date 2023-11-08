@@ -55,7 +55,7 @@ namespace Capstone.Models
         [Column(TypeName = "date")]
         [Display(Name = "Data evento")]
         public DateTime DataEvento { get; set; }
-
+        public DateTime DataDa { get; set; }
         public int IdCategoria { get; set; }
         public int NomeCategoria { get; set; }
         public int NomeUtente { get; set; }

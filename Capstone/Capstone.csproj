@@ -288,11 +288,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\ImgCss\Sfondo-Login.jpg" />
+    <Content Include="Content\ImgCss\Tour.png" />
     <Content Include="Content\JavaScriptLoginRegister.js" />
     <Content Include="Content\LoginRegister.css" />
     <Content Include="Content\RecensioniStelle.css" />
     <Content Include="Content\StyleAccount.css" />
     <Content Include="Content\StyleBiglietti.css" />
+    <Content Include="Content\StyleCart.css" />
     <Content Include="Content\StyleIndexHome.css" />
     <Content Include="Content\StylePreferiti.css" />
     <Content Include="favicon.ico" />
