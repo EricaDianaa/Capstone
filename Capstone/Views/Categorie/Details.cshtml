@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+<link href="~/Content/StyleDettagliAdmin.css" rel="stylesheet" />
+<h2 class="text-center" id="Title">Details</h2>
 
 <div>
-    <h4>Categorie</h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+    <dl class="dl-horizontal" id="Detail">
         <dt>
             @Html.DisplayNameFor(model => model.NomeCategoria)
         </dt>

@@ -2,25 +2,31 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    body{
+        font-family:cursive;
+    }
+</style>
+<div id="Totale" class="border border-dark border-2 mx-auto text-center w-25"></div>
+<h4 class="text-center  text-warning">Cerca per data</h4>
+<input type="date" name="DataEvento" value="" id="InputData" class="d-flex mx-auto" />
+<button id="DataButton" class="d-flex mx-auto">Cerca</button>
 
-<div id="Totale"></div>
-<h2>Index</h2>
-<input type="date" name="DataEvento" value="" id="InputData" />
-<button id="DataButton">Cerca</button>
+<div id="Data" class="d-flex justify-content-center"></div>
+<h4 class="text-center text-warning">Cerca per data e categoria </h4>
+<div class="mt-3 d-flex flex-column mx-auto justify-content-center">
+    <input type="date" name="DataEvento" value="" class="d-flex mx-auto" id="InputDataCategoria" />
+    <div class="form-group d-flex flex-column mx-auto justify-content-center">
 
-<div id="Data"></div>
-<div class="mt-3">
-    <input type="date" name="DataEvento" value="" id="InputDataCategoria" />
-    <div class="form-group">
-       
-        <div class="col-md-10">
-            @Html.DropDownList("IdCategoria", null, htmlAttributes: new { @class = "form-control",id="NomeCategoria" })
+        <div class="">
+            @Html.DropDownList("IdCategoria", null, htmlAttributes: new { @class = "form-control", id = "NomeCategoria" })
             @Html.ValidationMessageFor(model => model.IdCategoria, "", new { @class = "text-danger" })
         </div>
     </div>
-    <button id="DataCategoriaButton">Cerca</button>
+
 </div>
-<div id="DataCategoria"></div>
+<button id="DataCategoriaButton"  class="d-flex mx-auto">Cerca</button>
+<div id="DataCategoria" class="text-center"></div>
 @section scripts{
     <script type="text/javascript">
 
@@ -32,7 +38,7 @@
                 url: "/Admin/TotaleGuadagni",
                 success: function (data) {
                     console.log(data)
-                    var licurrent = "<p><strong>Totale guadagnato: </strong>" + data + "</p>";
+                    var licurrent = "<h2 class=' text-warning'>Totale incassato: </h2><h4 class='text-danger'>" + data + " €</h4>";
                     $("#Totale").html(licurrent);
                 }
             })
@@ -43,10 +49,10 @@
                 $.ajax({
                     method: "POST",
                     url: "/Admin/TotaleGuadagniDataCategoria",
-                    data: { DataEvento: data1,IdCategoria:Categoria},
+                    data: { DataEvento: data1, IdCategoria: Categoria },
                     success: function (data) {
                         console.log(data)
-                        var licurrent = "<p><strong>Totale guadagnato il " + data1 + " :</strong>" + data + "<strong>Categoria:</strong>  " + Categoria + "</p>";
+                        var licurrent = "<p><strong>Totale guadagnato il " + data1 + " :</strong>" + data + "<strong></p>";
                         $("#DataCategoria").html(licurrent);
                     }
                 })

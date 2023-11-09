@@ -5,9 +5,9 @@
 }
 <link href="~/Content/StyleIndexAdmin.css" rel="stylesheet" />
 <h2>Index</h2>
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 
 @if (TempData["ErroreElimina"] != null)
 {
@@ -23,12 +23,15 @@ else if (TempData["Elimina"]!=null)
     <h3 class="text-danger">Elimina avvenuta con successo</h3>
 </div>
             }
-<table class="table table-responsive">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Utenti.IdUtente)
+<table class="table table-responsive table-bordered border-dark">
+    <tr id="TitleTable" class="border-white">
+        <th class="border border-dark">
+            <a href="/Eventi/Create"><i class="fa-solid fa-plus"></i></a>
         </th>
-        <th>
+    </tr>
+    <tr id="TitleTable">
+
+        <th class="Username">
             @Html.DisplayNameFor(model => model.Utenti.Username)
         </th>
         <th>
@@ -37,25 +40,25 @@ else if (TempData["Elimina"]!=null)
         <th>
             @Html.DisplayNameFor(model => model.NomeEvento)
         </th>
-        <th>
+        <th class="Descrizione">
             @Html.DisplayNameFor(model => model.Descrizione)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Prezzo)
         </th>
-        <th>
+        <th class="Luogo">
             @Html.DisplayNameFor(model => model.Luogo)
         </th>
-        <th>
+        <th class="Indirizzo">
             @Html.DisplayNameFor(model => model.Indirizzo)
         </th>
-        <th>
+        <th class="F">
             @Html.DisplayNameFor(model => model.FotoCopertina)
         </th>
-        <th>
+        <th class="DataDa">
             @Html.DisplayNameFor(model => model.DataDa)
         </th>
-        <th>
+        <th class="Data">
             @Html.DisplayNameFor(model => model.DataEvento)
         </th>
 
@@ -65,10 +68,7 @@ else if (TempData["Elimina"]!=null)
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Utenti.IdUtente)
-            </td>
-            <td>
+            <td class="Username">
                 @Html.DisplayFor(modelItem => item.Utenti.Username)
             </td>
             <td>
@@ -77,31 +77,32 @@ else if (TempData["Elimina"]!=null)
             <td>
                 @Html.DisplayFor(modelItem => item.NomeEvento)
             </td>
-            <td>
+            <td class="Descrizione">
                 @Html.DisplayFor(modelItem => item.Descrizione)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Prezzo)
             </td>
-            <td>
+            <td class="Luogo">
                 @Html.DisplayFor(modelItem => item.Luogo)
             </td>
-            <td>
+            <td class="Indirizzo">
                 @Html.DisplayFor(modelItem => item.Indirizzo)
             </td>
-            <td>
+            <td class="F">
                 @Html.DisplayFor(modelItem => item.FotoCopertina)
             </td>
-            <td>
+            <td class="DataDa">
                 @Html.DisplayFor(modelItem => item.DataDa)
             </td>
-            <td>
+            <td class="Data">
                 @Html.DisplayFor(modelItem => item.DataEvento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdEvento }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdEvento }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdEvento })
+                <a href="/Eventi/Edit/@item.IdEvento" class="text-dark"><i class="fa-solid fa-pen"></i></a> 
+                <a href="/Eventi/Details/@item.IdEvento"><i class="fa-solid fa-circle-info"></i></a>
+                <a href="/Eventi/Delete/@item.IdEvento" class="text-danger"><i class="fa-solid fa-trash"></i></a>
+
             </td>
         </tr>
     }

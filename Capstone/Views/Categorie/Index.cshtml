@@ -3,31 +3,36 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/StyleIndexAdmin.css" rel="stylesheet" />
 <h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+</p>*@
+<table class="table table-responsive table-bordered border-dark">
+    <tr id="TitleTable" class="border-white">
+        <th class="border border-dark">
+            <a href="/Categorie/Create"><i class="fa-solid fa-plus"></i></a>
+        </th>
+    </tr>
+    <tr id="TitleTable">
         <th>
             @Html.DisplayNameFor(model => model.NomeCategoria)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCategoria)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCategoria }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCategoria }) 
-
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCategoria)
+            </td>
+            <td>
+                <a href="/Categorie/Edit/@item.IdCategoria" class="text-dark"><i class="fa-solid fa-pen"></i></a>
+                <a href="/Categorie/Details/@item.IdCategoria"><i class="fa-solid fa-circle-info"></i></a>
+            </td>
+        </tr>
+    }
 
 </table>

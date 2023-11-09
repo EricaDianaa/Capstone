@@ -258,6 +258,18 @@
     <Compile Include="Migrations\202311081120125_PrezzoType.designer.cs">
       <DependentUpon>202311081120125_PrezzoType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311090802080_PrezzoType2.cs" />
+    <Compile Include="Migrations\202311090802080_PrezzoType2.designer.cs">
+      <DependentUpon>202311090802080_PrezzoType2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311091150141_prezzo-2.cs" />
+    <Compile Include="Migrations\202311091150141_prezzo-2.designer.cs">
+      <DependentUpon>202311091150141_prezzo-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202311091155021_prezzo3.cs" />
+    <Compile Include="Migrations\202311091155021_prezzo3.designer.cs">
+      <DependentUpon>202311091155021_prezzo3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categorie.cs" />
     <Compile Include="Models\Eventi.cs" />
@@ -299,8 +311,13 @@
     <Content Include="Content\StyleAccount.css" />
     <Content Include="Content\StyleBiglietti.css" />
     <Content Include="Content\StyleCart.css" />
+    <Content Include="Content\StyleChiSiamo.css" />
+    <Content Include="Content\StyleDelete.css" />
+    <Content Include="Content\StyleDettagliAdmin.css" />
+    <Content Include="Content\StyleEditAdmin.css" />
     <Content Include="Content\StyleIndexAdmin.css" />
     <Content Include="Content\StyleIndexHome.css" />
+    <Content Include="Content\StyleLayoutPage.css" />
     <Content Include="Content\StylePreferiti.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -398,6 +415,7 @@
     <Content Include="Views\Home\Preferiti.cshtml" />
     <Content Include="Views\Home\AddPreferiti.cshtml" />
     <Content Include="Views\Home\RemovePreferiti.cshtml" />
+    <Content Include="Views\Home\ChiSiamo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -533,6 +551,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202311081120125_PrezzoType.resx">
       <DependentUpon>202311081120125_PrezzoType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311090802080_PrezzoType2.resx">
+      <DependentUpon>202311090802080_PrezzoType2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311091150141_prezzo-2.resx">
+      <DependentUpon>202311091150141_prezzo-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311091155021_prezzo3.resx">
+      <DependentUpon>202311091155021_prezzo3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

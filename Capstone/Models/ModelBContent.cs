@@ -30,7 +30,7 @@ namespace Capstone.Models
 
             modelBuilder.Entity<Eventi>()
                 .Property(e => e.Prezzo)
-                .HasPrecision(19, 4);
+                .HasPrecision(19, 2);
 
             modelBuilder.Entity<Eventi>()
                 .HasMany(e => e.ListaOrdini)

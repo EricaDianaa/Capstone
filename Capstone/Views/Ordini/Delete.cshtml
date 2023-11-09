@@ -3,14 +3,12 @@
 @{
     ViewBag.Title = "Delete";
 }
+<link href="~/Content/StyleDelete.css" rel="stylesheet" />
+<h2 id="Title" class="text-center">Elimana evento</h2>
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center ">Sei sicuro di voler elimanere l'evento?</h3>
 <div>
-    <h4>Ordini</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" id="Detail">
         <dt>
             @Html.DisplayNameFor(model => model.Utenti.Username)
         </dt>
@@ -29,7 +27,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

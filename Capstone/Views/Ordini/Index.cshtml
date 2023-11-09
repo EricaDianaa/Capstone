@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/StyleIndexAdmin.css" rel="stylesheet" />
 <h2>Index</h2>
 @if ((string)TempData["Elimina"] == "False")
 {
@@ -18,8 +18,9 @@ else if ((string)TempData["Elimina"] == "True")
     </div>
 }
 
-<table class="table">
-    <tr>
+<table class="table table-responsive table-bordered border-dark">
+
+    <tr id="TitleTable">
         <th>
             @Html.DisplayNameFor(model => model.IdOrdini)
         </th>
@@ -31,25 +32,26 @@ else if ((string)TempData["Elimina"] == "True")
         </th>
         <th></th>
     </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdOrdini)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Utenti.Username)
-                </td>
-                <td>
-                    @string.Format("{0:d}", @item.Data)  
-                </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdOrdini)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utenti.Username)
+            </td>
+            <td>
+                @string.Format("{0:d}", @item.Data)
+            </td>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IdOrdini }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IdOrdini }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.IdOrdini })
-                </td>
-            </tr>
-        }
+            <td>
+                <a href="/Ordini/Edit/@item.IdOrdini" class="text-dark"><i class="fa-solid fa-pen"></i></a>
+                <a href="/Ordini/Details/@item.IdOrdini"><i class="fa-solid fa-circle-info"></i></a>
+                <a href="/Ordini/Delete/@item.IdOrdini" class="text-danger"><i class="fa-solid fa-trash"></i></a>
 
-    </table>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -3,14 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+<link href="~/Content/StyleDettagliAdmin.css" rel="stylesheet" />
+<h2 id="Title" class="text-center">Details</h2>
 
 <div>
-    <h4>Ordini</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="dl-horizontal text-dark" id="Detail">
+        <dt class="text-dark">
             @Html.DisplayNameFor(model => model.Utenti.Username)
         </dt>
 
@@ -18,7 +16,7 @@
             @Html.DisplayFor(model => model.Utenti.Username)
         </dd>
 
-        <dt>
+        <dt class="text-dark">
             @Html.DisplayNameFor(model => model.Data)
         </dt>
 
@@ -28,10 +26,10 @@
 
     </dl>
 </div> 
-<h2>Articoli correlati</h2>
+<h2 id="Title" class="text-center">Articoli correlati</h2>
   @foreach (var item1 in Model.ListaOrdini)
   {
-      <div class="border border-dark mt-3 w-25 text-center">
+      <div class="border border-dark mt-3 w-25 text-center d-flex  flex-column justify-content-center mx-auto">
           <p>
             <strong>Nome evento: </strong>    @Html.DisplayFor(modelItem => item1.Eventi.NomeEvento)
           </p>

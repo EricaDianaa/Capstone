@@ -1,4 +1,5 @@
 ﻿body {
+    font-family:cursive;
 }
 
 /* Stili per la tabella */
@@ -13,7 +14,7 @@
     }
 
 /* Stili per schermi più piccoli */
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {
     .table {
         display: block;
     }
@@ -27,10 +28,77 @@
         .table th, .table td {
             width: 100%;
             text-align: center;
-        }
+        }*/
 
         /* Nascondi intestazione e mostra solo dati */
-        .table th {
+        /*.table th {
             display: none;
         }
+}*/
+/*Index Utenti*/
+@media screen and (max-width:996px){
+    .C, .P{
+        display:none;
+    }
+}
+@media screen and (max-width:750px) {
+    .E {
+        display: none;
+    }
+}
+@media screen and (max-width:750px) {
+    .I {
+        display: none;
+    }
+}
+/*Index Eventi*/
+@media screen and (max-width:1200px) {
+    .F {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .DataDa, .Indirizzo {
+        display: none;
+    }
+}
+@media screen and (max-width:860px) {
+    .Descrizione {
+        display: none;
+    }
+}
+@media screen and (max-width:770px) {
+    .Username,.Luogo {
+        display: none;
+    }
+}
+@media screen and (max-width:445px) {
+    .Data {
+        display: none;
+    }
+    .Descr {
+        display: none;
+    }
+}
+#Title{
+    font-family:fantasy;
+    color:orange;
+    align-items:center;
+}
+
+th{
+
+    color:black;
+}
+#TitleTable {
+    background-color: #ffb84c;
+    color: black;
+}
+#TitleTable > th{
+    border:1px solid black;
+
+}
+tbody {
+    background-color: beige;
 }

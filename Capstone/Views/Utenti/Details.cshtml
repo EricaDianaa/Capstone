@@ -3,13 +3,12 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+<link href="~/Content/StyleDettagliAdmin.css" rel="stylesheet" />
+<h2 class="text-center" id="Title">Dettaglio Utente</h2>
 
 <div>
-    <h4>Utenti</h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+    <dl class="dl-horizontal" id="Detail">
         <dt>
             @Html.DisplayNameFor(model => model.Username)
         </dt>
@@ -24,14 +23,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Ruolo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
         </dd>
 
         <dt>
@@ -58,30 +49,34 @@
             @Html.DisplayFor(model => model.Telefono)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAzienda)
-        </dt>
+        @if (Model.CodiceFiscale != null && Model.CodiceFiscale != "")
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAzienda)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.CodiceFiscale)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CodiceFiscale)
-        </dt>
+        @if (Model.PartitaIva != null && Model.PartitaIva != "")
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAzienda)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CodiceFiscale)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.IsAzienda)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PartitaIva)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PartitaIva)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PartitaIva)
-        </dd>
-
+            <dd>
+                @Html.DisplayFor(model => model.PartitaIva)
+            </dd>
+        }
     </dl>
 </div>
 <p>

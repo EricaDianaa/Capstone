@@ -28,8 +28,9 @@ namespace Capstone.Models
         [Required]
         public string Descrizione { get; set; }
 
-       // [Column(TypeName = "decimal(19,4)")]
-        [DisplayFormat(DataFormatString = "{0:C}")]
+        // [Column(TypeName = "decimal(19,2)")]
+        
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Prezzo { get; set; }
 
         [Required]

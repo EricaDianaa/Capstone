@@ -4,36 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 id="Title" class="text-center">Index</h2>
+<link href="~/Content/StyleIndexAdmin.css" rel="stylesheet" />
 
-<p>
-    @Html.ActionLink("Create New", "Register","Home")
-</p>
-<table class="table">
-    <tr>
+<table class="table table-bordered border-dark">
+   <tr id="TitleTable" class="border-white">
+       <th class="border border-dark">
+           <a href="/Home/Register"><i class="fa-solid fa-user-plus"></i></a>
+       </th>  
+   </tr>  
+    <tr id="TitleTable" class="border border-dark">
       
-        <th>
+        <th class="U">
             @Html.DisplayNameFor(model => model.Username)
         </th>
-        <th>
+        <th class="R">
             @Html.DisplayNameFor(model => model.Ruolo)
         </th>
-        <th>
+        <th  class="I">
             @Html.DisplayNameFor(model => model.Indirizzo)
         </th>
-        <th>
+        <th  class="E">
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
+        <th  class="T">
             @Html.DisplayNameFor(model => model.Telefono)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsAzienda)
-        </th>
-        <th>
+        
+        <th  class="C">
             @Html.DisplayNameFor(model => model.CodiceFiscale)
         </th>
-        <th>
+        <th  class="P">
             @Html.DisplayNameFor(model => model.PartitaIva)
         </th>
         <th></th>
@@ -41,38 +42,37 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td  class="U">
             @Html.DisplayFor(modelItem => item.Username)
         </td>
-        <td>
+        <td  class="R">
             @Html.DisplayFor(modelItem => item.Ruolo)
         </td>
 
-        <td>
+        <td  class="I">
             @Html.DisplayFor(modelItem => item.Indirizzo)
         </td>
-        <td>
+        <td class="E">
             @Html.DisplayFor(modelItem => item.Email)
         </td>
-        <td>
+        <td  class="T">
             @Html.DisplayFor(modelItem => item.Telefono)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsAzienda)
-        </td>
-        <td>
+
+        <td  class="C">
             @Html.DisplayFor(modelItem => item.CodiceFiscale)
         </td>
-        <td>
+        <td  class="P">
             @Html.DisplayFor(modelItem => item.PartitaIva)
         </td>
         <td>
-            @if(User.IsInRole("Admin")){
-            @Html.ActionLink("Edit", "Edit", new { id = item.IdUtente }) 
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="/Utenti/Edit/@item.IdUtente" class="text-dark"><i class="fa-solid fa-pen"></i></a>
             }
+         
+             <a href="/Utenti/Details/@item.IdUtente"><i class="fa-solid fa-circle-info"></i></a>
 
-            @Html.ActionLink("Details", "Details", new { id = item.IdUtente }) 
-        
         </td>
     </tr>
 }

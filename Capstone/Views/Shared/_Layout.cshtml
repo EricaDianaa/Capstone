@@ -10,9 +10,11 @@
     @*<script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>*@
     <script src="https://use.fontawesome.com/7ad89d9866.js"></script>
+    <link href="~/Content/StyleLayoutPage.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
     @if (User.IsInRole("Admin"))
     {
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-warning">
@@ -104,13 +106,44 @@
         </nav>
     }
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Applicazione ASP.NET</p>
+<div class="container body-content ">
+    @RenderBody()
+
+        <footer class="footer">
+            <div class="container-fluid row">
+                <div class="footer-col text-center">
+                    <h4>Contatti</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">visit website</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col text-center">
+                    <h4>Hai bisogno di aiuto</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col text-center">
+                    <h4>Seguici su</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
         </footer>
-    </div>
+
+        <p>&copy; @DateTime.Now.Year - TourSardigna</p>
+
+</div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")

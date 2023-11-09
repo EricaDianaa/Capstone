@@ -3,8 +3,17 @@
 @{
     ViewBag.Title = "Register";
 }
+@if(User.IsInRole("Admin")|| User.IsInRole("Admin"))
+            {
 
+
+<h2 id="Title" class="text-center">Registra un utente</h2>
+}
+else
+            {
 <h2 id="Title" class="text-center">Registra il tuo account</h2>
+            }
+
 <link href="~/Content/LoginRegister.css" rel="stylesheet" />
 
 @using (Html.BeginForm())

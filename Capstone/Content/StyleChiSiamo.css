@@ -1,0 +1,49 @@
+﻿body {
+}
+
+#Div1 {
+    background-image: url(/Content/Img/Giganti.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 200px
+}
+
+#Div2 {
+    background-image: url(/Content/Img/Festa.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 200px
+}
+
+#Div3 {
+    background-image: url(/Content/Img/Concerto.jpeg);
+    background-size: cover;
+    height: 200px;
+    width: 200px
+}
+#Div4 {
+    background-image: url(/Content/Img/escursione.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 200px
+}
+#Div5 {
+    background-image: url(/Content/Img/piscinas.jpg);
+    background-size: cover;
+    height: 200px;
+    width: 200px
+}
+
+
+#Div1:hover, #Div2:hover, #Div3:hover, #Div4:hover, #Div5:hover {
+    transform: scale(1.3);
+    z-index:4;
+}
+#Div3 {
+    transform: scale(2)
+}
+#Title {
+    font-family: fantasy;
+    color: orange;
+    align-items: center;
+}

@@ -33,7 +33,7 @@ namespace Capstone.Controllers
             }
             else
             {
-            List<Eventi> eventi= db.Eventi.Where(m=>m.DataEvento >= date).ToList();
+            List<Eventi> eventi= db.Eventi.Where(m=>m.DataEvento >= date||m.DataEvento==null).ToList();
             ViewBag.Title = "Home Page";
             return View(eventi);
             }
@@ -388,6 +388,9 @@ namespace Capstone.Controllers
             }
             return View();
         }
-
+        public ActionResult ChiSiamo()
+        {
+            return View();
+        }
     }
 }

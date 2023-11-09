@@ -1,0 +1,17 @@
+﻿body {
+}
+
+#Title {
+    font-family: fantasy;
+    color: orange;
+    align-items: center;
+}
+#Detail {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+}
+dt{
+    color:orange;
+}
