@@ -161,5 +161,41 @@ namespace Capstone.Controllers
             decimal tot = Totale.Sum();
             return Json(tot);
         }
+        //public JsonResult PostPopolari ()
+        //{
+        //    List<Eventi> eventi = db.Eventi.ToList();
+        //   List<ListaOrdini>Lista = new List<ListaOrdini>();
+        //    List<int> ordini = new List<int>();
+        //    foreach (Eventi e  in eventi)
+        //    {
+        //        var order=db.ListaOrdini.Where(m=>m.IdEvento==e.IdEvento).ToList();
+        //        Lista.AddRange(order);
+          
+          
+        //    }
+        //    foreach (ListaOrdini li in Lista)
+        //    {
+        //        var order = db.Ordini.Where(m => m.IdOrdini == li.IdOrdine).Count();
+                
+        //            ordini.Add(order);
+                
+        //        foreach (var item in ordini)
+        //        {
+        //            if(order!= item)
+        //            {
+        //                ordini.Add(order);
+        //                break;
+        //            }
+                    
+        //        }
+        //    }
+        //    //var i = db.Ordini.Where(m => m).Count();
+        //     var Tot = ordini.Max();
+        //    return Json(Tot);
+        //   // List<int> ev = db.Eventi.Select(m => m.Recensioni.Count()).ToList();
+        //   //var Tot=  ev.Max();
+        //   // return Json(Tot);
+        //}
     }
+
 }

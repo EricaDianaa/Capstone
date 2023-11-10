@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Prezzo, htmlAttributes: new { @class = "control-label text-warning fw-bold" })
             <div class="">
-                @Html.EditorFor(model => model.Prezzo, new { htmlAttributes = new { @class = "form-control",id="Prezzo", type = "text", @*@value = Model.Prezzo.ToString("N1")*@ } })
+                @Html.EditorFor(model => model.Prezzo, new{ htmlAttributes = new{  @class = "form-control", id = "Prezzo", type = "text",}})
                 @Html.ValidationMessageFor(model => model.Prezzo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataDa, htmlAttributes: new { @class = "control-label text-warning fw-bold" })
             <div class="">
-                @Html.EditorFor(model => model.DataDa, new { htmlAttributes = new { @class = "form-control",type="date" } })
+                @Html.EditorFor(model => model.DataDa, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.DataDa, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -120,7 +120,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 ">
-                <input type="submit" value="Modifica" class="btn btn-warning mt-2" />
+                <input type="submit" value="Modifica" class="btn btn-warning mt-2" id="Button" />
             </div>
         </div>
     </div>
@@ -132,14 +132,13 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-          
-            //new AutoNumeric("#Prezzo", {
-            //    currencySymbol: "€",
-            //    decimalCharacter: ",",
-            //    digitGroupSeparator: ".",
-            //    decimalPlaces:2
-            //})
-           /* console.log(AutoNumeric);*/
+            $("#Button").click(function () {
+                var Prezzo = $("#Prezzo").val();
+                $("#Prezzo").val(Prezzo + 0)
+                console.log(Prezzo);
+                console.log($("#Prezzo").val());
+            })
+
         })
 
     </script>

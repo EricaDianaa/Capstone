@@ -1,69 +1,190 @@
 ﻿<link href="~/Content/StyleChiSiamo.css" rel="stylesheet" />
-<h2 class="text-center text-warning mt-2">Chi siamo </h2>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script src="~/Scripts/JavaScriptChiSiamo.js"></script>
+<h2 class="text-center text-warning text-center rounded-3 mt-2">Chi siamo </h2>
 <p class="text-center">
-    I nostri utenti sono principalmente 2 gli utenti e le aziende pronte a mostrare gli eventi da loro creati.
-    <br />Cosa vi offriamo? Diversi tipi di eventi tra cui:
+    Sei una persona che cerca nuove esperienze da fare, nuovi paesaggi da visitare,nuovi musei da scoprire o vuoi rilassarti
+    nelle spiaggie più belle della sardegna ma non sai come muoverti? Bene sei nel posto giusto con TourSardegna potrai essere
+    sempre aggiornato su tutti gli eventi dell'isola con tante informazioni per riuscire a partecipare nel modo più facile possibile.
 </p>
-<div class=" justify-content-evenly align-items-center rounded-4 d-none d-md-flex" style="background-color:orange">
-    <div class="p-4">
-        <div class="d-flex justify-content-center align-items-center border p-4" id="Div1">
-            <h3 id="h31" class="bg-dark text-warning rounded-4 p-3">Musei </h3>
-        </div>
-        <div class="d-flex justify-content-center align-items-center border mt-3 p-4" id="Div2">
-            <h3 class="bg-dark text-warning rounded-4 p-3">Feste </h3>
-        </div>
-    </div>
-    <div class="p-4" style="background-color:orange">
-        <div class="d-flex justify-content-center align-items-center border p-4" id="Div3">
-            <h3 class="bg-dark text-warning rounded-4 p-3">Concerti </h3>
-        </div>
 
+<p class="text-center"> <br />Cosa vi offriamo? Diversi tipi di eventi tra cui:</p>
+<main>
+    <div class="swiper">
+        <div class="swiper-wrapper"><div class="swiper-slide">
+    <div class="swiper-slide-img">
+        <img src="~/Content/Img/Festa.jpg" />
+        @*<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>*@
     </div>
-    <div class=" p-4" style="background-color:orange">
-        <div class="d-flex justify-content-center align-items-center border p-4" id="Div4">
-            <h3 class="bg-dark text-warning rounded-4 p-3">Avventure </h3>
-        </div>
-        <div class="d-flex justify-content-center align-items-center border p-4 mt-3" id="Div5">
-            <h3 class="bg-dark text-warning rounded-4 p-3 ">Relax </h3>
+    <div class="swiper-slide-content">
+        <div>
+            <h2 class="text-warning text-center rounded-3 bg-dark">Feste di paese</h2>
+            <p></p>
+            <a class="show-more" href="https://en.wikipedia.org/wiki/Italy" target="_blank">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                </svg>
+            </a>
         </div>
     </div>
+</div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                    <img src="~/Content/ImgCss/pexels-files-18886593.jpg" />
+                    @*<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>*@
+                </div>
+                <div class="swiper-slide-content">
+                    <div>
+                        <h2 class="text-warning text-center rounded-3 bg-dark">Escursioni in barca</h2>
+                        <p></p>
+                        <a class="show-more" href="https://en.wikipedia.org/wiki/Louvre" target="_blank">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                    <img src="~/Content/ImgCss/pexels-jaime-reimer-2679814.jpg" />
+                    @*<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>*@
+                </div>
+                <div class="swiper-slide-content">
+                    <div>
+                        <h2 class="text-warning text-center rounded-3 bg-dark">Escursioni in montagna</h2>
+                        <p></p>
+                        <a class="show-more" href="https://en.wikipedia.org/wiki/Seychelles" target="_blank">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                    <img src="~/Content/ImgCss/pexels-symeon-ekizoglou-2105937.jpg" />
+                    @*<path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>*@
+                </div>
+                <div class="swiper-slide-content">
+                    <div>
+                        <h2 class="text-warning text-center rounded-3 bg-dark">Relax nelle migliori spiagge della sardegna</h2>
+                        <p></p>
+                        <a class="show-more" href="https://en.wikipedia.org/wiki/London" target="_blank">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                    <img src="~/Content/ImgCss/pexels-teddy-yang-2263410.jpg" />
+                    @*<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>*@
+                </div>
+                <div class="swiper-slide-content">
+                    <div>
+                        <h2 class="text-warning text-center rounded-3 bg-dark"> Concerti</h2>
+                        <p></p>
+                        <a class="show-more" href="https://en.wikipedia.org/wiki/Maldives" target="_blank">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-slide-img">
+                    <img src="~/Content/Img/Giganti.jpg" />
+                    @*<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+                </svg>*@
+                </div>
+                <div class="swiper-slide-content">
+                    <div>
+                        <h2 class="text-warning text-center rounded-3 bg-dark">Musei</h2>
+                        <p></p>
+                        <a class="show-more" href="https://en.wikipedia.org/wiki/Italy" target="_blank">
+                            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</main>
 
+<p class="text-center mt-4">
+    Sei un <strong class=text-warning text-center rounded-3>AZIENDA</strong>  che cerca una pagina web dove pubblicare eventi? Ti offriamo un gestionale  dove potrai pubblicare
+    tutti gli eventi, informare il pubblico con tutti i dettagli e sopratutto potrai essere aggiornato anche tu su i tuoi post
+</p>
+<div>
+    <img src="https://kilobit.it/wp-content/uploads/2022/10/infografica-articolo-software-gestionale.png"  class="w-75 mx-auto d-flex"alt="Alternate Text" />
 </div>
 
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+
+    var swiper = new Swiper(".swiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5
+        },
+        keyboard: {
+            enabled: true
+        },
+        mousewheel: {
+            thresholdDelta: 70
+        },
+        spaceBetween: 30,
+        loop: false,
+        breakpoints: {
+            640: {
+                slidesPerView: 2
+            },
+            1024: {
+                slidesPerView: 3
+            }
+        }
+    });
+
+    swiper.slideTo(1, false, false)
+</script>
 
 
-
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner d-md-none">
-        <div class="carousel-item active">
-            <img src="/Content/Img/Giganti.jpg" alt="Alternate Text" />
-
-        </div>
-        <div class="carousel-item">
-            <img src="/Content/Img/festa.jpg" alt="Alternate Text" />
-
-        </div>
-        <div class="carousel-item">
-
-            <img src="/Content/Img/Concerto.jpeg" alt="Alternate Text" />
-
-        </div>
-        <div class="carousel-item">
-            <img src="/Content/Img/escursione.jpg" alt="Alternate Text" />
-
-        </div>
- 
-        <div class="carousel-item">
-            <img src="/Content/Img/piscinas.jpg" alt="Alternate Text" />
-
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>

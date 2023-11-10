@@ -70,18 +70,30 @@
             <div class="carousel-item active">
                 <img src="/Content/Img/@Html.DisplayFor(model => model.FotoCopertina)" class="d-block w-100" alt="...">
             </div>
-            <div class="carousel-item">
-                <img src="/Content/Img/@Html.DisplayFor(model => model.Foto1)" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/Content/Img/@Html.DisplayFor(model => model.Foto2)" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/Content/Img/@Html.DisplayFor(model => model.Foto3)" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="/Content/Img/@Html.DisplayFor(model => model.Foto4)" class="d-block w-100" alt="...">
-            </div>
+            @if (Model.Foto1 != "" && Model.Foto1 != null)
+            {
+                <div class="carousel-item">
+                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto1)" class="d-block w-100" alt="...">
+                </div>
+            }
+            @if (Model.Foto2 != "" && Model.Foto2 != null)
+            {
+                <div class="carousel-item">
+                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto2)" class="d-block w-100" alt="...">
+                </div>
+            }
+            @if (Model.Foto3 != "" && Model.Foto3 != null)
+            {
+                <div class="carousel-item">
+                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto3)" class="d-block w-100" alt="...">
+                </div>
+            }
+            @if (Model.Foto4 != "" && Model.Foto4 != null)
+            {
+                <div class="carousel-item">
+                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto4)" class="d-block w-100" alt="...">
+                </div>
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

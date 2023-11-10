@@ -34,6 +34,20 @@
                         <li>@Html.ActionLink("Recensioni", "index", "Recensioni", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Resoconto", "Index", "Admin", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @*<li>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown button
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item active" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </li>*@
                     </ul>
                 </div>
             </div>
@@ -51,9 +65,8 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Il tuo account", "Account", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Preferiti", "Preferiti", "home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("I tuoi Ordini", "OrdiniEffettuati", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Carello", "cart", "Ordini", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
@@ -98,6 +111,7 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Chi Siamo", "ChiSiamo", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Registrati", "Register", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     </ul>
@@ -106,44 +120,46 @@
         </nav>
     }
 
-<div class="container body-content ">
-    @RenderBody()
+    <div class="container body-content ">
+        @RenderBody()
 
         <footer class="footer">
-            <div class="container-fluid row">
-                <div class="footer-col text-center">
-                    <h4>Contatti</h4>
-                    <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">our services</a></li>
-                        <li><a href="#">privacy policy</a></li>
-                        <li><a href="#">visit website</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col text-center">
-                    <h4>Hai bisogno di aiuto</h4>
-                    <ul>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">shipping</a></li>
-                        <li><a href="#">returns</a></li>
-                        <li><a href="#">order status</a></li>
-                        <li><a href="#">payment options</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col text-center">
-                    <h4>Seguici su</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <div class="container-fluid row">
+                    <div class="footer-col text-center">
+                        <h4>Contatti</h4>
+                        <ul>
+                            <li><a href="#">TouSardigna.com</a></li>
+                            <li><a href="#">263 789 749o</a></li>
+                        </ul>
                     </div>
+                    <div class="footer-col text-center">
+                        <h4>Privacy</h4>
+                        <ul>
+                            <li><a href="#">Termini e condizioni</a></li>
+                            <li><a href="#">Preferenza cookie</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy </a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col text-center">
+                        <h4>Seguici su</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-center">&copy; @DateTime.Now.Year - TourSardigna</p>
                 </div>
             </div>
         </footer>
 
-        <p>&copy; @DateTime.Now.Year - TourSardigna</p>
 
-</div>
+
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")

@@ -303,6 +303,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ImgCss\pexels-files-18886593.jpg" />
+    <Content Include="Content\ImgCss\pexels-jaime-reimer-2679814.jpg" />
+    <Content Include="Content\ImgCss\pexels-symeon-ekizoglou-2105937.jpg" />
+    <Content Include="Content\ImgCss\pexels-teddy-yang-2263410.jpg" />
     <Content Include="Content\ImgCss\Sfondo-Login.jpg" />
     <Content Include="Content\ImgCss\Tour.png" />
     <Content Include="Content\JavaScriptLoginRegister.js" />
@@ -347,6 +351,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\JavaScriptChiSiamo.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
