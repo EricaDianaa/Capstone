@@ -10,61 +10,65 @@
 
 
 }
-
+<link href="~/Content/StyleDettagliEventi.css" rel="stylesheet" />
 
 <h2 id="Title" class="text-center" style=" color: orange; font-family: fantasy;">   @Html.DisplayFor(model => model.NomeEvento)</h2>
-@* Preferiti *@
-@if (User.IsInRole("User"))
-{
-    if (ViewBag.Preferiti == null)
-    {
-        <i class="fa-regular fa-heart con-like text-danger"></i>
-        <i class="fa-solid fa-heart con-like3 text-danger"></i>
-    }
 
-    else
-    {
-        <i class="fa-solid fa-heart con-like2 text-danger"></i>
-        <i class="fa-regular fa-heart con-like4 text-danger"></i>
-
-    }
-}
 
 @* Dettagli *@
 <div class="container border  border-2 border-dark rounded-4" style="background-color:lightgray">
+    @* Preferiti *@
+    @if (User.IsInRole("User"))
+    {
+        if (ViewBag.Preferiti == null)
+        {
+            <i class="fa-regular fa-heart con-like text-danger"></i>
+            <i class="fa-solid fa-heart con-like3 text-danger"></i>
+        }
 
-    <div class="row border border-dark m-3  border-2 rounded-4 d-none d-md-flex" style="background-color: orange; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
+        else
+        {
+            <i class="fa-solid fa-heart con-like2 text-danger"></i>
+            <i class="fa-regular fa-heart con-like4 text-danger"></i>
+
+        }
+    }
+    @* Img *@
+    <div class="row border border-dark m-3  border-2 rounded-4 d-none d-md-flex justify-content-center" style="background-color: orange; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
         <div class="col-md-6 d-flex flex-column p-1 justify-content-center">
             <img src="/Content/Img/@Html.DisplayFor(model => model.FotoCopertina)" class="rounded-4" alt="FotoCopertina" />
         </div>
+        @if (Model.Foto1 != "" && Model.Foto1 != null || Model.Foto2 != "" && Model.Foto2 != null || Model.Foto3 != "" && Model.Foto3 != null || Model.Foto4 != "" && Model.Foto4 != null)
+        {
+            <div class=" col-md-6 d-flex flex-column p-1 justify-content-center">
+                <div class="d-flex">
+                    @if (Model.Foto1 != "" && Model.Foto1 != null)
+                    {
+                        <img src="/Content/Img/@Html.DisplayFor(model => model.Foto1)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
+                    }
 
-        <div class=" col-md-6 d-flex flex-column p-1 justify-content-center">
-            <div class="d-flex">
-                @if (Model.Foto1 != "" && Model.Foto1 != null)
-                {
-                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto1)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
-                }
+                    @if (Model.Foto2 != "" && Model.Foto2 != null)
+                    {
+                        <img src="/Content/Img/@Html.DisplayFor(model => model.Foto2)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
+                    }
 
-                @if (Model.Foto2 != "" && Model.Foto2 != null)
-                {
-                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto2)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
-                }
+                </div>
+                <div class="d-flex">
+                    @if (Model.Foto3 != "" && Model.Foto3 != null)
+                    {
+                        <img src="/Content/Img/@Html.DisplayFor(model => model.Foto3)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
+                    }
+                    @if (Model.Foto4 != "" && Model.Foto4 != null)
+                    {
+                        <img src="/Content/Img/@Html.DisplayFor(model => model.Foto4)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
+                    }
 
+                </div>
             </div>
-            <div class="d-flex">
-                @if (Model.Foto3 != "" && Model.Foto3 != null)
-                {
-                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto3)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
-                }
-                @if (Model.Foto4 != "" && Model.Foto4 != null)
-                {
-                    <img src="/Content/Img/@Html.DisplayFor(model => model.Foto4)" class="w-50 p-1 rounded-4 " alt="Foto aggiuntive" />
-                }
+        }
 
-            </div>
-        </div>
     </div>
-
+    @* Carosello schermi piccoli *@
     <div id="carouselExample" class="carousel slide d-md-none">
         <div class="carousel-inner mb-2 mt-2">
             <div class="carousel-item active">
@@ -104,42 +108,47 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="row w-100">
-        <div class=" col-4 ps-3  ms-5 mb-3 border border-dark rounded-4 text-center " style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
-            <strong style="font-family:cursive;color:orange">Categoria</strong>
-            <p>@Html.DisplayFor(model => model.Categorie.NomeCategoria) </p>
-            <strong style="font-family:cursive;color:orange">Prezzo</strong>
-            <p>@Html.DisplayFor(model => model.Prezzo) </p>
-            <strong style="font-family:cursive;color:orange">Luogo</strong>
-            <p>@Html.DisplayFor(model => model.Luogo)</p>
-            <strong style="font-family:cursive;color:orange">Indirizzo</strong>
-            <p>@Html.DisplayFor(model => model.Indirizzo)</p>
-            <strong style="font-family:cursive;color:orange">Data inizio</strong>
-            <p>@Html.DisplayFor(model => model.DataDa)</p>
-            <strong style="font-family:cursive;color:orange">Data Fine</strong>
-            <p>@Html.DisplayFor(model => model.DataEvento) </p>
+    @* text *@
+ 
+        <div class="text-center">
+            <strong style="font-family:cursive;color:orange">Descrizione</strong>
+            <p>@Html.DisplayFor(model => model.Descrizione)</p>
         </div>
-        <div class="col-6 text-center d-flex flex-column justify-content-evenly">
-            <div>
-                <strong style="font-family:cursive;color:orange">Descrizione</strong>
-                <p>@Html.DisplayFor(model => model.Descrizione)</p>
-            </div>
+        <div class="row w-100 p-4 d-flex justify-content-center">
+            <div id="DivInformazioni" class=" col-6 border border-dark rounded-4 text-center ">
 
-            @if (Model.Prezzo >= 1 && User.IsInRole("User"))
-            {
-                <div class="border border-dark p-3 w-50 mx-auto rounded-4" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
-                    <p class="m-3">
-                        <h6 class="d-none d-md-block" style="font-family:cursive;color:orange">Inserisci una quantità: </h6> 
-                        <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6> 
-                        <input type="number" class="form-control" name="Quantità" value="" id="quantità" />
-                        <br />
-                        <button type="submit" class="btn btn-primary mx-auto mt-2 m-2 d-none d-md-block" id="Button" style="background-color:orange">Aggiungi al carrello</button>
-                        <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button>
-                    </p>
-                </div>
-            }
+                <strong style="font-family:cursive;color:orange">Categoria</strong>
+                <p>@Html.DisplayFor(model => model.Categorie.NomeCategoria) </p>
+                <strong style="font-family:cursive;color:orange">Prezzo</strong>
+                <p>@Html.DisplayFor(model => model.Prezzo) </p>
+                <strong style="font-family:cursive;color:orange">Luogo</strong>
+                <p>@Html.DisplayFor(model => model.Luogo)</p>
+                <strong style="font-family:cursive;color:orange">Indirizzo</strong>
+                <p>@Html.DisplayFor(model => model.Indirizzo)</p>
+                <strong style="font-family:cursive;color:orange">Data inizio</strong>
+                <p>@Html.DisplayFor(model => model.DataDa)</p>
+                <strong style="font-family:cursive;color:orange">Data Fine</strong>
+                <p>@Html.DisplayFor(model => model.DataEvento) </p>
+            </div>
+            <div class="col-6 text-center d-flex flex-column justify-content-evenly">
+
+                @if (Model.Prezzo >= 1 && User.IsInRole("User"))
+                {
+                    <div class="border border-dark p-3 mx-auto rounded-4" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
+                        <p class="m-3">
+                            <h6 class="d-none d-md-block" style="font-family:cursive;color:orange">Inserisci una quantità: </h6>
+                            <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6>
+                            <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantità" value="" id="quantità" />
+                            <br />
+                            <button type="submit" class="btn btn-primary mx-auto mt-2 m-2 d-none d-md-block" id="Button" style="background-color:orange">Aggiungi al carrello</button>
+                            <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button>
+                        </p>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
+    
+
 </div>
 
 
@@ -200,7 +209,7 @@
             {
 
                 <div class=" text-center d-flex flex-column justify-content-center justify-content-center">
-                    <div class="  d-flex flex-column justify-content-center p-3 m-2 ">
+                    <div id="YourRecensioni" class="  d-flex flex-column justify-content-center p-3 m-2 ">
                         <div class="d-flex align-items-center justify-content-center">
                             <p>
                                 <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />
@@ -276,7 +285,7 @@
                     @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
                     {
                         <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
-                            <div class="  d-flex flex-column justify-content-centerp-3 m-2 ">
+                            <div id="Recensioni" class="  d-flex flex-column justify-content-centerp-3 m-2 ">
                                 <div class="d-flex align-items-center justify-content-center">
                                     <p>
                                         <img style="width: 3%; height:10%;" class="rounded-5" src="https://as1.ftcdn.net/v2/jpg/03/46/83/96/1000_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" alt="Alternate Text" />

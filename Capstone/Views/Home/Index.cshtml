@@ -72,8 +72,8 @@
         @* Eventi *@
         @foreach (Capstone.Models.Eventi e in Model)
         {
-            <div class='col col-md-6 col-lg-4 col-xl-3'>
-                <main id='main'>
+            <div class='col col-md-6 col-lg-4 col-xl-4 col-xxl-3 d-flex mx-auto justify-content-center mt-3'>
+                <main id='main' class="d-flex flex-column justify-content-center">
                     <div class='card'>
                         <span class='badge' style='text-shadow:2px 2px 6px black; color:darkorange'> @e.NomeEvento</span>
                         <img src='/Content/Img/@e.FotoCopertina' class='card-img-top' alt='...'>
@@ -97,7 +97,7 @@
                             {
                                 <a href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
                             }
-                            <a href='/Eventi/Details/ @e.IdEvento'>Dettagli</a>
+                            <a class="text-center" href='/Eventi/Details/ @e.IdEvento'>Dettagli</a>
                         </div>
                     </div>
                 </main>
@@ -132,7 +132,6 @@
                         " <img src='/Content/Img/" + e.FotoCopertina + "' class='card-img-top' alt='...'>" +
                         "<div class='text'>" +
                         "<h2  style='text-shadow:2px 2px 6px black; color:darkorange'>" + e.NomeEvento + "</h2>" +
-                        " <p class='card-text'><strong>Descrizione:</strong>" + e.Descrizione + "</p>" +
                         " <p class='card-text'><strong>Prezzo:</strong>" + e.Prezzo + "</p>" +
                         "<p class='card-text'><strong>Indirizzo:</strong>" + e.Indirizzo + "</p>" +
                         Data +

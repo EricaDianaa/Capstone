@@ -115,3 +115,7 @@ ul {
         width: 100%;
     }
 }
+#Admin{
+    position:relative;
+    z-index:3;
+}

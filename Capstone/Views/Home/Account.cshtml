@@ -1,24 +1,42 @@
 ﻿@model Capstone.Models.Utenti
 @{
     ViewBag.Title = "Account";
+    var Messaggio = "";
+    if (TempData["Success"] != null)
+    {
+        Messaggio = (string)TempData["Success"];
+    }
+    var MessaggioEdit = "";
+    if (TempData["SuccessEdit"] != null)
+    {
+        MessaggioEdit = (string)TempData["SuccessEdit"];
+    }
+}
 
-
+@if (TempData["Success"] != null)
+{
+    <h5 class="text-center text-success">@(Messaggio)</h5>
+}
+@if (TempData["SuccessEdit"] != null)
+{
+    <h5 class="text-center text-success">@(MessaggioEdit)</h5>
 }
 <link href="~/Content/StyleAccount.css" rel="stylesheet" />
 <h2 id="Title">Account</h2>
 <div>
     <div id="Div" class="dl-horizontal text-center border border-warning  mx-auto">
+        <div id="U">
+            <h5>
+                <i class="fa-solid fa-user"></i>
+                @Html.DisplayNameFor(model => model.Username)
+            </h5>
 
-        <h5>
-            <i class="fa-solid fa-user"></i>
-            @Html.DisplayNameFor(model => model.Username)
-        </h5>
-
-        <p>
-            @Html.DisplayFor(model => model.Username)
-        </p>
+            <p>
+                @Html.DisplayFor(model => model.Username)
+            </p>
+        </div>
         <hr />
-        <div class="d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center" id="P">
 
             <div>
 
@@ -44,42 +62,49 @@
 
 
         <hr />
-        <h5>
-            <i class="fa-solid fa-location-dot"></i>
-            @Html.DisplayNameFor(model => model.Indirizzo)
-        </h5>
+        <div id="I">
+            <h5>
+                <i class="fa-solid fa-location-dot"></i>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </h5>
 
-        <p>
-            @Html.DisplayFor(model => model.Indirizzo)
-        </p>
+            <p>
+                @Html.DisplayFor(model => model.Indirizzo)
+            </p>
+        </div>
         <hr />
-        <h5>
-            <i class="fa-solid fa-envelope"></i>
-            @Html.DisplayNameFor(model => model.Email)
-        </h5>
+        <div id="E">
+            <h5>
+                <i class="fa-solid fa-envelope"></i>
+                @Html.DisplayNameFor(model => model.Email)
+            </h5>
 
-        <p>
-            @Html.DisplayFor(model => model.Email)
-        </p>
+            <p>
+                @Html.DisplayFor(model => model.Email)
+            </p>
+        </div>
         <hr />
-        <h5>
-            <i class="fa-solid fa-phone"></i>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </h5>
+        <div id="T">
+            <h5>
+                <i class="fa-solid fa-phone"></i>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </h5>
 
-        <p>
-            @Html.DisplayFor(model => model.Telefono)
-        </p>
+            <p>
+                @Html.DisplayFor(model => model.Telefono)
+            </p>
+        </div>
         <hr />
         @if (Model.IsAzienda == true)
         {
-            <h5>
-                @Html.DisplayNameFor(model => model.IsAzienda)
-            </h5>
-            <p>
-                @Html.DisplayFor(model => model.IsAzienda)
-            </p>
-
+            <div id="A">
+                <h5>
+                    @Html.DisplayNameFor(model => model.IsAzienda)
+                </h5>
+                <p>
+                    @Html.DisplayFor(model => model.IsAzienda)
+                </p>
+            </div>
         }
 
 
@@ -87,32 +112,36 @@
 
         @if (Model.PartitaIva != null)
         {
-            <h5>
-                <i class="fa-regular fa-address-card"></i>
-                @Html.DisplayNameFor(model => model.PartitaIva)
-            </h5>
+            <div id="P">
+                <h5>
+                    <i class="fa-regular fa-address-card"></i>
+                    @Html.DisplayNameFor(model => model.PartitaIva)
+                </h5>
 
-            <p>
-                @Html.DisplayFor(model => model.PartitaIva)
-            </p>
+                <p>
+                    @Html.DisplayFor(model => model.PartitaIva)
+                </p>
+            </div>
         }
         @if (Model.CodiceFiscale != null)
         {
-            <h5>
-                <i class="fa-regular fa-address-card"></i>
-                @Html.DisplayNameFor(model => model.CodiceFiscale)
-            </h5>
+            <div id="C">
+                <h5>
+                    <i class="fa-regular fa-address-card"></i>
+                    @Html.DisplayNameFor(model => model.CodiceFiscale)
+                </h5>
 
-            <p>
-                @Html.DisplayFor(model => model.CodiceFiscale)
-            </p>
+                <p>
+                    @Html.DisplayFor(model => model.CodiceFiscale)
+                </p>
+            </div>
         }
         <p>
             <a href="/Utenti/Edit/ @Html.DisplayFor(model => model.IdUtente)" class="btn " style="background-color:orange">Modifica</a>
         </p>
     </div>
     <div id="Div" class="dl-horizontal text-center border border-warning mt-2 mx-auto">
-        <div class="d-flex justify-content-center align-items-center">
+        <div id="Div1" class="d-flex justify-content-center align-items-center">
             <div>
                 <i class="fa-solid fa-box-archive"></i>
                 <h5>I tuoi ordini</h5>
@@ -124,7 +153,7 @@
 
     </div>
     <div id="Div" class="dl-horizontal text-center border border-warning mt-2 mx-auto">
-        <div class="d-flex justify-content-center align-items-center">
+        <div id="Div2" class="d-flex justify-content-center align-items-center">
             <div>
                 <i class="fa-solid fa-heart"></i>
                 <h5>La tua lista dei preferiti</h5>

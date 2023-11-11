@@ -4,7 +4,7 @@
 }
 
 <link href="~/Content/StyleCart.css" rel="stylesheet" />
-<div id="Container" class=" p-3">
+<div id="Container" class=" p-3 mt-5">
 
     @if (Session["Carello"] != null)
     {<div class=" text-primary text-center ">
@@ -12,7 +12,7 @@
         </div>
         foreach (EventiOrdini e in Model)
         {
-            <div  class="card  mb-3  mx-auto" id="Card">
+            <div class="card  mb-3  mx-auto" id="Card">
                 <div class="row g-0">
                     <div class="col-md-6">
                         <img src="~/Content/Img/@e.FotoCopertina" class="img-fluid d-flex h-75 w-75 mt-3 justify-content-center rounded-5 mx-auto my-auto" alt="...">
@@ -22,20 +22,20 @@
                             <h5 class="card-title "><a class="text-warning text-decoration-none" href="/Eventi/Details/@e.IdEvento"> @e.NomeEvento.ToUpper()</a></h5>
                             <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @e.Prezzo)</p>
                             @*@if (e.DataDa != null && e.DataEvento != null)
-                            {
-                                <p class="card-text"><strong>Data inizio evento: </strong>   @string.Format("{0:d}", @e.DataDa)</p>
-                                <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
-                            }
-                            else if (e.DataDa == null && e.DataEvento == null)
-                            {
+                                {
+                                    <p class="card-text"><strong>Data inizio evento: </strong>   @string.Format("{0:d}", @e.DataDa)</p>
+                                    <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                                }
+                                else if (e.DataDa == null && e.DataEvento == null)
+                                {
 
-                            }
-                            else
-                            {
-                                <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
-                            }
-                            <p class="card-text"><strong>Indirizzo: </strong>  @e.Indirizzo</p>
-                            <p class="card-text">  <strong>Luogo : </strong> @e.Luogo  </p>*@
+                                }
+                                else
+                                {
+                                    <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
+                                }
+                                <p class="card-text"><strong>Indirizzo: </strong>  @e.Indirizzo</p>
+                                <p class="card-text">  <strong>Luogo : </strong> @e.Luogo  </p>*@
                             <p class="card-text">  <strong>Quantità : </strong> @e.Quantità  </p>
 
                             <a href="/Ordini/CartRemove/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">-</a>
@@ -45,29 +45,6 @@
                     </div>
                 </div>
             </div>
-
-            @*<div class="card bg-black text-white mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="~/Content/Img/@p.FotoCopertina" class="img-fluid rounded-start " alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"> @p.NomeEvento</h5>
-                                <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @p.Prezzo)</p>
-                                <p class="card-text"><strong>Data evento: </strong>   @string.Format("{0:d}", @p.DataEvento)</p>
-                                <p class="card-text"><strong>Indirizzo: </strong>  @p.Indirizzo</p>
-                                <p class="card-text">  <strong>Luogo : </strong> @p.Luogo  </p>
-                                <p class="card-text">  <strong>Quantità : </strong> @p.Quantità  </p>
-
-                                <a href="/Ordini/CartRemove/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">-</a>
-                                <a href="/Ordini/AddQuantità/?Id=@p.IdEvento" class="btn btn-danger" id="Elimina">+</a>
-                                <a href="/Ordini/CartRemoveAllProdotto/?Id=@p.IdEvento" class="btn btn-danger" id="EliminaP">Elimina</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
         }
         <div id="Total" class=" border border-white text-center p-2">
             <h3 class=" ">Totale carrello: @string.Format("{0:C}", @ViewBag.totale) </h3>
@@ -76,9 +53,17 @@
         </div>
     }
     @if (Session["Carello"] == null)
-    {
-        <div class="bg-dark text-primary text-center border border-white border-2">
-            <h2>Il tuo carrello è vuoto</h2>
+    {<h2 class="text-center" id="Title">Aggiungi un evento al carrello</h2>
+      
+     <div class="container " id="Container1">
+
+         <div class="arrow "></div>
+         <div class="arrow"></div>
+         <div class="arrow"></div> 
+         <a id="a" class="text-center mx-auto" href="/home/index">Inizia</a>
+     </div>
+        <div id="Total" class=" text-center border border-white border-2">
+            <h2 id="">Il tuo carrello è vuoto</h2>
         </div>
     }
 

@@ -101,6 +101,7 @@ namespace Capstone.Controllers
             }
             db.Entry(utenti).State = EntityState.Modified;
             db.SaveChanges();
+            TempData["SuccessEdit"] = "La modifica è avvenuta con successo";
             if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
             {
                 return RedirectToAction("Index");
@@ -163,7 +164,8 @@ namespace Capstone.Controllers
                             db.Entry(u).State = EntityState.Modified;
                             db.SaveChanges();
                             ModelState.Clear();
-                            return RedirectToAction("Home", "index");
+                             TempData["Success"] = "La password è stata modificata con successo";
+                            return RedirectToAction("Account", "home");
 
 
                         }

@@ -235,12 +235,12 @@ namespace Capstone.Controllers
                 }
 
             }
-            //Rimuovi filtri(mostra tutta la lisegli eventi comoleta)
+            //Rimuovi filtri(mostra tutta la lista degli eventi completa)
             else if(Prezzo==-1)
             {
                 List<Eventi> ListEventi = new List<Eventi>();
                 DateTime date = DateTime.Today;
-                List<Eventi> eventi = db.Eventi.Where(m => m.DataEvento >= date && m.DataEvento >= DateTime.Today).ToList();
+                List<Eventi> eventi = db.Eventi.Where(m => m.DataEvento >= date || m.DataEvento == null).ToList();
                 foreach (Eventi e in eventi)
                 {
                     ListEventi.Add(new Eventi { IdEvento = e.IdEvento, NomeEvento = e.NomeEvento, DataE = e.DataEvento?.ToShortDateString(), DataDaString = e.DataDa?.ToShortDateString(), Descrizione = e.Descrizione, FotoCopertina = e.FotoCopertina, Prezzo = e.Prezzo, Indirizzo = e.Indirizzo, Luogo = e.Luogo });
@@ -260,6 +260,7 @@ namespace Capstone.Controllers
                 }
                 return Json(ListEventi);
             }
+            //Per luogo
             else if (Luogo != "")
             {
 

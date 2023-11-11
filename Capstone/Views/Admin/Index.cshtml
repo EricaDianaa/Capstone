@@ -2,13 +2,19 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/StyleresocontoAdmin.css" rel="stylesheet" />
 <style>
-    body{
-        font-family:cursive;
+    body {
+        font-family: cursive;
     }
 </style>
-<div id="Totale" class="border border-dark border-2 mx-auto text-center w-25"></div>
-<h4 class="text-center  text-warning">Cerca per data</h4>
+<div id="Totale" class="border border-dark border-2 mx-auto text-center mt-3  "></div>
+<div class="d-flex justify-content-center">
+
+    <img class="position-absolute top-0" src="https://png.pngtree.com/png-vector/20191017/ourlarge/pngtree-cash-register-icon-outline-style-png-image_1811272.jpg" alt="Alternate Text" />
+</div>
+
+<h4 id="Altro" class="text-center  text-warning">Cerca per data</h4>
 <input type="date" name="DataEvento" value="" id="InputData" class="d-flex mx-auto" />
 <button id="DataButton" class="d-flex mx-auto">Cerca</button>
 
@@ -25,7 +31,7 @@
     </div>
 
 </div>
-<button id="DataCategoriaButton"  class="d-flex mx-auto">Cerca</button>
+<button id="DataCategoriaButton" class="d-flex mx-auto">Cerca</button>
 <div id="DataCategoria" class="text-center"></div>
 @section scripts{
     <script type="text/javascript">
