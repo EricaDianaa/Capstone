@@ -92,12 +92,12 @@
                             {
                                 <p class="card-text"><strong>Data:</strong>@string.Format("{0:d}", @e.DataEvento)</p>
                             }
-                            <p>Categoria:@e.Categorie.NomeCategoria</p>
+                            <p class="mb-3">Categoria:@e.Categorie.NomeCategoria</p>
                             @if (User.IsInRole("user"))
                             {
-                                <a href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
+                                <a id="recensione" class="bg-dark p-1 mt-2 rounded-3 border border-3 border-white text-decoration-none fw-bold" href="/Recensioni/Create/?id=@e.IdEvento">Scrivi una recensione</a>
                             }
-                            <a class="text-center" href='/Eventi/Details/ @e.IdEvento'>Dettagli</a>
+                            <a id="Dettaglio" class="text-center bg-dark p-1 mt-2 rounded-3 border border-3 border-white text-decoration-none fw-bold" href='/Eventi/Details/ @e.IdEvento'>Dettagli</a>
                         </div>
                     </div>
                 </main>
@@ -120,13 +120,13 @@
                 $.each(data, function (i, e) {
                     var Data;
                     if (e.DataDaString != null) {
-                        Data = "<p class='card-text'><strong>Data di inizio:</strong>" + e.DataDaString + "</p>" +
-                            " <p class='card-text''><strong>Data di fine:</strong>" + e.DataE + "</p>";
+                        Data = "<p class='card-text mb-2'><strong>Data di inizio:</strong>" + e.DataDaString + "</p>" +
+                            " <p class='card-text mb-2''><strong>Data di fine:</strong>" + e.DataE + "</p>";
                     } else {
-                        Data = "<p class='card-text'><strong>Data:</strong>" + e.DataE + "</p>";
+                        Data = "<p class='card-text mb-2'><strong>Data:</strong>" + e.DataE + "</p>";
 
                     }
-                    var licurrent1 = "<div class='col col-md-6 col-lg-4 col-xl-3'><main id='main'>" +
+                    var licurrent1 = "<div class='col col-md-6 col-lg-4 col-xl-4 col-xxl-3 d-flex mx-auto justify-content-center mt-3'><main id='main'  class='d-flex flex-column justify-content-center'>" +
                         "  <div class='card'>" +
                         "   <span class='badge' style='text-shadow:2px 2px 6px black;  color:darkorange'>" + e.NomeEvento + "</span>" +
                         " <img src='/Content/Img/" + e.FotoCopertina + "' class='card-img-top' alt='...'>" +
@@ -135,9 +135,8 @@
                         " <p class='card-text'><strong>Prezzo:</strong>" + e.Prezzo + "</p>" +
                         "<p class='card-text'><strong>Indirizzo:</strong>" + e.Indirizzo + "</p>" +
                         Data +
-                        "<p>Categoria:" + "</p>" +
-                        "<a href='/Recensioni/Create/?id=" + e.IdEvento + "'>Scrivi una recensione</a>" +
-                        "<a href='/Eventi/Details/" + e.IdEvento + "'>Dettagli</a></div> </div>"
+                        "<a id='recensione' class=' bg-dark p-1 mt-2 rounded-3 border border-3 border-white text-decoration-none fw-bold' href='/Recensioni/Create/?id=" + e.IdEvento + "'>Scrivi una recensione</a>" +
+                        "<a id='Dettaglio'  class=' bg-dark p-1 mt-2 rounded-3 border border-3 border-white text-decoration-none fw-bold' href='/Eventi/Details/" + e.IdEvento + "'>Dettagli</a></div> </div>"
                     "</div>" +
                         "</div>" +
                         "</main ></div>";

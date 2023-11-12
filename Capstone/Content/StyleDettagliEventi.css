@@ -1,8 +1,13 @@
 ﻿body {
 }
-@media screen and (min-width:1100px){
+@media screen and (min-width:780px){
     #DivInformazioni{
         width:25%
+    }
+}
+@media screen and (max-width:780px){
+    #DivInformazioni{
+        width:50%
     }
 }
 
@@ -20,4 +25,8 @@
 }
 #YourRecensioni:hover, #Recensioni:hover {
     background-color: antiquewhite;
+}
+
+#carouselExample{
+    background-color:orange;
 }

@@ -22,17 +22,55 @@
     {
         if (ViewBag.Preferiti == null)
         {
-            <i class="fa-regular fa-heart con-like text-danger"></i>
-            <i class="fa-solid fa-heart con-like3 text-danger"></i>
+            <button type="button" style="background-color:lightgray" class=" border border-0 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <h3><i class="fa-regular fa-heart con-like text-danger"></i></h3>
+            </button>
+            <button type="button" style="background-color:lightgray" class=" border border-0 " data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                <h3><i class="fa-solid fa-heart con-like3 text-danger"></i></h3>
+            </button>
+
         }
 
         else
         {
-            <i class="fa-solid fa-heart con-like2 text-danger"></i>
-            <i class="fa-regular fa-heart con-like4 text-danger"></i>
-
+            <h3><i class="fa-solid fa-heart con-like2 text-danger"></i></h3>
+            <h3><i class="fa-regular fa-heart con-like4 text-danger"></i></h3>
         }
     }
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"  style="background-color:lightgray;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class=" text-center">Articolo aggiunto ai preferiti</h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content"  style="background-color:lightgray;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel1"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class=" text-center">Articolo rimosso dai preferiti</h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
     @* Img *@
     <div class="row border border-dark m-3  border-2 rounded-4 d-none d-md-flex justify-content-center" style="background-color: orange; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75);">
         <div class="col-md-6 d-flex flex-column p-1 justify-content-center">
@@ -69,7 +107,8 @@
 
     </div>
     @* Carosello schermi piccoli *@
-    <div id="carouselExample" class="carousel slide d-md-none">
+
+    <div id="carouselExample" class="carousel slide d-md-none p-3 rounded-3 mt-3">
         <div class="carousel-inner mb-2 mt-2">
             <div class="carousel-item active">
                 <img src="/Content/Img/@Html.DisplayFor(model => model.FotoCopertina)" class="d-block w-100" alt="...">
@@ -109,45 +148,73 @@
         </button>
     </div>
     @* text *@
- 
-        <div class="text-center">
-            <strong style="font-family:cursive;color:orange">Descrizione</strong>
-            <p>@Html.DisplayFor(model => model.Descrizione)</p>
+
+    <div class="text-center">
+        <h4 class="fw-bold" style="font-family:cursive;color:orange">Descrizione</h4>
+        <p>@Html.DisplayFor(model => model.Descrizione)</p>
+    </div>
+    <div class="row w-100 p-4 d-flex justify-content-center">
+        <div id="DivInformazioni" class=" border border-dark rounded-4 text-center ">
+
+            <strong style="font-family:cursive;color:orange">Categoria</strong>
+            <p>@Html.DisplayFor(model => model.Categorie.NomeCategoria) </p>
+            <strong style="font-family:cursive;color:orange">Prezzo</strong>
+            <p>@Html.DisplayFor(model => model.Prezzo) </p>
+            <strong style="font-family:cursive;color:orange">Luogo</strong>
+            <p>@Html.DisplayFor(model => model.Luogo)</p>
+            <strong style="font-family:cursive;color:orange">Indirizzo</strong>
+            <p>@Html.DisplayFor(model => model.Indirizzo)</p>
+            <strong style="font-family:cursive;color:orange">Data inizio</strong>
+            <p>@Html.DisplayFor(model => model.DataDa)</p>
+            <strong style="font-family:cursive;color:orange">Data Fine</strong>
+            <p>@Html.DisplayFor(model => model.DataEvento) </p>
         </div>
-        <div class="row w-100 p-4 d-flex justify-content-center">
-            <div id="DivInformazioni" class=" col-6 border border-dark rounded-4 text-center ">
 
-                <strong style="font-family:cursive;color:orange">Categoria</strong>
-                <p>@Html.DisplayFor(model => model.Categorie.NomeCategoria) </p>
-                <strong style="font-family:cursive;color:orange">Prezzo</strong>
-                <p>@Html.DisplayFor(model => model.Prezzo) </p>
-                <strong style="font-family:cursive;color:orange">Luogo</strong>
-                <p>@Html.DisplayFor(model => model.Luogo)</p>
-                <strong style="font-family:cursive;color:orange">Indirizzo</strong>
-                <p>@Html.DisplayFor(model => model.Indirizzo)</p>
-                <strong style="font-family:cursive;color:orange">Data inizio</strong>
-                <p>@Html.DisplayFor(model => model.DataDa)</p>
-                <strong style="font-family:cursive;color:orange">Data Fine</strong>
-                <p>@Html.DisplayFor(model => model.DataEvento) </p>
+
+        @if (Model.Prezzo >= 1 && User.IsInRole("User"))
+        {<div class="col-6 text-center d-flex flex-column justify-content-evenly">
+                <div class="border border-dark p-3 mx-auto rounded-4" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
+                    <p class="m-3">
+                        <h6 class="d-none d-md-block" style="font-family:cursive;color:orange">Inserisci una quantità: </h6>
+                        <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6>
+                        <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantità" value="" id="quantità" />
+                        <br />
+                       
+                        <button id="Button" type="button" class="btn mx-auto mt-2 m-2 d-none d-md-block" style="background-color:orange" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            Aggiungi al carrello
+                        </button>
+                        <button id="Button1" type="button" class="d-md-none p-2 rounded-3" style="background-color:orange" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            <i class="fa-solid fa-cart-shopping "></i>
+                        </button>
+                    </p>
+                </div>
             </div>
-            <div class="col-6 text-center d-flex flex-column justify-content-evenly">
+        }
+        <!-- Button trigger modal -->
 
-                @if (Model.Prezzo >= 1 && User.IsInRole("User"))
-                {
-                    <div class="border border-dark p-3 mx-auto rounded-4" id="AddCart" style=" background-color: #fbcc9c; box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -webkit-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 27px 0px rgba(0,0,0,0.75); ">
-                        <p class="m-3">
-                            <h6 class="d-none d-md-block" style="font-family:cursive;color:orange">Inserisci una quantità: </h6>
-                            <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6>
-                            <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantità" value="" id="quantità" />
-                            <br />
-                            <button type="submit" class="btn btn-primary mx-auto mt-2 m-2 d-none d-md-block" id="Button" style="background-color:orange">Aggiungi al carrello</button>
-                            <button id="Button1" class="d-md-none p-2 rounded-3" style="background-color:orange"><i class="fa-solid fa-cart-shopping "></i></button>
-                        </p>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color:lightgray;">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                }
+                    <div class="modal-body">
+                        <h4 class="text-center">Evento aggiunto al carrello</h4>
+                    </div>
+                    <div class="modal-footer d-flex mx-auto">
+                        <a href="/Ordini/Cart" class="btn btn " style="background-color:darkorange" >Vai al carrello</a>
+                        <a href="/Home/Index" class="btn btn" style="background-color:darkorange">Continua con gli acquisti</a>
+                    </div>
+                </div>
             </div>
         </div>
-    
+
+
+    </div>
+
 
 </div>
 
@@ -267,7 +334,7 @@
 
                         @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
                         {
-                            <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                            <a class="text-warning" href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
                         }
 
 
@@ -282,8 +349,19 @@
 
                 <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
                 <div class="row">
+                    @if ( @ViewBag.RecensioniUtente == null)
+        {
+            <div>
+                <h3>Ancora nessuna recensione presente </h3>
+                <p>Sii il primo a scriverla</p>
+                <a href="/recensioni/Create/@Model.IdEvento" class="btn">Scrivi una recensione</a>
+            </div>
+
+        }
                     @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
                     {
+
+
                         <div class="col col-sm-12 col-md-6 text-center d-flex flex-column justify-content-center">
                             <div id="Recensioni" class="  d-flex flex-column justify-content-centerp-3 m-2 ">
                                 <div class="d-flex align-items-center justify-content-center">
@@ -425,7 +503,7 @@
 
                                 @if (Session["Utente"] != null && r.IdUtente == (int)Session["Utente"])
                                 {
-                                    <a href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
+                                    <a class="text-warning" href="/recensioni/Edit/@r.IdRecensione">Modifica</a>
                                 }
 
 
@@ -444,14 +522,14 @@
 
 
 
-@if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
-{
-    @Html.ActionLink("Back to List", "Index")
-}
-else
-{
-    @Html.ActionLink("Back to List", "Index", "Home")
-}
+@*@if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+    else
+    {
+        @Html.ActionLink("Back to List", "Index", "Home")
+    }*@
 
 @section scripts{
     <script type="text/javascript">
