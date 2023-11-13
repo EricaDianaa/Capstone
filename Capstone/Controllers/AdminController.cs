@@ -161,41 +161,119 @@ namespace Capstone.Controllers
             decimal tot = Totale.Sum();
             return Json(tot);
         }
-        //public JsonResult PostPopolari ()
-        //{
-        //    List<Eventi> eventi = db.Eventi.ToList();
-        //   List<ListaOrdini>Lista = new List<ListaOrdini>();
-        //    List<int> ordini = new List<int>();
-        //    foreach (Eventi e  in eventi)
-        //    {
-        //        var order=db.ListaOrdini.Where(m=>m.IdEvento==e.IdEvento).ToList();
-        //        Lista.AddRange(order);
-          
-          
-        //    }
-        //    foreach (ListaOrdini li in Lista)
-        //    {
-        //        var order = db.Ordini.Where(m => m.IdOrdini == li.IdOrdine).Count();
-                
-        //            ordini.Add(order);
-                
-        //        foreach (var item in ordini)
-        //        {
-        //            if(order!= item)
-        //            {
-        //                ordini.Add(order);
-        //                break;
-        //            }
+        public JsonResult PostPopolari()
+        {
+            //selezione tutti gli eventi
+            List<Eventi> eventi=new List<Eventi>();
+            if (User.IsInRole("Admin"))
+            {
+                 eventi = db.Eventi.ToList();
+            }
+            if (User.IsInRole("Azienda"))
+            {
+                if (Session["Utente"] != null)
+                {
+                    //Seleziono gli eventi collegati all'azienda
+                    int idUtente = (int)Session["Utente"];
+                    eventi = db.Eventi.Where(m => m.IdUtente == idUtente).ToList();
+                }
+                else
+                {
+                    RedirectToAction("Login", "Home");
+                }
+
+            }
+
+
+            List<ListaOrdini> Lista = new List<ListaOrdini>();
+            List<PostPopolari> PostPopolari = new List<PostPopolari>();
+            List<PostPopolari> list = new List<PostPopolari>();
+            
+            foreach (Eventi e in eventi)
+            {
+                //Seleziono la lista degli articoli degli ordini
+                var order = db.ListaOrdini.Where(m => m.IdEvento == e.IdEvento).ToList();
+                Lista.AddRange(order);
+            }
+            foreach (ListaOrdini li in Lista)
+            {
+                var order = db.Ordini.Where(m => m.IdOrdini == li.IdOrdine).Count();
+                var idevento = li.IdEvento;
+                PostPopolari p = new PostPopolari();
+                p.IdEvento = idevento;
+                p.Ordini = order;
+                p.Prezzo = li.Eventi.Prezzo;
+                p.Quantità = li.Quantità;
+                var Quantitàperordini = Convert.ToDouble(p.Quantità) * Convert.ToDouble(p.Prezzo);
+                p.Totale = Quantitàperordini * p.Ordini;
+                if (PostPopolari.Count == 0)
+                {
+                PostPopolari.Add(p);
+                    var sum = PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Ordini);
+
+                    if (sum != 0)
+                    {
+                        PostPopolari p1 = new PostPopolari();
+                        p1.IdEvento = idevento;
+                        p1.Ordini = sum;
+                        p1.Prezzo = li.Eventi.Prezzo;
+                        var sumquantità =PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Quantità);
+                        p1.Quantità = sumquantità;
+                        var Quantitàperordin= Convert.ToDouble(p1.Quantità) * Convert.ToDouble(p1.Prezzo);
+                        p1.Totale = Quantitàperordin * p1.Ordini;
+                        list.Add(p1);
+                    } 
+                }
+
+                foreach (var item in PostPopolari)
+                {
+                    if (p != item)
+                    {
+
                     
-        //        }
-        //    }
-        //    //var i = db.Ordini.Where(m => m).Count();
-        //     var Tot = ordini.Max();
-        //    return Json(Tot);
-        //   // List<int> ev = db.Eventi.Select(m => m.Recensioni.Count()).ToList();
-        //   //var Tot=  ev.Max();
-        //   // return Json(Tot);
-        //}
+                   var c= list.Where(m => m.IdEvento == item.IdEvento).ToList();
+                    //Popolo la lista con gli ordini per ogni evento
+                    
+                        PostPopolari.Add(p);
+                        //Somma delle quantità con lo stesso idEvento
+                        var sum = PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Ordini);
+                        
+                    if (sum != 0)
+                        {
+                            PostPopolari p1 = new PostPopolari();
+                            p1.IdEvento = idevento;
+                            p1.Ordini = sum;
+                            p1.Prezzo = li.Eventi.Prezzo;
+                            var sumquantità = PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Quantità);
+                            p1.Quantità = sumquantità;
+                            double QuantitàOrdine= Convert.ToDouble(p1.Quantità) * Convert.ToDouble(p1.Prezzo);
+                            p1.Totale = QuantitàOrdine;
+                            list.Add(p1);
+                            
+                        if (sum > 1)
+                        {
+                            //Rimuovo gli elementi doppi
+                            PostPopolari removeitem = list.FirstOrDefault(m => m.IdEvento == p1.IdEvento && m.Ordini == 1);
+                            list.Remove(removeitem);
+                           
+                        }
+                            break;
+                        }
+                    }
+
+
+
+                }
+
+                
+            }
+
+            //var Tot = list.Max(m=>m.Quantità);
+            //var Totale = list.Where(m => m.Quantità == Tot);  
+
+            return Json(list , JsonRequestBehavior.AllowGet);
+
+        }
     }
 
 }

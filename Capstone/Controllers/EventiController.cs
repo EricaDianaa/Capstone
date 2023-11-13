@@ -52,7 +52,8 @@ namespace Capstone.Controllers
                 int IdUtente = (int)Session["Utente"];
                 List<Recensioni> r = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente).ToList();
                 ViewBag.Recensioni = r;
-                ViewBag.RecensioniUtente = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente);
+                List<Recensioni> re = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente).ToList();
+                ViewBag.RecensioniUtente = re;
                 ViewBag.CountRecensione = db.Recensioni.Where(m=> m.IdEvento == id).Count();
 
                 //Media Recensioni

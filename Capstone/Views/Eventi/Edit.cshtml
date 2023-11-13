@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Prezzo, htmlAttributes: new { @class = "control-label text-warning fw-bold" })
             <div class="">
-                @Html.EditorFor(model => model.Prezzo, new{ htmlAttributes = new{  @class = "form-control", id = "Prezzo", type = "text",}})
+                @Html.EditorFor(model => model.Prezzo, new { htmlAttributes = new { @class = "form-control", id = "Prezzo", type = "text", } })
                 @Html.ValidationMessageFor(model => model.Prezzo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -127,16 +127,23 @@
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Button").click(function () {
-                var Prezzo = $("#Prezzo").val();
-                $("#Prezzo").val(Prezzo + 0)
-                console.log(Prezzo);
-                console.log($("#Prezzo").val());
+
+                var inputNumero = $('#Prezzo').val();
+
+                if (inputNumero % 1 !== 0) {
+                    var Prezzo = $("#Prezzo").val();
+                    $("#Prezzo").val(Prezzo + 0)
+                    console.log(Prezzo);
+                    console.log($("#Prezzo").val());
+                }
+
+
             })
 
         })

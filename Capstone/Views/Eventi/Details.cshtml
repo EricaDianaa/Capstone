@@ -42,7 +42,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content"  style="background-color:lightgray;">
+            <div class="modal-content" style="background-color:lightgray;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -56,7 +56,7 @@
     </div>
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content"  style="background-color:lightgray;">
+            <div class="modal-content" style="background-color:lightgray;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel1"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -179,7 +179,7 @@
                         <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6>
                         <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantità" value="" id="quantità" />
                         <br />
-                       
+
                         <button id="Button" type="button" class="btn mx-auto mt-2 m-2 d-none d-md-block" style="background-color:orange" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                             Aggiungi al carrello
                         </button>
@@ -191,8 +191,6 @@
             </div>
         }
         <!-- Button trigger modal -->
-
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
             <div class="modal-dialog">
@@ -205,7 +203,7 @@
                         <h4 class="text-center">Evento aggiunto al carrello</h4>
                     </div>
                     <div class="modal-footer d-flex mx-auto">
-                        <a href="/Ordini/Cart" class="btn btn " style="background-color:darkorange" >Vai al carrello</a>
+                        <a href="/Ordini/Cart" class="btn btn " style="background-color:darkorange">Vai al carrello</a>
                         <a href="/Home/Index" class="btn btn" style="background-color:darkorange">Continua con gli acquisti</a>
                     </div>
                 </div>
@@ -272,6 +270,14 @@
             </div>
 
             <h4 class="text-center" style="font-family:cursive;color:orange">Le tue recensioni </h4>
+            if (@ViewBag.Recensioni == null || @ViewBag.Recensioni.Count == 0)
+            {
+                <div class="text-center">
+                    <strong>Ancora nessuna recensione presente </strong>
+                    <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
+                </div>
+
+            }
             foreach (Capstone.Models.Recensioni r in ViewBag.Recensioni)
             {
 
@@ -349,15 +355,15 @@
 
                 <h4 class="text-center" style="font-family:cursive;color:orange">Recensioni di altri utenti </h4>
                 <div class="row">
-                    @if ( @ViewBag.RecensioniUtente == null)
-        {
-            <div>
-                <h3>Ancora nessuna recensione presente </h3>
-                <p>Sii il primo a scriverla</p>
-                <a href="/recensioni/Create/@Model.IdEvento" class="btn">Scrivi una recensione</a>
-            </div>
+                    @if (@ViewBag.RecensioniUtente == null || @ViewBag.RecensioniUtente.Count == 0)
+                    {
+                        <div class="text-center">
+                            <strong>Ancora nessuna recensione presente </strong>
+                            <p>Sii il primo a scriverla</p>
+                            <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
+                        </div>
 
-        }
+                    }
                     @foreach (Capstone.Models.Recensioni r in ViewBag.RecensioniUtente)
                     {
 

@@ -135,11 +135,18 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#Button").click(function () {
-                var Prezzo = $("#Prezzo").val();
-                $("#Prezzo").val(Prezzo + 0)
-                console.log(Prezzo);
-                console.log($("#Prezzo").val());
-                })
+
+                var inputNumero = $('#Prezzo').val();
+          
+                    if (inputNumero % 1 !== 0) {
+                        var Prezzo = $("#Prezzo").val();
+                        $("#Prezzo").val(Prezzo + 0)
+                        console.log(Prezzo);
+                        console.log($("#Prezzo").val());
+                    }
+                
+
+            })
 
         })
 
