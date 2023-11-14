@@ -272,7 +272,7 @@
             <h4 class="text-center" style="font-family:cursive;color:orange">Le tue recensioni </h4>
             if (@ViewBag.Recensioni == null || @ViewBag.Recensioni.Count == 0)
             {
-                <div class="text-center">
+                <div class="text-center d-flex flex-column">
                     <strong>Ancora nessuna recensione presente </strong>
                     <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
                 </div>
@@ -359,8 +359,8 @@
                     {
                         <div class="text-center">
                             <strong>Ancora nessuna recensione presente </strong>
-                            <p>Sii il primo a scriverla</p>
-                            <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
+                            @*<p>Sii il primo a scriverla</p>
+                            <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>*@
                         </div>
 
                     }

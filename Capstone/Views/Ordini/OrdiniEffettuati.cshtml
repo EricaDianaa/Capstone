@@ -22,6 +22,7 @@
                     </div>
                     <div class="center" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina); background-size:cover">
                         <div>
+                            <small class="text-warning bg-dark">X @li.Quantità</small>
                             <h6 class="bg-dark text-warning p-1">@li.Eventi.NomeEvento</h6>
                             @if (li.Eventi.DataDa != null)
                             {
@@ -33,6 +34,7 @@
                             }
 
                             <small class="text-warning bg-dark">Valido fino al @string.Format("{0:d}", @li.Eventi.DataEvento)</small>
+
                         </div>
                     </div>
 
@@ -41,6 +43,10 @@
                     </div>
 
                 </div>
+                @*<div>
+                    <a href="/ListaOrdini/Edit/@li.IdListaOrdine">Modifica</a>
+                    <a href="/ListaOrdini/Delete/@li.IdListaOrdine">Elimina</a>
+                </div>*@
             }
         }
     </div>

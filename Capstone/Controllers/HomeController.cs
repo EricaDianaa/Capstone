@@ -182,6 +182,7 @@ namespace Capstone.Controllers
                         {
                             FormsAuthentication.SetAuthCookie(u.UsernameLogin, false);
                             Session["Utente"] = query.IdUtente;
+                            Session.Timeout = 90;
                             return RedirectToAction("Index", "Home");
                         }
                         ViewBag.ErrorMessage = "Username o password non validi";

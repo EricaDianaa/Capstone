@@ -304,6 +304,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\ImgCss\Beige Elegant Calligraphy Monogram  Initials logo.png" />
     <Content Include="Content\ImgCss\Grafico1.png" />
     <Content Include="Content\ImgCss\Grafico2.png" />
     <Content Include="Content\ImgCss\Incasso.png" />
@@ -331,6 +332,7 @@
     <Content Include="Content\StyleLayoutPage.css" />
     <Content Include="Content\StylePreferiti.css" />
     <Content Include="Content\StyleresocontoAdmin.css" />
+    <Content Include="Content\StyleRiepilogoOrdine.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

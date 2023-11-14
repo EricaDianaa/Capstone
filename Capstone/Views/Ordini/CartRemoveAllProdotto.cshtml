@@ -2,15 +2,19 @@
 @{
     ViewBag.Title = "CartRemoveAllProdotto";
 }
-
-<div class="bg-dark border border-white text-center text-primary">
+<style>
+    button:hover,a:hover{
+        color:lightsalmon;
+    }
+</style>
+<div class=" border border-dark text-center mt-5 " style="background-color:orange; font-family:cursive;">
     <h2>Sei sicuro di voler eliminare</h2>
     <div class="d-flex align-items-center justify-content-center text-white ">
         @using (Html.BeginForm())
         {
-            <button class="bg-dark border border-dark text-white p-1" type="submit">Si</button>
+            <button class=" border border-0 text-white fs-2  p-1" type="submit" style="background-color:orange">Si</button>
         }
-        <a href="/home/cart" class="text-decoration-none   ms-2 p-1 text-white">No</a>
+        <a href="/Ordini/cart" class="text-decoration-none fs-2  ms-2 p-1 text-white">No</a>
     </div>
 </div>
 
