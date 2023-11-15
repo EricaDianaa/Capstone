@@ -19,10 +19,6 @@
 </style>
 <div class="">
     <div id="Totale" class="border border-dark border-2 mx-auto text-center mt-3  "></div>
-    @*<div class=" d-none d-md-flex justify-content-center">
-
-        <img class="position-absolute top-0 border border-2 border-dark" src="https://png.pngtree.com/png-vector/20191017/ourlarge/pngtree-cash-register-icon-outline-style-png-image_1811272.jpg" alt="Alternate Text" />
-    </div>*@
 </div>
 
 
@@ -74,8 +70,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            
-            /* $("#RemoveFiltri").click(function () {*/
+
             $.ajax({
                 method: "GET",
                 url: "/Admin/TotaleGuadagni",
@@ -85,7 +80,7 @@
                     $("#Totale").html(licurrent);
                 }
             })
-
+            //Grafici
             $.ajax({
                 method: "GET",
                 url: "/Admin/PostPopolari",
@@ -121,23 +116,15 @@
                         stacked: true,
                         element: 'bar-chart'
                     };
-                    //config.element = 'area-chart';
-                    //Morris.Area(config);
-                    //config.element = 'line-chart';
-                    //Morris.Line(config);
+
                     config.element = 'bar-chart';
                     Morris.Bar(config);
                     config1.element = 'stacked';
                     config1.stacked = true;
                     Morris.Bar(config1);
-                    //Morris.Donut({
-                    //    element: 'pie-chart',
-                    //    data: PieChart
-                    //});
-
                 }
             })
-            /* })*/
+
             $("#DataCategoriaButton").click(function () {
                 var data1 = $("#InputDataCategoria").val();
                 var Categoria = $("#NomeCategoria").val();

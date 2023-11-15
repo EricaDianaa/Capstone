@@ -33,20 +33,20 @@
                             <div class="dropdown-content">
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Utenti", "index", "utenti", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
+                                    <p class=" linkP1 rounded-pill border border-dark">@Html.ActionLink("Utenti", "index", "utenti", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
                                 }
-                                <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Eventi", "index", "Eventi", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
-                                <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Ordini", "index", "Ordini", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
+                                <p class=" linkP1 rounded-pill border border-dark">@Html.ActionLink("Eventi", "index", "Eventi", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
+                                <p class=" linkP1 rounded-pill border border-dark">@Html.ActionLink("Ordini", "index", "Ordini", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Categorie", "index", "Categorie", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
+                                    <p class=" linkP1 rounded-pill border border-dark">@Html.ActionLink("Categorie", "index", "Categorie", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
                                 }
 
-                                <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Recensioni", "index", "Recensioni", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
+                                <p class=" linkP1 rounded-pill border border-dark">@Html.ActionLink("Recensioni", "index", "Recensioni", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
                             </div>
                         </div>
-                        <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Resoconto", "Index", "Admin", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center" })</p>
-                        <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link text-dark rounded-4 text-center " })</p>
+                        <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Resoconto", "Index", "Admin", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center" })</p>
+                        <p class=" linkP rounded-pill border border-dark">@Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link text-dark rounded-pill text-center " })</p>
 
                             
                         

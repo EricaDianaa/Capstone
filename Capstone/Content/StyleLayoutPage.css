@@ -134,12 +134,17 @@ ul {
     z-index:3;
 }
 
-.linkP:hover{
-    transform:scale(1.2);
+.linkP:hover {
+    transform: scale(1.2);
+    background-color: lightgoldenrodyellow;
 }
-p {
+.linkP1:hover {
+    background-color: lightgoldenrodyellow;
+    border:1px solid black;
+}
+.linkP, .linkP1 {
     background-color: orange;
-    font-size: 16px!important;
+    font-size: 16px !important;
 }
 .dropbtn {
     background-color: orange;
@@ -181,4 +186,5 @@ p {
 
 .dropdown:hover .dropbtn {
     background-color: lightgoldenrodyellow;
+    transform:scale(1.2);
 }

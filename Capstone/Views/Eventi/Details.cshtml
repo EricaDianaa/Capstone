@@ -274,7 +274,7 @@
             {
                 <div class="text-center d-flex flex-column">
                     <strong>Ancora nessuna recensione presente </strong>
-                    <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
+                    <a href="/recensioni/Create/?id=@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>
                 </div>
 
             }
@@ -359,8 +359,6 @@
                     {
                         <div class="text-center">
                             <strong>Ancora nessuna recensione presente </strong>
-                            @*<p>Sii il primo a scriverla</p>
-                            <a href="/recensioni/Create/@Model.IdEvento" class="" style="color:orange">Scrivi una recensione</a>*@
                         </div>
 
                     }
@@ -524,18 +522,6 @@
         }
     }
 }
-
-
-
-
-@*@if (User.IsInRole("Admin") || User.IsInRole("Azienda"))
-    {
-        @Html.ActionLink("Back to List", "Index")
-    }
-    else
-    {
-        @Html.ActionLink("Back to List", "Index", "Home")
-    }*@
 
 @section scripts{
     <script type="text/javascript">

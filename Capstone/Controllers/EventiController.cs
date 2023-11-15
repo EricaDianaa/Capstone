@@ -15,9 +15,9 @@ namespace Capstone.Controllers
     public class EventiController : Controller
     {
         private ModelBContent db = new ModelBContent();
-        // GET: Eventi
         public ActionResult Index()
         {
+            //Se è un azienda mostro solo gli eventi dell'azienda
             if (User.IsInRole("Azienda"))
             {
                 if (Session["Utente"] != null)
@@ -32,6 +32,7 @@ namespace Capstone.Controllers
                 }
 
             }
+            //Altimenti li mostro tutti
             else
             {
               var eventi = db.Eventi.Include(e => e.Categorie).Include(e=>e.Recensioni);
@@ -50,6 +51,7 @@ namespace Capstone.Controllers
             if (Session["Utente"] != null)
             {
                 int IdUtente = (int)Session["Utente"];
+                //Lista delle recensioni dell'utente e degli altri utenti
                 List<Recensioni> r = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente == IdUtente).ToList();
                 ViewBag.Recensioni = r;
                 List<Recensioni> re = db.Recensioni.Where(m => m.IdEvento == id && m.IdUtente != IdUtente).ToList();
@@ -136,8 +138,6 @@ namespace Capstone.Controllers
                             eventi.Foto2 = Foto2File;
                         }
 
-
-
                         if (Foto3 != null && Foto3.ContentLength > 0)
                         {
                             string Foto3File = Foto3.FileName;
@@ -180,6 +180,7 @@ namespace Capstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Salvo le immagini in un Tempdata se ci sono (per salvarle poi successivamente)
             Eventi eventi = db.Eventi.Find(id);
             if (eventi.FotoCopertina != null)
             {
@@ -240,6 +241,7 @@ namespace Capstone.Controllers
                 if (Session["Utente"] != null)
                 {
                     eventi.IdUtente = (int)Session["Utente"];
+                 //Se l'immagine è presente la salvo
                 if (FotoCopertina != null && FotoCopertina.ContentLength > 0)
                 {
                     string FotoCopertinaFile = FotoCopertina.FileName;
@@ -247,6 +249,7 @@ namespace Capstone.Controllers
                     FotoCopertina.SaveAs(FotoCopertinaPath);
                     eventi.FotoCopertina = FotoCopertinaFile;
                 }
+                //Altimenti mi salvo la foto che ho salvato nella Get dell'edit
                 else
                 {
                     eventi.FotoCopertina= TempData["FotoCopertina"].ToString();
@@ -299,7 +302,7 @@ namespace Capstone.Controllers
                 {
                     eventi.Foto4 = TempData["Foto4"].ToString();
                 }
-                   
+                    //Salvo le date  vecchie se non vengono selezionate
                     Eventi e =db.Eventi.Where(m=>m.IdEvento==eventi.IdEvento).FirstOrDefault();
                     if (eventi.DataDa == null)
                     {
@@ -326,8 +329,6 @@ namespace Capstone.Controllers
             ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria", eventi.IdCategoria);
             return View(eventi);
         }
-
- 
         public ActionResult Delete(int? id)
         {
             if (id == null)

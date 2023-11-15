@@ -25,7 +25,6 @@ namespace Capstone.Models
 
         [Required]
         [StringLength(50)]
-        //[Remote("IsNameValid", "Validate", ErrorMessage ="Username non disponibile")]
         public string Username { get; set; }
 
         [NotMapped]
@@ -36,7 +35,7 @@ namespace Capstone.Models
         public string Ruolo { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 4,  ErrorMessage = "La password deve contenere minimo 4 caratteri")]
+        [StringLength(50, MinimumLength = 8,  ErrorMessage = "La password deve contenere minimo 8 caratteri")]
         
         public string Password { get; set; }
 
@@ -46,7 +45,6 @@ namespace Capstone.Models
 
         [Required]
         [StringLength(50)]
-        //[Remote("IsEmailValid","Validate", ErrorMessage = "Email non disponibile")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Email non valida")]
         public string Email { get; set; }
 

@@ -9,7 +9,7 @@
 
 @foreach (Ordini o in Model)
 {
-    <div id="Div" class="border border-warning border-2 mt-3  rounded-3"  style="font-family: cursive; background-color: #ffa500bd;">
+    <div id="Div" class="border border-warning border-2 mt-3  rounded-3" style="font-family: cursive; background-color: #ffa500bd;">
         <h3 class="text-center ">Ordine n° @o.IdOrdini</h3>
 
         @foreach (ListaOrdini li in o.ListaOrdini)
@@ -44,9 +44,9 @@
 
                 </div>
                 @*<div>
-                    <a href="/ListaOrdini/Edit/@li.IdListaOrdine">Modifica</a>
-                    <a href="/ListaOrdini/Delete/@li.IdListaOrdine">Elimina</a>
-                </div>*@
+                        <a href="/ListaOrdini/Edit/@li.IdListaOrdine">Modifica</a>
+                        <a href="/ListaOrdini/Delete/@li.IdListaOrdine">Elimina</a>
+                    </div>*@
             }
         }
     </div>
@@ -54,36 +54,43 @@
 
 
     @*foreach (ListaOrdini li in o.ListaOrdini)
-    {
-        if (li.Eventi.DataEvento <= DateTime.Today)
         {
-            <div class="border border-2 border-warning mt-3 " style="font-family:cursive; background-color: #80808033;">
-                <h3 class="text-center">Ordine n° @o.IdOrdini</h3>
-                @foreach (ListaOrdini lis in o.ListaOrdini)
-                {
-                    <div class="coupon mb-3">
-                        <div class="left">
-                            <div style="margin-left: 30%;">@lis.Eventi.Luogo <br />@lis.Eventi.Indirizzo</div>
-                        </div>
-                        <div class="center" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina); background-size:cover">
-                            <div>
-                                <h6 class="bg-dark text-warning p-1">@lis.Eventi.NomeEvento</h6>
-                                <h5 class="text-warning bg-dark" style=" text-shadow: 2px 2px 6px black;">Dal @string.Format("{0:d}", @lis.Eventi.DataDa)</h5>
-                                <small class="text-warning bg-dark">Valido fino al @string.Format("{0:d}", @lis.Eventi.DataEvento)</small>
+            if (li.Eventi.DataEvento <= DateTime.Today)
+            {
+                <div class="border border-2 border-warning mt-3 " style="font-family:cursive; background-color: #80808033;">
+                    <h3 class="text-center">Ordine n° @o.IdOrdini</h3>
+                    @foreach (ListaOrdini lis in o.ListaOrdini)
+                    {
+                        <div class="coupon mb-3">
+                            <div class="left">
+                                <div style="margin-left: 30%;">@lis.Eventi.Luogo <br />@lis.Eventi.Indirizzo</div>
                             </div>
-                        </div>
+                            <div class="center" style="background-image:url(/Content/Img/@li.Eventi.FotoCopertina); background-size:cover">
+                                <div>
+                                    <h6 class="bg-dark text-warning p-1">@lis.Eventi.NomeEvento</h6>
+                                    <h5 class="text-warning bg-dark" style=" text-shadow: 2px 2px 6px black;">Dal @string.Format("{0:d}", @lis.Eventi.DataDa)</h5>
+                                    <small class="text-warning bg-dark">Valido fino al @string.Format("{0:d}", @lis.Eventi.DataEvento)</small>
+                                </div>
+                            </div>
 
-                        <div class="right">
-                            <div>@lis.IdListaOrdine</div>
-                        </div>
+                            <div class="right">
+                                <div>@lis.IdListaOrdine</div>
+                            </div>
 
-                    </div>
-                }
-            </div>
-        }
-    }*@
+                        </div>
+                    }
+                </div>
+            }
+        }*@
 
 
 
 }
 
+@if (Model.Count == 0)
+{<div class="text-center">
+        <h4>Nessun ordine presente</h4>
+        <p>Concludi un ordine per ottenere il tuo primo biglietto per un evento</p>
+        <a class="text-warning" href="/home/index">Home</a>
+    </div>
+}

@@ -15,14 +15,13 @@
         width: 100%;
     }
 }
-
-
 @media screen and (max-width:1030px) {
 
     #Div {
         width: 50%;
     }
 }
+
 #U:hover,#P:hover,#T:hover,#E:hover,#C:hover,#P:hover,#A:hover, #I:hover,#Div1:hover,#Div2:hover {
  background-color:lightgray;
 }

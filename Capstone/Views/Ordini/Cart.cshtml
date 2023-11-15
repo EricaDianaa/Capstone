@@ -21,21 +21,7 @@
                         <div class="card-body">
                             <h5 class="card-title "><a class="text-warning text-decoration-none" href="/Eventi/Details/@e.IdEvento"> @e.NomeEvento.ToUpper()</a></h5>
                             <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @e.Prezzo)</p>
-                            @*@if (e.DataDa != null && e.DataEvento != null)
-                                {
-                                    <p class="card-text"><strong>Data inizio evento: </strong>   @string.Format("{0:d}", @e.DataDa)</p>
-                                    <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
-                                }
-                                else if (e.DataDa == null && e.DataEvento == null)
-                                {
-
-                                }
-                                else
-                                {
-                                    <p class="card-text"><strong>Data fine evento: </strong>   @string.Format("{0:d}", @e.DataEvento)</p>
-                                }
-                                <p class="card-text"><strong>Indirizzo: </strong>  @e.Indirizzo</p>
-                                <p class="card-text">  <strong>Luogo : </strong> @e.Luogo  </p>*@
+                          
                             <p class="card-text">  <strong>Quantità : </strong> @e.Quantità  </p>
 
                             <a href="/Ordini/CartRemove/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">-</a>
@@ -70,17 +56,3 @@
 
 
 </div>
-
-
-@*@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#Elimina").click(function () {
-                var valore = $(this).data("Id")
-
-        console.log("Val",valore)
-            })
-        })
-
-    </script>
-}*@

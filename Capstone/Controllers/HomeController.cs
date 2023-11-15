@@ -14,7 +14,9 @@ namespace Capstone.Controllers
         ModelBContent db = new ModelBContent();
         public ActionResult Index()
         {
+            //Mostro solo gli eventi che non sono scaduti
             DateTime date = DateTime.Today;
+            //Se è un azienda gli mostro solo i suoi eventi
             if(User.IsInRole("Azienda"))
             { 
                 if (Session["Utente"] != null)
@@ -31,14 +33,13 @@ namespace Capstone.Controllers
                 }
 
             }
+            //Altrimenti li mostro tutti
             else
             {
             List<Eventi> eventi= db.Eventi.Where(m=>m.DataEvento >= date||m.DataEvento==null).ToList();
             ViewBag.Title = "Home Page";
             return View(eventi);
             }
-           
-            
         }
 
         //Autentificazione
@@ -172,14 +173,17 @@ namespace Capstone.Controllers
             {
                 using (var context = new ModelBContent())
                 {
+                    
                     var getUser = (from s in context.Utenti where s.Username == u.UsernameLogin || s.Email == u.UsernameLogin select s).FirstOrDefault();
                     if (getUser != null)
-                    {
+                    {   
+                        // Controllo se Username e password concidono
                         var hashCode = getUser.VCode; 
                         var encodingPasswordString = Hash.EncodePassword(u.Password, hashCode);   
                         var query = (from s in context.Utenti where (s.Username == u.UsernameLogin || s.Email == u.UsernameLogin) && s.Password.Equals(encodingPasswordString) select s).FirstOrDefault();
                         if (query != null)
                         {
+                            //Se concidono creo il cookie per l'autentificazione 
                             FormsAuthentication.SetAuthCookie(u.UsernameLogin, false);
                             Session["Utente"] = query.IdUtente;
                             Session.Timeout = 90;
@@ -194,12 +198,13 @@ namespace Capstone.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
+                ViewBag.ErrorMessage = "Errore";
                 return View();
             }
         }
         public ActionResult Logout()
         {
+            //elimino il cookie dell'autentificazione per il logout
             Session["Cliente"] = null;
             FormsAuthentication.SignOut();
             Session["Utente"] = null;
@@ -311,18 +316,17 @@ namespace Capstone.Controllers
                 }
                 
             }
-           
-
             else
             {
                 return Json(null);
             }
-       
-            
         }
+
         //Account personale
+        [Authorize]
         public ActionResult Account()
         {
+            //Mostro all'utente tutti i suoi dati personali
             if (Session["Utente"] != null)
             {
                 int id = (int)Session["Utente"];
@@ -337,11 +341,12 @@ namespace Capstone.Controllers
         }
         //Preferiti
         public ActionResult AddPreferiti(int IdEvento)
-        {
+        {  
+            //Seleziono gli eventi
             Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
             List<Eventi> list = new List<Eventi>();
 
-                List<Eventi> prodott = new List<Eventi>();
+            List<Eventi> prodott = new List<Eventi>();
             if (Session["Utente"] != null)
             {
                 int id = (int)Session["Utente"];
@@ -373,11 +378,13 @@ namespace Capstone.Controllers
 
             return RedirectToAction("Preferiti", "Home");
         }
+       
         [Authorize(Roles="User")]
         public ActionResult Preferiti()
         {
             if (Session["Utente"] != null)
             {
+                //Seleziono la lista dei preferiti dal DB
                 int id = (int)Session["Utente"];
                 List<Preferiti> p = db.Preferiti.Where(m => m.IdUtente == id).ToList();
                 List<Eventi> e = new List<Eventi>();

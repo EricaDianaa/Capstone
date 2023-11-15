@@ -301,6 +301,7 @@ namespace Capstone.Controllers
         //Carrello
         public ActionResult Cart()
         {
+            //Assegno a una lista la lista del carello (salvata nella Session["Carrello"])
             List<EventiOrdini> prodotto = new List<EventiOrdini>();
             prodotto = (List<EventiOrdini>)Session["Carello"];
             List<decimal> TotaleOrdine = new List<decimal>();
@@ -356,10 +357,9 @@ namespace Capstone.Controllers
             prodotto = (List<EventiOrdini>)Session["Carello"];
 
             var prod = prodotto.Where(m => m.IdEvento == id).FirstOrDefault();
-            
+            //Sommo le quantità e le riassegno a Session["Carrello"]
             if (prod.Quantità >= 1)
             {
-
                 List<EventiOrdini> list = new List<EventiOrdini>();
                 prod.Quantità = prod.Quantità + 1;
                 list.Add(prod);
@@ -382,6 +382,7 @@ namespace Capstone.Controllers
         [HttpPost]
         public ActionResult CartRemoveAllProdotto(EventiOrdini p)
         {
+            //Elimino l'intero prodotto
             List<EventiOrdini> prodotto = new List<EventiOrdini>();
             prodotto = (List<EventiOrdini>)Session["Carello"];
             string id = Request.QueryString["Id"];
@@ -403,7 +404,7 @@ namespace Capstone.Controllers
         public ActionResult RiepilogoOrdine()
         {
             if (Session["Utente"] != null)
-            {
+            {   //Salvo delle proprietà in una ViewBag per mostrarle in un riepilogo ordine
                 int idUtente = (int)Session["Utente"];
                 Utenti u = db.Utenti.Where(m => m.IdUtente == idUtente).FirstOrDefault();
                 List<Ordini> e = db.Ordini.Where(m => m.IdUtente == idUtente).ToList();
@@ -423,7 +424,8 @@ namespace Capstone.Controllers
         }
 
         public ActionResult OrdiniEffettuati()
-        {
+        {  
+            //pagina con gli ordini dell'utente
             if (Session["Utente"] != null)
             {
                 int idUtente = (int)Session["Utente"];

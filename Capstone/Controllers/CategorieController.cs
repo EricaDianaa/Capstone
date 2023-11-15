@@ -13,13 +13,11 @@ namespace Capstone.Controllers
     public class CategorieController : Controller
     {
         private ModelBContent db = new ModelBContent();
-      
-        // GET: Categorie
+
         public ActionResult Index()
         {
             return View(db.Categorie.ToList());
         }
-
 
         public ActionResult Details(int? id)
         {

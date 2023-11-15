@@ -178,7 +178,6 @@
     <Compile Include="Controllers\OrdiniController.cs" />
     <Compile Include="Controllers\RecensioniController.cs" />
     <Compile Include="Controllers\UtentiController.cs" />
-    <Compile Include="Controllers\ValidateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,7 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\BigliettiOrdini.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -362,7 +360,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\JavaScriptAdminChart.js" />
-    <Content Include="Scripts\JavaScriptChiSiamo.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -436,7 +433,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Img\" />
-    <Folder Include="Views\Azienda\" />
     <Folder Include="Views\Validate\" />
   </ItemGroup>
   <ItemGroup>

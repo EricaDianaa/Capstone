@@ -15,10 +15,12 @@ namespace Capstone.Controllers
             ViewBag.IdCategoria = new SelectList(db.Categorie, "IdCategoria", "NomeCategoria");
             return View();
         }
-
+        //Queri per Admin e Aziende
         public JsonResult TotaleGuadagni()
         {
+            //Seleziono gli eventi
             List<Eventi> eventi = new List<Eventi>();
+            //Se è un azienda
             if (User.IsInRole("Azienda"))
             {
                 if (Session["Utente"] != null)
@@ -39,7 +41,6 @@ namespace Capstone.Controllers
                 eventi = db.Eventi.Select(m => m).ToList();
             }
 
-            
             List<decimal> Totale = new List<decimal>();
             foreach (Eventi e in eventi)
             {   
@@ -59,8 +60,9 @@ namespace Capstone.Controllers
         [HttpPost]
         public JsonResult TotaleGuadagniData(DateTime DataEvento)
         {
-
+            //Seleziono gli eventi
             List<Eventi> eventi=new List<Eventi>();
+            //Se è un azienda
             if (User.IsInRole("Azienda"))
             {
                 if (Session["Utente"] != null)
@@ -112,7 +114,9 @@ namespace Capstone.Controllers
         [HttpPost]
         public JsonResult TotaleGuadagniDataCategoria(DateTime DataEvento,int IdCategoria)
         {
+            //Seleziono gli eventi
             List<Eventi> eventi = new List<Eventi>();
+            //Se è un azienda
             if (User.IsInRole("Azienda"))
             {
                 if (Session["Utente"] != null)
@@ -165,10 +169,12 @@ namespace Capstone.Controllers
         {
             //selezione tutti gli eventi
             List<Eventi> eventi=new List<Eventi>();
+            //Per admin
             if (User.IsInRole("Admin"))
             {
                  eventi = db.Eventi.ToList();
             }
+            //per azienda
             if (User.IsInRole("Azienda"))
             {
                 if (Session["Utente"] != null)
@@ -197,22 +203,27 @@ namespace Capstone.Controllers
             }
             foreach (ListaOrdini li in Lista)
             {
+                //Per ogni articolo collegato a un ordine lo assegno in una lista(PostPopolari)
                 var order = db.Ordini.Where(m => m.IdOrdini == li.IdOrdine).Count();
                 var idevento = li.IdEvento;
+                //Completo tutte le proprietà
                 PostPopolari p = new PostPopolari();
                 p.IdEvento = idevento;
                 p.Ordini = order;
                 p.Prezzo = li.Eventi.Prezzo;
                 p.Quantità = li.Quantità;
+                //calcolo il prezzo
                 var Quantitàperordini = Convert.ToDouble(p.Quantità) * Convert.ToDouble(p.Prezzo);
                 p.Totale = Quantitàperordini * p.Ordini;
                 if (PostPopolari.Count == 0)
-                {
-                PostPopolari.Add(p);
+                {  
+                    PostPopolari.Add(p);
+                    //Sommo gli ordini con stesso IdEvento e li riassegno in un altra lista
                     var sum = PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Ordini);
 
                     if (sum != 0)
                     {
+                        
                         PostPopolari p1 = new PostPopolari();
                         p1.IdEvento = idevento;
                         p1.Ordini = sum;
@@ -229,16 +240,14 @@ namespace Capstone.Controllers
                 {
                     if (p != item)
                     {
+                        var c = list.Where(m => m.IdEvento == item.IdEvento).ToList();
+                        //Popolo la lista con gli ordini per ogni evento
 
-                    
-                   var c= list.Where(m => m.IdEvento == item.IdEvento).ToList();
-                    //Popolo la lista con gli ordini per ogni evento
-                    
                         PostPopolari.Add(p);
                         //Somma delle quantità con lo stesso idEvento
                         var sum = PostPopolari.Where(m => m.IdEvento == idevento).Sum(m => m.Ordini);
-                        
-                    if (sum != 0)
+
+                        if (sum != 0)
                         {
                             PostPopolari p1 = new PostPopolari();
                             p1.IdEvento = idevento;
@@ -249,29 +258,20 @@ namespace Capstone.Controllers
                             double QuantitàOrdine= Convert.ToDouble(p1.Quantità) * Convert.ToDouble(p1.Prezzo);
                             p1.Totale = QuantitàOrdine;
                             list.Add(p1);
-                            
-                        if (sum > 1)
-                        {
-                            //Rimuovo gli elementi doppi
-                            PostPopolari removeitem = list.FirstOrDefault(m => m.IdEvento == p1.IdEvento && m.Ordini == 1);
-                            list.Remove(removeitem);
-                           
-                        }
+
+                            if (sum > 1)
+                            {
+                                //Rimuovo gli elementi doppi
+                                PostPopolari removeitem = list.FirstOrDefault(m => m.IdEvento == p1.IdEvento && m.Ordini == 1);
+                                list.Remove(removeitem);
+
+                            }
                             break;
                         }
                     }
-
-
-
                 }
-
-                
             }
-
-            //var Tot = list.Max(m=>m.Quantità);
-            //var Totale = list.Where(m => m.Quantità == Tot);  
-
-            return Json(list , JsonRequestBehavior.AllowGet);
+            return Json(list, JsonRequestBehavior.AllowGet);
 
         }
     }

@@ -83,7 +83,7 @@ namespace Capstone.Controllers
                 {
                     recensioni.IdEvento = Convert.ToInt32(Request.QueryString["id"]);
                     recensioni.IdUtente = (int)Session["Utente"];
-                   
+                    //Se le stelle sono state selezionate
                     if (rating != null)
                     {
                         recensioni.Voto = (int)rating;
@@ -91,6 +91,7 @@ namespace Capstone.Controllers
                         db.SaveChanges();
                         return RedirectToAction("Index", "Home");
                     }
+                    //Altrimenti messaggio di errore il campo è obbligatorio
                     else
                     {
                         ViewBag.ErroreStelle = "Il campo è obbligatorio";

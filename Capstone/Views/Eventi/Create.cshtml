@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label text-warning fw-bold " })
             <div class="">
-                @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                @Html.TextAreaFor(model => model.Descrizione, new { htmlAttributes = new { @class = "form-control", type = "text" } })
                 @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -127,9 +127,6 @@
     </div>
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
 
 @section scripts{
     <script type="text/javascript">

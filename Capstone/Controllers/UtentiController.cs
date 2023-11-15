@@ -50,30 +50,6 @@ namespace Capstone.Controllers
             {
                 return HttpNotFound();
             }
-            //var base64EncodedBytesPassword = System.Convert.FromBase64String(utenti.Password);
-            //string password = System.Text.Encoding.UTF8.GetString(base64EncodedBytesPassword);
-            //utenti.Password = password;
-            //try
-            //{
-            //    using (var context = new ModelBContent())
-            //    {
-            //        var getUser = (from s in context.Utenti where s.Username == utenti.Username || s.Email == utenti.Username select s).FirstOrDefault();
-            //        if (getUser != null)
-            //        {
-            //            var PasswordDecode = Hash.base64Decode(utenti.Password);
-
-            //            ViewBag.ErrorMessage = "Username o password non validi";
-            //            return View();
-            //        }
-            //        ViewBag.ErrorMessage = "Username o password non validi";
-            //        return View();
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    ViewBag.ErrorMessage = " Error!!! contact cms@info.in";
-            //    return View();
-            //}
             return View(utenti);
         }
 
@@ -83,9 +59,9 @@ namespace Capstone.Controllers
         {
 
             Utenti u = db.Utenti.Where(m => m.IdUtente == utenti.IdUtente).FirstOrDefault();
-            
             utenti.Username = u.Username;
             utenti.Password = u.Password;     
+            //Se è diverso da admin
             if (!User.IsInRole("Admin"))
             {
             utenti.IsAzienda = u.IsAzienda;
@@ -121,14 +97,14 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditPassword([Bind(Include = "IdUtente,Username,Ruolo,Password,Indirizzo,Email,Telefono,IsAzienda,CodiceFiscale,PartitaIva")] string NewPassword,string OldPassword)
         {
-           
             int id = (int)Session["Utente"];
             if (id != 0)
             {
- try
-            {
-                using (var context = new ModelBContent())
+                try
                 {
+                    using (var context = new ModelBContent())
+                    {
+                    //Se l'utente concide con l'id dell'utente registrato
                     Utenti u = db.Utenti.Where(m => m.IdUtente == id).FirstOrDefault();
                     var hashCode = u.VCode;
                     var encodingPasswordString = Hash.EncodePassword(OldPassword, hashCode);
@@ -137,7 +113,7 @@ namespace Capstone.Controllers
                     {
                     var keyNew = Hash.GeneratePassword(10);
                     
-
+                        //Sicurezza password
                         if (!Regex.IsMatch(NewPassword, @"\d"))
                         {
                             ViewBag.ErroreNumerico = "la password deve contenere un carattere numerico";
@@ -164,11 +140,8 @@ namespace Capstone.Controllers
                             ModelState.Clear();
                              TempData["Success"] = "La password è stata modificata con successo";
                             return RedirectToAction("Account", "home");
-
-
                         }
                     }
-
 
                     ViewBag.ErrorMessage = "Username o password non validi";
                     return View();
@@ -208,6 +181,7 @@ namespace Capstone.Controllers
                     if (u != null)
                     {
                         var keyNew = Hash.GeneratePassword(10);
+                        //Sicurezza password 
                         if (!Regex.IsMatch(NewPassword, @"\d"))
                         {
                             ViewBag.ErroreNumerico = "la password deve contenere un carattere numerico";
