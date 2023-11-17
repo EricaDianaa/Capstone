@@ -18,13 +18,13 @@ Il progetto è creato tramite l'utilizzo dei seguenti linguaggi:
 6. Pagina di resoconto dei guadagni con l'aggiunta di grafici
 
 ## Come avviare il progetto
-Per provare il progetto basterà clonare la repository e avviare il progetto, grazie a l'utilizzo di entity framework vi creera un database nel vostro SQL.
+Per provare il progetto basterà clonare la repository e avviare il progetto, grazie all'utilizzo di entity framework vi creera un database nel vostro SQL.
 Con pochi passaggi: 
 1. Aprire Visual Studio e selezionare Clona una Repository
 2. Seleziona Github
 3. Inserire il link della repository (https://github.com/EricaDianaa/Capstone)
 4. Ora avviate il progetto
-All'inizio l'applicazione sarà vuota basterà aggiungere da SQL un utente con ruolo Admin  e iniziare ad aggiungere eventi e potrette usare poi tutte ole funzionalità.
+All'inizio l'applicazione sarà vuota basterà aggiungere da SQL un utente con ruolo Admin  e iniziare ad aggiungere eventi e potrette usare poi tutte le funzionalità.
  
 
 ## Authors
