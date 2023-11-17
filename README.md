@@ -28,7 +28,7 @@ Con pochi passaggi:
 All'inizio l'applicazione sarà vuota basterà aggiungere da SQL un utente con ruolo Admin  e iniziare ad aggiungere eventi e potrette usare poi tutte le funzionalità.
  
 
-## Authors
+## Autore
 
 - Erica Diana
 
