@@ -1,12 +1,13 @@
 
 # Capstone-Project (TourSardigna)
 
-TourSardigna è il nome del sito web che ho creato. Si tratta di una piattaforma dedicata agli eventi in tutta la Sardegna come concerti, feste, escursioni, musei e spiagge. L’obiettivo è offrire agli utenti un modo semplice e veloce per organizzare giornate uniche, senza stress eccessivo. Allo stesso tempo, mira a fornire alle aziende uno strumento efficace per promuovere i propri eventi, raggiungendo il più ampio pubblico possibile.
+TourSardigna è il nome del sito web che ho creato (a scopo didattico). Si tratta di una piattaforma dedicata agli eventi in tutta la Sardegna come concerti, feste, escursioni, musei e spiagge. L’obiettivo è offrire agli utenti un modo semplice e veloce per organizzare giornate uniche, senza stress eccessivo. Allo stesso tempo, mira a fornire alle aziende uno strumento efficace per promuovere i propri eventi, raggiungendo il più ampio pubblico possibile.
 
 Il progetto è in fase di sviluppo.   
 A breve implementerò un sistema per il pagamento con stripe, e una funzionalità per poter effettuare il reso dell'ordine. Poi sulla sicurezza implementerò il recupero Password tramite email.
 Il progetto è creato tramite l'utilizzo dei seguenti linguaggi:     
- C#, ADO.NET, ASP.NET MVC, Entity-Framework, AJAX, Jquery, Css, Bootstrap.  
+ C#, ADO.NET, ASP.NET MVC, Entity-Framework, AJAX, Jquery, Css, Bootstrap, SQL,LINQ
+ .  
 
 
 ## Funzionalità
