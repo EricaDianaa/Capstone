@@ -12,5 +12,6 @@ namespace Capstone.Models
         public decimal Prezzo { get; set; }
         public int Quantità  { get; set; }
         public double Totale { get; set; }
+        public string NomeEvento { get; set; }
     }
 }

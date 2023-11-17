@@ -26,11 +26,11 @@
 <div class="container">
     <div class"row" id="Altro">
         <div class="col-sm- text-center" id="Chart1">
-            <h3 class="">Grafico ordini per eventi</h3>
+            <h3 class="">Grafico quantità di ordini per ogni evento</h3>
             <div id="bar-chart" ></div>
         </div>
         <div class="col-sm- text-center mt-4 mb-4" id="Chart2">
-            <h3 class="">Grafico guadagno ordini per eventi</h3>
+            <h3 class="">Grafico guadagno ordini per ogni evento</h3>
             <div id="stacked"></div>
         </div>
 
@@ -89,8 +89,8 @@
                     var morrisData = [];
                     var morrisData1= [];
                     $.each(data, function (i, e) {
-                      morrisData.push({ y: e.IdEvento, a: e.Ordini });
-                      morrisData1.push({ y: e.Prezzo,a:e.Quantità, b: e.Totale });
+                      morrisData.push({ y: e.NomeEvento, a: e.Ordini,b:e.IdEvento });
+                      morrisData1.push({ y: e.NomeEvento , a: e.Quantità, b: e.Prezzo + "€",c: e.Totale + "€" });
                     })
                     console.log(morrisData1)
                     config = {
@@ -109,10 +109,10 @@
                     config1 = {
                         data: morrisData1,
                         xkey: 'y',
-                        ykeys: ['a', 'b'],
-                        labels: [ 'Quantità','Totale'],
+                        ykeys: ['a', 'b','c'],
+                        labels: [ 'Quantità','Prezzo evento','Totale'],
                         hideHover: 'auto',
-                        barColors: ['black', 'red'],
+                        barColors: ['black', 'green','darkgreen'],
                         stacked: true,
                         element: 'bar-chart'
                     };

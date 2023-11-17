@@ -212,6 +212,7 @@ namespace Capstone.Controllers
                 p.Ordini = order;
                 p.Prezzo = li.Eventi.Prezzo;
                 p.Quantità = li.Quantità;
+                p.NomeEvento = li.Eventi.NomeEvento;
                 //calcolo il prezzo
                 var Quantitàperordini = Convert.ToDouble(p.Quantità) * Convert.ToDouble(p.Prezzo);
                 p.Totale = Quantitàperordini * p.Ordini;
@@ -232,6 +233,7 @@ namespace Capstone.Controllers
                         p1.Quantità = sumquantità;
                         var Quantitàperordin= Convert.ToDouble(p1.Quantità) * Convert.ToDouble(p1.Prezzo);
                         p1.Totale = Quantitàperordin * p1.Ordini;
+                        p1.NomeEvento = li.Eventi.NomeEvento;
                         list.Add(p1);
                     } 
                 }
@@ -257,6 +259,7 @@ namespace Capstone.Controllers
                             p1.Quantità = sumquantità;
                             double QuantitàOrdine= Convert.ToDouble(p1.Quantità) * Convert.ToDouble(p1.Prezzo);
                             p1.Totale = QuantitàOrdine;
+                            p1.NomeEvento = li.Eventi.NomeEvento;
                             list.Add(p1);
 
                             if (sum > 1)

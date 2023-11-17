@@ -92,6 +92,7 @@ th{
     color:black;
 }
 #TitleTable {
+    border :1px solid antiquewhite;
     background-color: #ffb84c;
     color: black;
 }

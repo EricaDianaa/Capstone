@@ -101,15 +101,15 @@ namespace Capstone.Controllers
             }
             else
             {
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
                 {   //Prendo i prodotti della sessione carrello
                     Ordini ordine = new Ordini();
                     List<EventiOrdini> prodotto = new List<EventiOrdini>();
                     prodotto = (List<EventiOrdini>)Session["Carello"];
                     Session["Cart1"] = Session["Carello"];
-                   //Assegno i valori all'ordine
+                    //Assegno i valori all'ordine
                     ordini.Data = DateTime.Now;
-                    ordini.IdUtente=(int)Session["Utente"];
+                    ordini.IdUtente = (int)Session["Utente"];
                     //Per ogni elemento del carrello aggiungo nel database ListaOrdini legata alla tabella Ordini
                     foreach (EventiOrdini p in prodotto)
                     {
@@ -125,11 +125,11 @@ namespace Capstone.Controllers
                     db.Ordini.Add(ordini);
                     db.SaveChanges();
                     //Svuoto il carrello alla fine dell'ordine
-                    Session["Carello"]=null;
-                return RedirectToAction("OrdiniEffettuati", "Ordini");
+                    Session["Carello"] = null;
+                    return RedirectToAction("OrdiniEffettuati", "Ordini");
+                }
             }
-            }
-    
+
 
             ViewBag.IdUtente = new SelectList(db.Utenti, "IdUtente", "Username", ordini.IdUtente);
             return View(ordini);
