@@ -5,9 +5,12 @@ using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Net.Configuration;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Models;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Capstone.Controllers
 {
@@ -126,6 +129,7 @@ namespace Capstone.Controllers
                     db.SaveChanges();
                     //Svuoto il carrello alla fine dell'ordine
                     Session["Carello"] = null;
+              
                     return RedirectToAction("OrdiniEffettuati", "Ordini");
                 }
             }

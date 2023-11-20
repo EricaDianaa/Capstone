@@ -14,7 +14,7 @@
 
         @foreach (ListaOrdini li in o.ListaOrdini)
         {
-            if (li.Eventi.DataEvento >= DateTime.Today)
+            if (li.Eventi.DataEvento >= DateTime.Today||li.Eventi.DataEvento==null)
             {
                 <div class="coupon mt-3 mb-3">
                     <div class="left">

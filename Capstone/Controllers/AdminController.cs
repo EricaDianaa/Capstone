@@ -265,7 +265,7 @@ namespace Capstone.Controllers
                             if (sum > 1)
                             {
                                 //Rimuovo gli elementi doppi
-                                PostPopolari removeitem = list.FirstOrDefault(m => m.IdEvento == p1.IdEvento && m.Ordini == 1);
+                                PostPopolari removeitem = list.FirstOrDefault(m => m.IdEvento == p1.IdEvento && m.Ordini >= 1);
                                 list.Remove(removeitem);
 
                             }

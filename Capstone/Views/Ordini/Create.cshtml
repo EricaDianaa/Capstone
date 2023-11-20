@@ -12,8 +12,10 @@
     <div class="form-horizontal mt-3">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-     
-        @Html.Action("RiepilogoOrdine")
+     @if (Session["Utente"] != null){
+         @Html.Action("RiepilogoOrdine")
+                })
+  
 
         <div class="form-group">
             <div class="col-md-offset-2">

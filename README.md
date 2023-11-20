@@ -6,8 +6,8 @@ TourSardigna è il nome del sito web che ho creato (a scopo didattico). Si tratt
 Il progetto è in fase di sviluppo.   
 A breve implementerò un sistema per il pagamento con stripe, e una funzionalità per poter effettuare il reso dell'ordine. Poi sulla sicurezza implementerò il recupero Password tramite email.
 Il progetto è creato tramite l'utilizzo dei seguenti linguaggi:     
- C#, ADO.NET, ASP.NET MVC, Entity-Framework, AJAX, Jquery, Css, Bootstrap, SQL,LINQ
- .  
+ .NET, C#, ASP.NET MVC, Entity-Framework, AJAX, Jquery, Css, Bootstrap, SQL,LINQ
+   
 
 
 ## Funzionalità
@@ -22,10 +22,11 @@ Il progetto è creato tramite l'utilizzo dei seguenti linguaggi:
 Per provare il progetto basterà clonare la repository e avviare il progetto, grazie all'utilizzo di entity framework vi creera un database nel vostro SQL.
 Con pochi passaggi: 
 1. Aprire Visual Studio e selezionare Clona una Repository
-2. Seleziona Github
+2. Selezionare Github
 3. Inserire il link della repository (https://github.com/EricaDianaa/Capstone)
 4. Ora avviate il progetto
-All'inizio l'applicazione sarà vuota basterà aggiungere da SQL un utente con ruolo Admin  e iniziare ad aggiungere eventi e potrette usare poi tutte le funzionalità.
+All'inizio l'applicazione sarà vuota, basterà aggiungere da SQL un utente con ruolo Admin  
+e iniziare ad aggiungere eventi. Oppure potrette semplicemente ripristinare il backup del database lasciato nella repository da SQL.
  
 
 ## Autore
