@@ -11,12 +11,14 @@ Il progetto è creato tramite l'utilizzo dei seguenti linguaggi:
 
 
 ## Funzionalità
-1. Registrazione utenti e aziende e login 
-2. Homepage con eventi creati dall'amministratore o da un azienda
-3. Possibilità di acquistare un biglietto per un evento
-4. Possibilità di salvare un evento
-5. Gestione degli eventi per Amministratore e Aziende con Create, Edit e Delete
-6. Pagina di resoconto dei guadagni con l'aggiunta di grafici
+1. Registrazione utenti e aziende e login ;
+2. Homepage con eventi creati dall'amministratore o da un azienda;
+3. Pagina di dettaglio per ogni evento con relative recensioni;
+4. Possibilità di acquistare un biglietto per un evento;
+5. Possibilità di salvare un evento in una lista di preferiti;
+6. Possibilità di lasciare una recensione agli eventi;
+7. Gestione degli eventi per Amministratore e Aziende con Create, Edit e Delete;
+8. Pagina di resoconto dei guadagni con l'aggiunta di grafici.
 
 ## Come avviare il progetto
 Per provare il progetto basterà clonare la repository e avviare il progetto, grazie all'utilizzo di entity framework vi creera un database nel vostro SQL.
@@ -26,7 +28,7 @@ Con pochi passaggi:
 3. Inserire il link della repository (https://github.com/EricaDianaa/Capstone)
 4. Ora avviate il progetto
 All'inizio l'applicazione sarà vuota, basterà aggiungere da SQL un utente con ruolo Admin  
-e iniziare ad aggiungere eventi. Oppure potrette semplicemente ripristinare il backup del database lasciato nella repository da SQL.
+e iniziare ad aggiungere eventi. Oppure potrette semplicemente ripristinare il backup del database lasciato nella repository(Capstone.bak) da SQL.
  
 
 ## Autore
