@@ -118,7 +118,7 @@ namespace Capstone.Controllers
                     {
                         ordini.ListaOrdini.Add(new ListaOrdini
                         {
-                            Quantità = p.Quantità,
+                            Quantità = p.Quantita,
                             IdEvento = p.IdEvento,
                         });
                     };
@@ -245,16 +245,16 @@ namespace Capstone.Controllers
         }
 
         //Aggiungi al carrello
-        public ActionResult AggiungiOrdine(int quantità, int IdEvento)
+        public ActionResult AggiungiOrdine(int quantita, int IdEvento)
         {
             //se la quantità è maggiore di uno
-            if (quantità >= 1)
+            if (quantita >= 1)
             {
                 Eventi e = db.Eventi.FirstOrDefault(m => m.IdEvento == IdEvento);
                 //Selezione del prodotto a un nuovo modello contenente Evento e Ordini
                 EventiOrdini prod = new EventiOrdini();
                 prod.IdEvento = IdEvento;
-                prod.Quantità = quantità;
+                prod.Quantita = quantita;
                 prod.NomeEvento = e.NomeEvento;
                 prod.FotoCopertina = e.FotoCopertina;
                 prod.Foto1 = e.Foto1;
@@ -284,7 +284,7 @@ namespace Capstone.Controllers
                     //se l'evento è gia presente nel carello somma solo la quantità
                     if (prodotto != null && prod.IdEvento == prodotto.IdEvento)
                     {
-                        prod.Quantità = prodotto.Quantità + quantità;
+                        prod.Quantita = prodotto.Quantita + quantita;
                         prodott.Add(prod);
                         prodott.Remove(prodott.FirstOrDefault(m => m.IdEvento == IdEvento));
 
@@ -314,7 +314,7 @@ namespace Capstone.Controllers
                 //Somma totale carello
                 foreach (EventiOrdini p in prodotto)
                     {
-                        decimal q = Convert.ToDecimal(p.Quantità);
+                        decimal q = Convert.ToDecimal(p.Quantita);
                         decimal prezzo = Convert.ToDecimal(p.Prezzo);
                         decimal tot = q *= prezzo;
                         TotaleOrdine.Add(tot);
@@ -337,11 +337,11 @@ namespace Capstone.Controllers
 
             var prod = prodotto.Where(m => m.IdEvento ==id).FirstOrDefault();
             //Se il prodotto ha più di una quantità elimino solo dalla quantità
-            if (prod.Quantità > 1)
+            if (prod.Quantita > 1)
             {
 
                 List<EventiOrdini> list = new List<EventiOrdini>();
-                prod.Quantità = prod.Quantità - 1;
+                prod.Quantita = prod.Quantita - 1;
                 list.Add(prod);
                 Session["Carello"] = prod;
             }
@@ -362,10 +362,10 @@ namespace Capstone.Controllers
 
             var prod = prodotto.Where(m => m.IdEvento == id).FirstOrDefault();
             //Sommo le quantità e le riassegno a Session["Carrello"]
-            if (prod.Quantità >= 1)
+            if (prod.Quantita >= 1)
             {
                 List<EventiOrdini> list = new List<EventiOrdini>();
-                prod.Quantità = prod.Quantità + 1;
+                prod.Quantita = prod.Quantita + 1;
                 list.Add(prod);
                 Session["Carello"] = prod;
             }

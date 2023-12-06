@@ -177,7 +177,7 @@
                     <p class="m-3">
                         <h6 class="d-none d-md-block" style="font-family:cursive;color:orange">Inserisci una quantità: </h6>
                         <h6 class="d-md-none" style="font-family:cursive;color:orange"> Qt: </h6>
-                        <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantità" value="" id="quantità" />
+                        <input type="number" class="form-control w-50 d-flex mx-auto" name="Quantita" value="" id="quantita" />
                         <br />
 
                         <button id="Button" type="button" class="btn mx-auto mt-2 m-2 d-none d-md-block" style="background-color:orange" data-bs-toggle="modal" data-bs-target="#exampleModal2">
@@ -530,46 +530,46 @@
 
 
             $("#Button").click(function () {
-                console.log("Ordine", $("#quantità").val(),@Html.DisplayFor(model => model.IdEvento))
+                console.log("Ordine", $("#quantita").val(),@Html.DisplayFor(model => model.IdEvento))
                 var prodotto = {
-                Quantità: $("#quantità").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
+                Quantità: $("#quantita").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
 
 
                 $.ajax({
                     method: "POST",
                     url: "/Ordini/AggiungiOrdine",
-                    data: { Quantità: prodotto.Quantità, IdEvento: prodotto.Prodotto },
+                    data: { Quantita: prodotto.Quantità, IdEvento: prodotto.Prodotto },
                     success: function (data) {
                         console.log(data)
 
                     }
                 });
-                if ($("#quantità").val() <= 1) {
+                if ($("#quantita").val() <= 1) {
                     $("#MessaggioErrore").show()
                 }
-                if ($("#quantità").val() >= 1) {
+                if ($("#quantita").val() >= 1) {
                     $("#MessaggioErrore").hide()
                 }
             })
             $("#Button1").click(function () {
-        console.log("Ordine", $("#quantità").val(),@Html.DisplayFor(model => model.IdEvento))
+        console.log("Ordine", $("#quantita").val(),@Html.DisplayFor(model => model.IdEvento))
         var prodotto = {
-        Quantità: $("#quantità").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
+        Quantità: $("#quantita").val(), Prodotto: @Html.DisplayFor(model => model.IdEvento) }
 
 
         $.ajax({
             method: "POST",
             url: "/Ordini/AggiungiOrdine",
-            data: { Quantità: prodotto.Quantità, IdEvento: prodotto.Prodotto },
+            data: { Quantita: prodotto.Quantità, IdEvento: prodotto.Prodotto },
             success: function (data) {
                 console.log(data)
 
             }
         });
-        if ($("#quantità").val() <= 1) {
+        if ($("#quantita").val() <= 1) {
             $("#MessaggioErrore").show()
         }
-        if ($("#quantità").val() >= 1) {
+        if ($("#quantita").val() >= 1) {
             $("#MessaggioErrore").hide()
         }
     })

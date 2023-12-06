@@ -61,7 +61,7 @@ namespace Capstone.Models
         public int NomeUtente { get; set; }
         public int IdListaOrdine { get; set; }
 
-        public int Quantità { get; set; }
+        public int Quantita { get; set; }
 
         public int IdOrdine { get; set; }
     }

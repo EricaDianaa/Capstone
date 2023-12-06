@@ -22,7 +22,7 @@
                             <h5 class="card-title "><a class="text-warning text-decoration-none" href="/Eventi/Details/@e.IdEvento"> @e.NomeEvento.ToUpper()</a></h5>
                             <p class="card-text"><strong>Prezzo: </strong> @string.Format("{0:C}", @e.Prezzo)</p>
                           
-                            <p class="card-text">  <strong>Quantità : </strong> @e.Quantità  </p>
+                            <p class="card-text">  <strong>Quantità : </strong> @e.Quantita  </p>
 
                             <a href="/Ordini/CartRemove/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">-</a>
                             <a href="/Ordini/AddQuantità/?Id=@e.IdEvento" class="btn btn-danger" id="Elimina">+</a>
