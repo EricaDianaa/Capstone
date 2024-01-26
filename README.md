@@ -1,6 +1,8 @@
 
 # Capstone-Project (TourSardigna)
 
+![TourSardigna](https://github.com/itsroshan137/Horizontal-Swiper/assets/134380180/2ca16f8e-5615-49bc-beb7-0c4c32fc0f2c)
+
 TourSardigna è il nome del sito web che ho creato (a scopo didattico). Si tratta di una piattaforma dedicata agli eventi in tutta la Sardegna come concerti, feste, escursioni, musei e spiagge. L’obiettivo è offrire agli utenti un modo semplice e veloce per organizzare giornate uniche, senza stress eccessivo. Allo stesso tempo, mira a fornire alle aziende uno strumento efficace per promuovere i propri eventi, raggiungendo il più ampio pubblico possibile.
 
 Il progetto è in fase di sviluppo.   
